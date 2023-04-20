@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>421375112279-ajkafjg2s2bt12e4huaf40o2tjqv8fj9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.421375112279-ajkafjg2s2bt12e4huaf40o2tjqv8fj9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCKqL2r_krKNsCMPPqQY9i0N3qhnQaZXRs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>421375112279</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>oggroup.GeekGenius</string>
+	<key>PROJECT_ID</key>
+	<string>geekgenius-cf2f0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>geekgenius-cf2f0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:421375112279:ios:5ff084502a65556578df12</string>
+</dict>
+</plist>
