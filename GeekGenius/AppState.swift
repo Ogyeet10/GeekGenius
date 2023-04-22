@@ -14,4 +14,8 @@ class AppState: ObservableObject {
     init() {
         isLoggedIn = Auth.auth().currentUser != nil
     }
+
+    func signIn() {
+        isLoggedIn = true
+    }
 }

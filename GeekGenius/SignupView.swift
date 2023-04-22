@@ -14,7 +14,9 @@ struct SignupView: View {
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var errorMessage: String?
-
+    @EnvironmentObject var appState: AppState
+    @Environment(\.presentationMode) private var presentationMode
+    @State private var isSignedIn = false
 
     var body: some View {
         VStack {
@@ -55,30 +57,38 @@ struct SignupView: View {
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(10)
 
-                
-                Button(action: {
-                    if let errorMessage = validateInput(name: name, email: email, password: password, confirmPassword: confirmPassword) {
-                        print("Error: \(errorMessage)")
-                    } else {
-                        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                            if let error = error {
-                                print("Error signing up: \(error.localizedDescription)")
-                            } else {
-                                print("Sign up successful")
-                                // Navigate to the home screen or another appropriate view
-                            }
-                        }
-                    }
-                }) {
-                    Text("Sign Up")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
+                if let errorMessage = errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .padding(.bottom)
                 }
-                .padding(.top)
+
+                Button(action: {
+                        if let validationError = validateInput(name: name, email: email, password: password, confirmPassword: confirmPassword) {
+                            errorMessage = validationError
+                        } else {
+                            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                                if let error = error {
+                                    errorMessage = error.localizedDescription
+                                } else {
+                                    print("Sign up successful")
+                                    isSignedIn = true
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+
+                        }
+                    }) {
+                        Text("Sign Up")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    .padding(.top)
+
             }
             .padding()
 

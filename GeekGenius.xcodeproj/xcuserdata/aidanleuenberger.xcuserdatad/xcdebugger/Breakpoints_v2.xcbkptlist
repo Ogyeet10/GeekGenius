@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "332923F1-0F03-4215-8C39-980E1D30A126"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D72B0E76-F932-4BA1-BCBD-B729B31991C2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/GeekGeniusApp.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "D72B0E76-F932-4BA1-BCBD-B729B31991C2 - 69cf415f92e59afb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.GeekGeniusApp.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/GeekGeniusApp.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "D72B0E76-F932-4BA1-BCBD-B729B31991C2 - 91c38e3770d280c4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.environmentObject&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Combine.ObservableObject&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0 in GeekGenius.GeekGeniusApp.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/GeekGeniusApp.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "144">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -13,6 +13,8 @@ struct LoginView: View {
     @State private var password = ""
     @State private var errorMessage: String?
     @EnvironmentObject var appState: AppState
+    @Environment(\.presentationMode) private var presentationMode
+    @Binding var isSignedIn: Bool
 
     
     var body: some View {
@@ -106,7 +108,7 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(isSignedIn: .constant(false))
     }
 }
 

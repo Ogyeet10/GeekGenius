@@ -8,13 +8,19 @@
 import SwiftUI
 import Firebase
 
-
+@main
 struct GeekGeniusApp: App {
-    private let appState = AppState()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var appState = AppState()
+
+    init() {
+        FirebaseApp.configure()
+    }
+
     var body: some Scene {
-           WindowGroup {
-               MainView()
-                   .environmentObject(appState)
-           }
-       }
-   }
+        WindowGroup {
+            MainView()
+                .environmentObject(appState)
+        }
+    }
+}
