@@ -30,6 +30,8 @@
 		5D949CA429ECEF1F00CACEA0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949CA329ECEF1F00CACEA0 /* AppState.swift */; };
 		5D949CA629EF86E500CACEA0 /* YouTubeVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949CA529EF86E400CACEA0 /* YouTubeVideoView.swift */; };
 		5D949CAB29EF906800CACEA0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D949CAA29EF906800CACEA0 /* FirebaseFirestoreSwift */; };
+		5DA5069429F4F55E00A00B99 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5069329F4F55E00A00B99 /* ImagePicker.swift */; };
+		5DA5069629F4F81D00A00B99 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5DA5069529F4F81D00A00B99 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,7 @@
 		5D949CA129ECE17B00CACEA0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5D949CA329ECEF1F00CACEA0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		5D949CA529EF86E400CACEA0 /* YouTubeVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeVideoView.swift; sourceTree = "<group>"; };
+		5DA5069329F4F55E00A00B99 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5DC1BCE429F32B160085324F /* GeekGenius.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeekGenius.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D949C9829ECBFC500CACEA0 /* FirebaseAuth in Frameworks */,
+				5DA5069629F4F81D00A00B99 /* FirebaseStorage in Frameworks */,
 				5D949CAB29EF906800CACEA0 /* FirebaseFirestoreSwift in Frameworks */,
 				5D117EFA29F1F92A00812526 /* FirebaseFirestore in Frameworks */,
 			);
@@ -102,6 +106,7 @@
 				5D949C8829ECB5CD00CACEA0 /* VideoPlayerView.swift */,
 				5D949C8A29ECB67500CACEA0 /* AccountView.swift */,
 				5D949C9D29ECE10A00CACEA0 /* ProfileView.swift */,
+				5DA5069329F4F55E00A00B99 /* ImagePicker.swift */,
 				5D949C9F29ECE13A00CACEA0 /* SettingsView.swift */,
 				5D949CA329ECEF1F00CACEA0 /* AppState.swift */,
 				5D949CA129ECE17B00CACEA0 /* MainView.swift */,
@@ -153,6 +158,7 @@
 				5D949C9729ECBFC500CACEA0 /* FirebaseAuth */,
 				5D949CAA29EF906800CACEA0 /* FirebaseFirestoreSwift */,
 				5D117EF929F1F92A00812526 /* FirebaseFirestore */,
+				5DA5069529F4F81D00A00B99 /* FirebaseStorage */,
 			);
 			productName = GeekGenius;
 			productReference = 5D949C7529ECB52B00CACEA0 /* GeekGenius.app */;
@@ -215,6 +221,7 @@
 				5D949CA629EF86E500CACEA0 /* YouTubeVideoView.swift in Sources */,
 				5D949C9329ECBA8400CACEA0 /* SignupView.swift in Sources */,
 				5D949CA229ECE17B00CACEA0 /* MainView.swift in Sources */,
+				5DA5069429F4F55E00A00B99 /* ImagePicker.swift in Sources */,
 				5D949C8729ECB59B00CACEA0 /* LoginView.swift in Sources */,
 				5D949C8F29ECB73300CACEA0 /* HomeView.swift in Sources */,
 				5D949C7B29ECB52B00CACEA0 /* ContentView.swift in Sources */,
@@ -458,6 +465,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		5DA5069529F4F81D00A00B99 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -13,10 +13,8 @@ struct LoginView: View {
     @State private var password = ""
     @State private var errorMessage: String?
     @EnvironmentObject var appState: AppState
-    @Environment(\.presentationMode) private var presentationMode
     @Binding var isSignedIn: Bool
 
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -56,7 +54,7 @@ struct LoginView: View {
                                     print("Error signing in: \(error.localizedDescription)")
                                 } else {
                                     print("Sign in successful")
-                                    // Navigate to the home screen or another appropriate view
+                                    isSignedIn = true // Update the binding
                                 }
                             }
                         }
@@ -82,6 +80,7 @@ struct LoginView: View {
                     Spacer()
                 }
                 .padding(.top)
+
                 
                 Spacer()
             }
@@ -119,3 +118,4 @@ extension String {
         return emailPred.evaluate(with: self)
     }
 }
+
