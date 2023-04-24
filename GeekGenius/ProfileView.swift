@@ -32,7 +32,7 @@ struct ProfileView: View {
                             if profileImage != nil {
                                 Image(uiImage: profileImage!)
                                     .resizable()
-                                    .scaledToFit()
+                                    .scaledToFill()
                                     .frame(width: 150, height: 150)
                                     .clipShape(Circle())
                             } else {
@@ -62,8 +62,9 @@ struct ProfileView: View {
                             TextEditor(text: $aboutMe)
                                 .frame(height: 100)
                                 .padding()
-                                .background(Color.gray.opacity(0.2))
+                                .background(Color(.systemGray6)) // Change this line
                                 .cornerRadius(10)
+
                         }
                         .padding(.horizontal)
                         

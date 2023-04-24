@@ -48,6 +48,33 @@ struct SettingsView: View {
                 Section(header: Text("App Preferences")) {
                     // Add app preferences options here
                 }
+                // Contact Me Section
+                // Contact Me Section
+                Section(header: Text("Contact Me")) {
+                    HStack {
+                        Text("Phone:")
+                        Spacer()
+                        Link("1-773-551-9899", destination: URL(string: "sms:17735519899")!)
+                            .foregroundColor(.blue)
+                    }
+                    
+                    HStack {
+                        Text("Email:")
+                        Spacer()
+                        Text("aidanml05@gmail.com")
+                            .foregroundColor(.gray)
+                    }
+                    
+                    // Add your Telegram details here
+                    HStack {
+                            Text("Telegram:")
+                            Spacer()
+                            Link("@Ogyeet10", destination: URL(string: "https://t.me/Ogyeet10")!)
+                                .foregroundColor(.blue)
+                        }
+                    }
+
+
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
