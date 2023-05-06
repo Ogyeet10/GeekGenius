@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     @State private var selectedTab = 0
     @EnvironmentObject var appState: AppState
-
+    @ObservedObject var userSettings = UserSettings()
     var body: some View {
         Group {
             if appState.isLoggedIn {
@@ -30,6 +30,7 @@ struct MainView: View {
                         .tag(1)
                     
                     SettingsView()
+                        .environmentObject(userSettings)
                         .tabItem {
                             Image(systemName: "gear")
                             Text("Settings")
@@ -62,5 +63,6 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .environmentObject(AppState())
+            .environmentObject(UserSettings())
     }
 }

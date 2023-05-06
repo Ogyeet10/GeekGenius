@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5D117EFA29F1F92A00812526 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D117EF929F1F92A00812526 /* FirebaseFirestore */; };
+		5D124F482A05F1B9008EDB06 /* URLImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F472A05F1B8008EDB06 /* URLImageCache.swift */; };
+		5D124F4A2A05FBDD008EDB06 /* BackgroundTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */; };
+		5D124F4C2A0601F4008EDB06 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F4B2A0601F4008EDB06 /* UserSettings.swift */; };
 		5D398F0529F344DC0006DE8F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D398F0429F344DC0006DE8F /* TestView.swift */; };
 		5D949C7929ECB52B00CACEA0 /* GeekGeniusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949C7829ECB52B00CACEA0 /* GeekGeniusApp.swift */; };
 		5D949C7B29ECB52B00CACEA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949C7A29ECB52B00CACEA0 /* ContentView.swift */; };
@@ -35,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D124F472A05F1B8008EDB06 /* URLImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageCache.swift; sourceTree = "<group>"; };
+		5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackgroundTasks.framework; path = System/Library/Frameworks/BackgroundTasks.framework; sourceTree = SDKROOT; };
+		5D124F4B2A0601F4008EDB06 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		5D1F9DE729F457A100571BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5D398F0429F344DC0006DE8F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		5D949C7529ECB52B00CACEA0 /* GeekGenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeekGenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +75,7 @@
 				5D949C9829ECBFC500CACEA0 /* FirebaseAuth in Frameworks */,
 				5DA5069629F4F81D00A00B99 /* FirebaseStorage in Frameworks */,
 				5D949CAB29EF906800CACEA0 /* FirebaseFirestoreSwift in Frameworks */,
+				5D124F4A2A05FBDD008EDB06 /* BackgroundTasks.framework in Frameworks */,
 				5D117EFA29F1F92A00812526 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,12 +107,14 @@
 				5DC1BCE429F32B160085324F /* GeekGenius.entitlements */,
 				5D949C7829ECB52B00CACEA0 /* GeekGeniusApp.swift */,
 				5D949C9929ECC0D100CACEA0 /* AppDelegate.swift */,
+				5D124F4B2A0601F4008EDB06 /* UserSettings.swift */,
 				5D949C7A29ECB52B00CACEA0 /* ContentView.swift */,
 				5D949C8629ECB59B00CACEA0 /* LoginView.swift */,
 				5D949C9229ECBA8400CACEA0 /* SignupView.swift */,
 				5D949C8829ECB5CD00CACEA0 /* VideoPlayerView.swift */,
 				5D949C8A29ECB67500CACEA0 /* AccountView.swift */,
 				5D949C9D29ECE10A00CACEA0 /* ProfileView.swift */,
+				5D124F472A05F1B8008EDB06 /* URLImageCache.swift */,
 				5DA5069329F4F55E00A00B99 /* ImagePicker.swift */,
 				5D949C9F29ECE13A00CACEA0 /* SettingsView.swift */,
 				5D949CA329ECEF1F00CACEA0 /* AppState.swift */,
@@ -134,6 +143,7 @@
 		5D949CA729EF906800CACEA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -171,6 +181,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
@@ -220,6 +233,7 @@
 			files = (
 				5D949CA629EF86E500CACEA0 /* YouTubeVideoView.swift in Sources */,
 				5D949C9329ECBA8400CACEA0 /* SignupView.swift in Sources */,
+				5D124F482A05F1B9008EDB06 /* URLImageCache.swift in Sources */,
 				5D949CA229ECE17B00CACEA0 /* MainView.swift in Sources */,
 				5DA5069429F4F55E00A00B99 /* ImagePicker.swift in Sources */,
 				5D949C8729ECB59B00CACEA0 /* LoginView.swift in Sources */,
@@ -230,6 +244,7 @@
 				5D398F0529F344DC0006DE8F /* TestView.swift in Sources */,
 				5D949C9C29ECDA6D00CACEA0 /* RemoteImage.swift in Sources */,
 				5D949C8D29ECB6F000CACEA0 /* CategoriesView.swift in Sources */,
+				5D124F4C2A0601F4008EDB06 /* UserSettings.swift in Sources */,
 				5D949C9129ECB75000CACEA0 /* LibraryView.swift in Sources */,
 				5D949C7929ECB52B00CACEA0 /* GeekGeniusApp.swift in Sources */,
 				5D949C8929ECB5CD00CACEA0 /* VideoPlayerView.swift in Sources */,

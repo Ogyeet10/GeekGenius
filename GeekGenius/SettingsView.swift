@@ -9,8 +9,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct SettingsView: View {
-    @State private var notificationsEnabled = true
-    @State private var selectedFrequency = 1
+    @EnvironmentObject var userSettings: UserSettings
     @State private var showErrorAlert = false
     @State private var errorAlertMessage = ""
     @EnvironmentObject var appState: AppState
@@ -35,11 +34,11 @@ struct SettingsView: View {
                 
                 // Notification Settings Section
                 Section(header: Text("Notification Settings")) {
-                    Toggle("Enable Notifications", isOn: $notificationsEnabled)
+                    Toggle("Enable Notifications", isOn: $userSettings.notificationsEnabled)
                     
-                    Picker("Notification Frequency", selection: $selectedFrequency) {
-                        ForEach(frequencyOptions.indices, id: \.self) { index in
-                            Text(frequencyOptions[index])
+                    Picker("Notification Frequency", selection: $userSettings.selectedFrequency) {
+                        ForEach(NotificationFrequency.allCases, id: \.self) { frequency in
+                            Text(frequency.description)
                         }
                     }
                 }
@@ -48,7 +47,7 @@ struct SettingsView: View {
                 Section(header: Text("App Preferences")) {
                     // Add app preferences options here
                 }
-                // Contact Me Section
+                
                 // Contact Me Section
                 Section(header: Text("Contact Me")) {
                     HStack {
@@ -67,14 +66,12 @@ struct SettingsView: View {
                     
                     // Add your Telegram details here
                     HStack {
-                            Text("Telegram:")
-                            Spacer()
-                            Link("@Ogyeet10", destination: URL(string: "https://t.me/Ogyeet10")!)
-                                .foregroundColor(.blue)
-                        }
+                        Text("Telegram:")
+                        Spacer()
+                        Link("@Ogyeet10", destination: URL(string: "https://t.me/Ogyeet10")!)
+                            .foregroundColor(.blue)
                     }
-
-
+                }
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -111,5 +108,7 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .environmentObject(UserSettings())
+            .environmentObject(AppState())
     }
 }

@@ -25,7 +25,6 @@ class ImageLoader: ObservableObject {
             }
     }
 
-    
     func cancel() {
         cancellable?.cancel()
     }
@@ -33,19 +32,37 @@ class ImageLoader: ObservableObject {
 
 struct RemoteImage: View {
     @StateObject private var loader = ImageLoader()
+    @ObservedObject var cache = URLImageCache.shared
+    let placeholder: Image
     let url: String
-    
+
+    init(url: String, placeholder: Image = Image(systemName: "photo")) {
+        self.url = url
+        self.placeholder = placeholder
+    }
+
     var body: some View {
         Group {
-            if loader.image != nil {
+            if let image = cache.cache.object(forKey: NSURL(string: url)!) {
+                Image(uiImage: image)
+                    .resizable()
+            } else if loader.image != nil {
                 Image(uiImage: loader.image!)
                     .resizable()
+                    .onAppear {
+                        cache.cache.setObject(loader.image!, forKey: NSURL(string: self.url)!)
+                    }
             } else {
-                ProgressView()
+                placeholder
+                    .resizable()
+                    .onAppear {
+                        loader.load(url: url)
+                    }
+                    .onDisappear {
+                        loader.cancel()
+                    }
             }
         }
-        .onAppear { loader.load(url: url) }
-        .onDisappear { loader.cancel() }
     }
 }
 

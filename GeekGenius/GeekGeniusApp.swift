@@ -12,6 +12,7 @@ import Firebase
 struct GeekGeniusApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var appState = AppState()
+    @StateObject private var userSettings = UserSettings() // Add this line
 
     init() {
         FirebaseApp.configure()
@@ -21,6 +22,8 @@ struct GeekGeniusApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(appState)
+                
         }
     }
 }
+

@@ -164,35 +164,44 @@ struct ProfileView: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     func fetchProfileData() {
-            guard let user = Auth.auth().currentUser else {
-                print("No user found")
-                return
-            }
-            
-            let db = Firestore.firestore()
-            let profileRef = db.collection("users").document(user.uid)
-            
-            profileRef.getDocument { documentSnapshot, error in
-                if let error = error {
-                    print("Error fetching profile data: \(error.localizedDescription)")
-                } else if let documentSnapshot = documentSnapshot, documentSnapshot.exists {
-                    let data = documentSnapshot.data()
-                    displayName = data?["displayName"] as? String ?? ""
-                    aboutMe = data?["aboutMe"] as? String ?? ""
-                    
-                    if let imageURL = data?["profileImageURL"] as? String {
+        guard let user = Auth.auth().currentUser else {
+            print("No user found")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let profileRef = db.collection("users").document(user.uid)
+        
+        profileRef.getDocument { documentSnapshot, error in
+            if let error = error {
+                print("Error fetching profile data: \(error.localizedDescription)")
+            } else if let documentSnapshot = documentSnapshot, documentSnapshot.exists {
+                let data = documentSnapshot.data()
+                displayName = data?["displayName"] as? String ?? ""
+                aboutMe = data?["aboutMe"] as? String ?? ""
+                
+                if let imageURL = data?["profileImageURL"] as? String {
+                    if let cachedImage = URLImageCache.shared.cache.object(forKey: NSURL(string: imageURL)!) {
+                        profileImage = cachedImage
+                        isLoading = false
+                    } else {
                         downloadProfileImage(url: imageURL) { image in
-                            profileImage = image
+                            if let image = image {
+                                profileImage = image
+                                URLImageCache.shared.cache.setObject(image, forKey: NSURL(string: imageURL)!)
+                            }
                             isLoading = false
                         }
-                    } else {
-                        isLoading = false
                     }
                 } else {
                     isLoading = false
                 }
+            } else {
+                isLoading = false
             }
         }
+    }
+
     func downloadProfileImage(url: String, completion: @escaping (UIImage?) -> Void) {
         let storageRef = Storage.storage().reference(forURL: url)
         

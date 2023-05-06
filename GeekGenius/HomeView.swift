@@ -19,6 +19,15 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Tech Videos")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        loadVideos()
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
+            }
             .onAppear(perform: loadVideos)
         }
     }
