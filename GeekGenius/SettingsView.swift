@@ -8,6 +8,8 @@
 import SwiftUI
 import FirebaseAuth
 
+
+
 struct SettingsView: View {
     @EnvironmentObject var userSettings: UserSettings
     @State private var showErrorAlert = false

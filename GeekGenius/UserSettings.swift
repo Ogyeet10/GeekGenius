@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 enum NotificationFrequency: Int, CaseIterable, CustomStringConvertible {
     case hourly = 3600
@@ -34,6 +35,7 @@ class UserSettings: ObservableObject {
     @Published var selectedFrequency: NotificationFrequency {
         didSet {
             UserDefaults.standard.set(selectedFrequency.rawValue, forKey: "selectedFrequency")
+            rescheduleAppRefresh()
         }
     }
     
@@ -47,6 +49,7 @@ class UserSettings: ObservableObject {
         }
     }
 }
+
 
 
 

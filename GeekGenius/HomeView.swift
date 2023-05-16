@@ -7,18 +7,50 @@
 
 import SwiftUI
 import FirebaseFirestore
+import FirebaseAuth
 
 struct HomeView: View {
     @State private var videos: [Video] = []
+    @State private var hasActiveSubscription: Bool = false
+    @State private var showingSubscriptionInfo = false
     
     var body: some View {
         NavigationView {
-            List(videos) { video in
-                NavigationLink(destination: YouTubeVideoView(videoID: video.videoID)) {
-                    VideoRow(video: video)
+            VStack {
+                if hasActiveSubscription {
+                    List(videos) { video in
+                        NavigationLink(destination:
+                            YouTubeVideoView(videoID: video.videoID)
+                                .overlay(OverlayView())
+                                .onAppear {
+                                    UIDevice.setOrientation(.landscapeLeft)
+                                }
+                            .onDisappear {
+                                    UIDevice.setOrientation(.portrait)
+                                }
+                        ) {
+                            VideoRow(video: video)
+                        }
+                    }
+                    .navigationTitle("Tech Videos")
+                } else {
+                    VStack {
+                        Text("You need an active subscription to access the content.")
+                            .font(.headline)
+                        
+                        Button(action: {
+                            showingSubscriptionInfo = true
+                        }) {
+                            Text("Get a Subscription")
+                                .font(.headline)
+                                .foregroundColor(.blue)
+                        }
+                        .sheet(isPresented: $showingSubscriptionInfo) {
+                            SubscriptionInfoView()
+                        }
+                    }
                 }
             }
-            .navigationTitle("Tech Videos")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -28,7 +60,10 @@ struct HomeView: View {
                     }
                 }
             }
-            .onAppear(perform: loadVideos)
+            .onAppear(perform: {
+                loadVideos()
+                checkSubscriptionStatus()
+            })
         }
     }
     
@@ -48,6 +83,26 @@ struct HomeView: View {
             }
         }
     }
+    func checkSubscriptionStatus() {
+        guard let user = Auth.auth().currentUser, let userEmail = user.email else { return }
+        let db = Firestore.firestore()
+        
+        db.collection("subscriptions").document(userEmail).getDocument { (document, error) in
+            if let error = error {
+                print("Error getting subscription status: \(error.localizedDescription)")
+            } else {
+                if let document = document, document.exists {
+                    if let expiryDate = document.get("expiryDate") as? Timestamp {
+                        let expiryDateValue = expiryDate.dateValue()
+                        hasActiveSubscription = expiryDateValue > Date()
+                    }
+                } else {
+                    hasActiveSubscription = false
+                }
+            }
+        }
+    }
+
     
     struct Video: Identifiable {
         let id = UUID()

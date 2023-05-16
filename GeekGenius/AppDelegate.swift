@@ -10,6 +10,7 @@ import Firebase
 import BackgroundTasks
 import FirebaseFirestore
 import UserNotifications
+import SwiftUI
 
 let userSettings = UserSettings()
 
@@ -38,7 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func scheduleAppRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: "com.oggroup.GeekGenius.fetchNewVideos")
-        request.earliestBeginDate = Date(timeIntervalSinceNow: TimeInterval(userSettings.selectedFrequency.rawValue))
+        
+        // Use the user-selected frequency for the app refresh rate
+        let selectedTimeInterval = TimeInterval(userSettings.selectedFrequency.rawValue)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: selectedTimeInterval)
 
         do {
             try BGTaskScheduler.shared.submit(request)
@@ -48,6 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func rescheduleAppRefresh() {
+        scheduleAppRefresh()
+    }
+
+    
 
     
     func handleAppRefresh(task: BGAppRefreshTask) {
@@ -132,4 +141,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+func rescheduleAppRefresh() {
+    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+        appDelegate.rescheduleAppRefresh()
+    } else {
+        print("Failed to reschedule app refresh")
+    }
+}
 

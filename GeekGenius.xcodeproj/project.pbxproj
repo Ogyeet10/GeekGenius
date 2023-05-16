@@ -11,6 +11,11 @@
 		5D124F482A05F1B9008EDB06 /* URLImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F472A05F1B8008EDB06 /* URLImageCache.swift */; };
 		5D124F4A2A05FBDD008EDB06 /* BackgroundTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */; };
 		5D124F4C2A0601F4008EDB06 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F4B2A0601F4008EDB06 /* UserSettings.swift */; };
+		5D124F4F2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 5D124F4E2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper */; };
+		5D124F532A06FA6B008EDB06 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F522A06FA6B008EDB06 /* OverlayView.swift */; };
+		5D124F552A0700E8008EDB06 /* UIDevice+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F542A0700E8008EDB06 /* UIDevice+Orientation.swift */; };
+		5D124F572A0703A0008EDB06 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F562A0703A0008EDB06 /* LandscapeViewController.swift */; };
+		5D124F592A0716FF008EDB06 /* SubscriptionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F582A0716FF008EDB06 /* SubscriptionInfoView.swift */; };
 		5D398F0529F344DC0006DE8F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D398F0429F344DC0006DE8F /* TestView.swift */; };
 		5D949C7929ECB52B00CACEA0 /* GeekGeniusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949C7829ECB52B00CACEA0 /* GeekGeniusApp.swift */; };
 		5D949C7B29ECB52B00CACEA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949C7A29ECB52B00CACEA0 /* ContentView.swift */; };
@@ -41,6 +46,10 @@
 		5D124F472A05F1B8008EDB06 /* URLImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageCache.swift; sourceTree = "<group>"; };
 		5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackgroundTasks.framework; path = System/Library/Frameworks/BackgroundTasks.framework; sourceTree = SDKROOT; };
 		5D124F4B2A0601F4008EDB06 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		5D124F522A06FA6B008EDB06 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		5D124F542A0700E8008EDB06 /* UIDevice+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Orientation.swift"; sourceTree = "<group>"; };
+		5D124F562A0703A0008EDB06 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
+		5D124F582A0716FF008EDB06 /* SubscriptionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionInfoView.swift; sourceTree = "<group>"; };
 		5D1F9DE729F457A100571BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5D398F0429F344DC0006DE8F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		5D949C7529ECB52B00CACEA0 /* GeekGenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeekGenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +86,7 @@
 				5D949CAB29EF906800CACEA0 /* FirebaseFirestoreSwift in Frameworks */,
 				5D124F4A2A05FBDD008EDB06 /* BackgroundTasks.framework in Frameworks */,
 				5D117EFA29F1F92A00812526 /* FirebaseFirestore in Frameworks */,
+				5D124F4F2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +132,11 @@
 				5D398F0429F344DC0006DE8F /* TestView.swift */,
 				5D949C8C29ECB6EF00CACEA0 /* CategoriesView.swift */,
 				5D949C8E29ECB73300CACEA0 /* HomeView.swift */,
+				5D124F582A0716FF008EDB06 /* SubscriptionInfoView.swift */,
+				5D124F562A0703A0008EDB06 /* LandscapeViewController.swift */,
+				5D124F542A0700E8008EDB06 /* UIDevice+Orientation.swift */,
 				5D949CA529EF86E400CACEA0 /* YouTubeVideoView.swift */,
+				5D124F522A06FA6B008EDB06 /* OverlayView.swift */,
 				5D949C9B29ECDA6D00CACEA0 /* RemoteImage.swift */,
 				5D949C9029ECB75000CACEA0 /* LibraryView.swift */,
 				5D949C7C29ECB53200CACEA0 /* Assets.xcassets */,
@@ -169,6 +183,7 @@
 				5D949CAA29EF906800CACEA0 /* FirebaseFirestoreSwift */,
 				5D117EF929F1F92A00812526 /* FirebaseFirestore */,
 				5DA5069529F4F81D00A00B99 /* FirebaseStorage */,
+				5D124F4E2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper */,
 			);
 			productName = GeekGenius;
 			productReference = 5D949C7529ECB52B00CACEA0 /* GeekGenius.app */;
@@ -203,6 +218,7 @@
 			mainGroup = 5D949C6C29ECB52B00CACEA0;
 			packageReferences = (
 				5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 			);
 			productRefGroup = 5D949C7629ECB52B00CACEA0 /* Products */;
 			projectDirPath = "";
@@ -240,11 +256,15 @@
 				5D949C8F29ECB73300CACEA0 /* HomeView.swift in Sources */,
 				5D949C7B29ECB52B00CACEA0 /* ContentView.swift in Sources */,
 				5D949C9E29ECE10B00CACEA0 /* ProfileView.swift in Sources */,
+				5D124F592A0716FF008EDB06 /* SubscriptionInfoView.swift in Sources */,
 				5D949CA429ECEF1F00CACEA0 /* AppState.swift in Sources */,
 				5D398F0529F344DC0006DE8F /* TestView.swift in Sources */,
 				5D949C9C29ECDA6D00CACEA0 /* RemoteImage.swift in Sources */,
+				5D124F552A0700E8008EDB06 /* UIDevice+Orientation.swift in Sources */,
 				5D949C8D29ECB6F000CACEA0 /* CategoriesView.swift in Sources */,
 				5D124F4C2A0601F4008EDB06 /* UserSettings.swift in Sources */,
+				5D124F572A0703A0008EDB06 /* LandscapeViewController.swift in Sources */,
+				5D124F532A06FA6B008EDB06 /* OverlayView.swift in Sources */,
 				5D949C9129ECB75000CACEA0 /* LibraryView.swift in Sources */,
 				5D949C7929ECB52B00CACEA0 /* GeekGeniusApp.swift in Sources */,
 				5D949C8929ECB5CD00CACEA0 /* VideoPlayerView.swift in Sources */,
@@ -455,6 +475,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -470,6 +498,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		5D124F4E2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			productName = YouTubeiOSPlayerHelper;
 		};
 		5D949C9729ECBFC500CACEA0 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
