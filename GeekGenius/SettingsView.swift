@@ -15,6 +15,7 @@ struct SettingsView: View {
     @State private var showErrorAlert = false
     @State private var errorAlertMessage = ""
     @EnvironmentObject var appState: AppState
+    @State private var isChangePasswordViewPresented = false
 
     let frequencyOptions = ["Daily", "Weekly", "Monthly"]
 
@@ -32,8 +33,16 @@ struct SettingsView: View {
                     Button("Sign Out") {
                         signOut()
                     }
+                    Button("Change Password") {
+                                        isChangePasswordViewPresented = true
+                                    }
+                                    .sheet(isPresented: $isChangePasswordViewPresented) {
+                                        ChangePasswordView()
+                                    }
                 }
                 
+                
+
                 // Notification Settings Section
                 Section(header: Text("Notification Settings")) {
                     Toggle("Enable Notifications", isOn: $userSettings.notificationsEnabled)
