@@ -11,6 +11,7 @@ struct MainView: View {
     @State private var selectedTab = 0
     @EnvironmentObject var appState: AppState
     @ObservedObject var userSettings = UserSettings()
+    
     var body: some View {
         Group {
             if appState.isLoggedIn {
@@ -41,10 +42,8 @@ struct MainView: View {
                 NavigationView {
                     VStack {
                         LoginView(isSignedIn: $appState.isLoggedIn) // Updated
-                        NavigationLink(destination: SignupView()) {
-                            Text("Don't have an account? Sign up")
-                                .foregroundColor(.blue)
-                        }
+                            .environmentObject(appState)
+                        
                     }
                 }
             }

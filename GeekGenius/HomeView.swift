@@ -38,6 +38,10 @@ struct HomeView: View {
                             }
                         }
                     }
+                    .refreshable {
+                                            await loadVideos()
+                        await checkSubscriptionStatus()
+                                        }
                     .navigationTitle("Tech Videos")
                 } else {
                     VStack {
@@ -71,32 +75,36 @@ struct HomeView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        loadVideos()
-                        checkSubscriptionStatus()
+                        Task {
+                            await loadVideos()
+                            await checkSubscriptionStatus()
+                        }
                     }) {
                         Image(systemName: "arrow.clockwise")
                         Text("Reload")
                     }
+
                 }
             }
             
-            .onAppear(perform: {
-                loadVideos()
-                checkSubscriptionStatus()
-            })
-            
+            .onAppear {
+                        Task {
+                            await loadVideos()
+                            await checkSubscriptionStatus()
+                        }
+                    }
             
         }
     }
     
-    func loadVideos() {
-        let db = Firestore.firestore()
-        
-        db.collection("videos").getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting videos: \(error.localizedDescription)")
-            } else {
-                videos = querySnapshot?.documents.compactMap { document in
+    @MainActor
+        func loadVideos() async {
+            let db = Firestore.firestore()
+
+            do {
+                let querySnapshot = try await db.collection("videos").getDocuments()
+
+                videos = querySnapshot.documents.compactMap { document in
                     guard let title = document.get("title") as? String,
                           let thumbnailUrl = document.get("thumbnailUrl") as? String,
                           let videoID = document.get("videoID") as? String,
@@ -104,14 +112,17 @@ struct HomeView: View {
                         print("Failed to parse document: \(document.data())")
                         return nil
                     }
+
                     return Video(title: title, thumbnailUrl: thumbnailUrl, videoID: videoID, dateAdded: dateAdded.dateValue())
-                } ?? []
-                
+                }
+
                 // Call sortVideos() directly here, after videos have been fetched and populated
                 sortVideos()
+
+            } catch let error {
+                print("Error getting videos: \(error.localizedDescription)")
             }
         }
-    }
     
     
     func sortButtons() -> [ActionSheet.Button] {
@@ -140,15 +151,15 @@ struct HomeView: View {
     }
     
     
-    func checkSubscriptionStatus() {
-        guard let user = Auth.auth().currentUser, let userEmail = user.email else { return }
-        let db = Firestore.firestore()
-        
-        db.collection("subscriptions").document(userEmail).getDocument { (document, error) in
-            if let error = error {
-                print("Error getting subscription status: \(error.localizedDescription)")
-            } else {
-                if let document = document, document.exists {
+    @MainActor
+        func checkSubscriptionStatus() async {
+            guard let user = Auth.auth().currentUser, let userEmail = user.email else { return }
+            let db = Firestore.firestore()
+
+            do {
+                let document = try await db.collection("subscriptions").document(userEmail).getDocument()
+
+                if document.exists {
                     if let expiryDate = document.get("expiryDate") as? Timestamp {
                         let expiryDateValue = expiryDate.dateValue()
                         hasActiveSubscription = expiryDateValue > Date()
@@ -156,9 +167,11 @@ struct HomeView: View {
                 } else {
                     hasActiveSubscription = false
                 }
+
+            } catch let error {
+                print("Error getting subscription status: \(error.localizedDescription)")
             }
         }
-    }
     
     func sortVideos() {
         switch sortOption {
