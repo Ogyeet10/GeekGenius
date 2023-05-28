@@ -56,14 +56,14 @@ struct ProfileView: View {
                                 .background(Color.gray.opacity(0.2))
                                 .cornerRadius(10)
                             
-                            Text("About Me")
-                                .font(.headline)
-                            
-                            TextEditor(text: $aboutMe)
-                                .frame(height: 100)
-                                .padding()
-                                .background(Color(.systemGray6)) // Change this line
-                                .cornerRadius(10)
+//                           // Text("About Me")
+//                                .font(.headline)
+//                            
+//                            //TextEditor(text: $aboutMe)
+//                                .frame(height: 100)
+//                                .padding()
+//                                .background(Color(.systemGray6)) // Change this line
+//                                .cornerRadius(10)
 
                         }
                         .padding(.horizontal)
