@@ -8,7 +8,9 @@
 import SwiftUI
 import FirebaseFirestore
 import FirebaseAuth
-
+import Reachability
+import Combine
+import Network
 
 
 struct HomeView: View {
@@ -19,13 +21,24 @@ struct HomeView: View {
     @State private var isSubscriptionInfoViewPresented = false
     @State private var showingSortOptions = false
     @State private var sortOption: String = "dateAdded"
-    
+    @StateObject private var reachability = ReachabilityObserver()
+    @State private var isLoading = true
+    @State private var lastDocument: DocumentSnapshot?
+    @State private var isFetching = false
+    @State private var allDocumentsLoaded = false
+    @State private var videosLoaded = false
     
     
     var body: some View {
         NavigationStack {
             VStack {
-                if hasActiveSubscription {
+                // First check for internet connection
+                if isLoading {
+                    LoadingView() // You'll need to create this
+                } else if reachability.reachability.connection == .unavailable {
+                    NoWifiView()
+                } else if hasActiveSubscription {
+                    // User has an active subscription and internet connection
                     SearchBar(text: $searchText)
                     List {
                         ForEach(videos.filter { video in
@@ -37,16 +50,37 @@ struct HomeView: View {
                                 VideoRow(video: video)
                             }
                         }
+                        
+                        if !allDocumentsLoaded {
+                            Button(action: {
+                                if !isFetching {
+                                    Task {
+                                        await loadVideos()
+                                    }
+                                }
+                            }) {
+                                Text(isFetching ? "Loading..." : "Load more")
+                            }
+                        }
                     }
+                    
                     .refreshable {
-                                            await loadVideos()
+                        await loadVideos(reset: true)
                         await checkSubscriptionStatus()
-                                        }
+                    }
                     .navigationTitle("Tech Videos")
                 } else {
+                    // User doesn't have an active subscription but has internet connection
                     VStack {
+                        Image(systemName: "dollarsign.circle")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.red)
+                        
+                        
                         Text("You need an active subscription to access the content.")
                             .font(.headline)
+                        
                         
                         Button(action: {
                             isSubscriptionInfoViewPresented = true
@@ -61,6 +95,7 @@ struct HomeView: View {
                     }
                 }
             }
+            .environmentObject(reachability)
             .actionSheet(isPresented: $showingSortOptions) {
                 ActionSheet(title: Text("Sort By"), buttons: sortButtons())
             }
@@ -76,53 +111,72 @@ struct HomeView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         Task {
-                            await loadVideos()
+                            await loadVideos(reset: true)
                             await checkSubscriptionStatus()
                         }
                     }) {
                         Image(systemName: "arrow.clockwise")
                         Text("Reload")
                     }
-
                 }
             }
-            
             .onAppear {
-                        Task {
-                            await loadVideos()
-                            await checkSubscriptionStatus()
-                        }
+                Task {
+                    if !videosLoaded {
+                        await loadVideos()
+                        await checkSubscriptionStatus()
+                        videosLoaded = true
                     }
-            
+                }
+            }
         }
     }
     
+    
+    // Update the loadVideos() function
     @MainActor
-        func loadVideos() async {
-            let db = Firestore.firestore()
-
-            do {
-                let querySnapshot = try await db.collection("videos").getDocuments()
-
-                videos = querySnapshot.documents.compactMap { document in
-                    guard let title = document.get("title") as? String,
-                          let thumbnailUrl = document.get("thumbnailUrl") as? String,
-                          let videoID = document.get("videoID") as? String,
-                          let dateAdded = document.get("dateAdded") as? Timestamp else {
-                        print("Failed to parse document: \(document.data())")
-                        return nil
-                    }
-
-                    return Video(title: title, thumbnailUrl: thumbnailUrl, videoID: videoID, dateAdded: dateAdded.dateValue())
-                }
-
-                // Call sortVideos() directly here, after videos have been fetched and populated
-                sortVideos()
-
-            } catch let error {
-                print("Error getting videos: \(error.localizedDescription)")
-            }
+    func loadVideos(reset: Bool = false) async {
+        isFetching = true
+        let db = Firestore.firestore()
+        let videosRef = db.collection("videos")
+        var query: Query = videosRef.order(by: "dateAdded", descending: true).limit(to: 2) // Change the limit to suit your needs
+        
+        if reset {
+            lastDocument = nil
+            videos = []
+            allDocumentsLoaded = false
+        } else if let lastDocument = lastDocument {
+            query = query.start(afterDocument: lastDocument)
         }
+        
+        do {
+            let querySnapshot = try await query.getDocuments()
+            
+            lastDocument = querySnapshot.documents.last
+            
+            let newVideos: [Video] = querySnapshot.documents.compactMap { document -> Video? in
+                guard let title = document.get("title") as? String,
+                      let thumbnailUrl = document.get("thumbnailUrl") as? String,
+                      let videoID = document.get("videoID") as? String,
+                      let dateAdded = document.get("dateAdded") as? Timestamp else {
+                    print("Failed to parse document: \(document.data())")
+                    return nil
+                }
+                
+                return Video(title: title, thumbnailUrl: thumbnailUrl, videoID: videoID, dateAdded: dateAdded.dateValue())
+            }
+            
+            videos.append(contentsOf: newVideos)
+            sortVideos()
+            isFetching = false
+            // set allDocumentsLoaded to true if there are no more documents to fetch
+            allDocumentsLoaded = querySnapshot.documents.isEmpty
+        } catch let error {
+            print("Error getting videos: \(error.localizedDescription)")
+        }
+    }
+    
+    
     
     
     func sortButtons() -> [ActionSheet.Button] {
@@ -152,26 +206,27 @@ struct HomeView: View {
     
     
     @MainActor
-        func checkSubscriptionStatus() async {
-            guard let user = Auth.auth().currentUser, let userEmail = user.email else { return }
-            let db = Firestore.firestore()
-
-            do {
-                let document = try await db.collection("subscriptions").document(userEmail).getDocument()
-
-                if document.exists {
-                    if let expiryDate = document.get("expiryDate") as? Timestamp {
-                        let expiryDateValue = expiryDate.dateValue()
-                        hasActiveSubscription = expiryDateValue > Date()
-                    }
-                } else {
-                    hasActiveSubscription = false
+    func checkSubscriptionStatus() async {
+        guard let user = Auth.auth().currentUser, let userEmail = user.email else { return }
+        let db = Firestore.firestore()
+        
+        do {
+            let document = try await db.collection("subscriptions").document(userEmail).getDocument()
+            
+            if document.exists {
+                if let expiryDate = document.get("expiryDate") as? Timestamp {
+                    let expiryDateValue = expiryDate.dateValue()
+                    hasActiveSubscription = expiryDateValue > Date()
                 }
-
-            } catch let error {
-                print("Error getting subscription status: \(error.localizedDescription)")
+            } else {
+                hasActiveSubscription = false
             }
+            
+        } catch let error {
+            print("Error getting subscription status: \(error.localizedDescription)")
         }
+        isLoading = false // Added
+    }
     
     func sortVideos() {
         switch sortOption {
@@ -221,6 +276,62 @@ struct HomeView: View {
     }
 }
 
+struct NoWifiView: View {
+    var body: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "wifi.slash")
+                .resizable()
+                .frame(width: 110, height: 100)
+                .foregroundColor(.blue)
+            
+            Text("No Internet Connection")
+                .font(.title)
+                .foregroundColor(.gray)
+            
+            Text("Please check your network settings and try again.")
+                .foregroundColor(.gray)
+        }
+        .padding()
+    }
+}
+
+struct LoadingView: View {
+    var body: some View {
+        VStack {
+            ProgressView() // Or your custom loading UI
+            Text("Loading...")
+        }
+    }
+}
+
+class ReachabilityObserver: ObservableObject {
+    @Published var reachability: Reachability
+    
+    init(reachability: Reachability = try! Reachability()) {
+        self.reachability = reachability
+        do {
+            try self.reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        self.reachability.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
+        }
+        self.reachability.whenUnreachable = { _ in
+            print("Not reachable")
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
+        }
+    }
+}
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()

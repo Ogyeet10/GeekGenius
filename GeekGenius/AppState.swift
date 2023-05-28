@@ -28,7 +28,7 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
             return
         }
         
-        let appleIDProvider = OAuthProvider(providerID: "apple.com")
+        
         let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idToken, rawNonce: rawNonce)
         
         Auth.auth().signIn(with: credential) { (authResult, error) in

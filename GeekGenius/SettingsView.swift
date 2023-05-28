@@ -7,8 +7,9 @@
 
 import SwiftUI
 import FirebaseAuth
-
-
+import FirebaseStorage
+import FirebaseFirestore
+import UIKit
 
 struct SettingsView: View {
     @EnvironmentObject var userSettings: UserSettings
@@ -16,9 +17,12 @@ struct SettingsView: View {
     @State private var errorAlertMessage = ""
     @EnvironmentObject var appState: AppState
     @State private var isChangePasswordViewPresented = false
-
+    @State private var showDeleteAccountAlert = false
+    @State private var showCopiedAlert = false
+    
+    
     let frequencyOptions = ["Daily", "Weekly", "Monthly"]
-
+    
     var body: some View {
         NavigationView {
             Form {
@@ -26,23 +30,57 @@ struct SettingsView: View {
                 Section(header: Text("Account Settings")) {
                     if let user = Auth.auth().currentUser {
                         Text("Username: \(user.email ?? "N/A")")
+                            .onTapGesture {
+                                UIPasteboard.general.string = user.email
+                            }
+                            .onLongPressGesture {
+                                UIPasteboard.general.string = user.email
+                                withAnimation {
+                                    self.showCopiedAlert = true
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    withAnimation {
+                                        self.showCopiedAlert = false
+                                    }
+                                }
+                            }
+                            .alert(isPresented: $showCopiedAlert) {
+                                Alert(
+                                    title: Text("Copied!"),
+                                    message: Text("\(user.email ?? "N/A") copied to clipboard."),
+                                    dismissButton: .default(Text("OK"))
+                                )
+                            }
                     } else {
                         Text("Username: N/A")
                     }
+
                     
                     Button("Sign Out") {
                         signOut()
                     }
                     Button("Change Password") {
-                                        isChangePasswordViewPresented = true
-                                    }
-                                    .sheet(isPresented: $isChangePasswordViewPresented) {
-                                        ChangePasswordView()
-                                    }
+                        isChangePasswordViewPresented = true
+                    }
+                    .sheet(isPresented: $isChangePasswordViewPresented) {
+                        ChangePasswordView()
+                    }
+                    Button("Delete Account") {
+                        showDeleteAccountAlert = true
+                    }
+                    .foregroundColor(.red)
+                    .alert(isPresented: $showDeleteAccountAlert) {
+                        Alert(
+                            title: Text("Delete Account"),
+                            message: Text("Are you sure you want to delete your account? This action cannot be undone."),
+                            primaryButton: .destructive(Text("Delete"), action: deleteAccount),
+                            secondaryButton: .cancel()
+                        )
+                    }
                 }
                 
                 
-
+                
                 // Notification Settings Section
                 Section(header: Text("Notification Settings")) {
                     Toggle("Enable Notifications", isOn: $userSettings.notificationsEnabled)
@@ -57,6 +95,9 @@ struct SettingsView: View {
                 // App Preferences Section
                 Section(header: Text("App Preferences")) {
                     // Add app preferences options here
+                    Text("Coming soon!")
+                        .foregroundColor(Color.purple)
+                        
                 }
                 
                 // Contact Me Section
@@ -67,6 +108,7 @@ struct SettingsView: View {
                         Link("1-773-551-9899", destination: URL(string: "sms:17735519899")!)
                             .foregroundColor(.blue)
                     }
+                    
                     
                     HStack {
                         Text("Email:")
@@ -83,6 +125,12 @@ struct SettingsView: View {
                             .foregroundColor(.blue)
                     }
                 }
+                Section(header: Text("About This App")) {
+                    NavigationLink(destination: AboutView()) {
+                        Text("App Info & Credits")
+                    }
+                }
+                
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -101,9 +149,11 @@ struct SettingsView: View {
                     dismissButton: .default(Text("OK"))
                 )
             }
+            
+            
         }
     }
-
+    
     private func signOut() {
         do {
             try Auth.auth().signOut()
@@ -112,6 +162,65 @@ struct SettingsView: View {
             print("Error signing out: \(error.localizedDescription)")
             errorAlertMessage = error.localizedDescription
             showErrorAlert = true
+        }
+    }
+    private func deleteAccount() {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        // Prepare Firebase Firestore and Storage references
+        let db = Firestore.firestore()
+        let storage = Storage.storage()
+        
+        // Get user's document from Firestore
+        let docRef = db.collection("users").document(user.uid)
+        
+        // Get user's data
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let data = document.data() {
+                    // Delete user's profile photo from Firebase Storage
+                    if let profilePhotoURL = data["profilePhotoURL"] as? String {
+                        let storageRef = storage.reference(forURL: profilePhotoURL)
+                        storageRef.delete { error in
+                            if let error = error {
+                                print("Error deleting photo: \(error.localizedDescription)")
+                                errorAlertMessage = error.localizedDescription
+                                showErrorAlert = true
+                            } else {
+                                print("Photo deleted successfully")
+                            }
+                        }
+                    }
+                    
+                    // Delete user's document from Firestore
+                    docRef.delete { error in
+                        if let error = error {
+                            print("Error deleting document: \(error.localizedDescription)")
+                            errorAlertMessage = error.localizedDescription
+                            showErrorAlert = true
+                        } else {
+                            print("Document deleted successfully")
+                        }
+                    }
+                    
+                    // Delete the user from Firebase Authentication
+                    user.delete { error in
+                        if let error = error {
+                            // An error occurred
+                            print("Error deleting user: \(error.localizedDescription)")
+                            errorAlertMessage = error.localizedDescription
+                            showErrorAlert = true
+                        } else {
+                            // Account deleted
+                            appState.isLoggedIn = false
+                        }
+                    }
+                }
+            } else if let error = error {
+                print("Error getting document: \(error.localizedDescription)")
+                errorAlertMessage = error.localizedDescription
+                showErrorAlert = true
+            }
         }
     }
 }

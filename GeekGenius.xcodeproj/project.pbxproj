@@ -38,8 +38,11 @@
 		5D949CA629EF86E500CACEA0 /* YouTubeVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949CA529EF86E400CACEA0 /* YouTubeVideoView.swift */; };
 		5D949CAB29EF906800CACEA0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D949CAA29EF906800CACEA0 /* FirebaseFirestoreSwift */; };
 		5DA10F6C2A1858B700F4B368 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA10F6B2A1858B700F4B368 /* ChangePasswordView.swift */; };
+		5DA1908C2A2175FA00BAF5A5 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1908B2A2175FA00BAF5A5 /* AboutView.swift */; };
+		5DA1908E2A218CBC00BAF5A5 /* OthersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1908D2A218CBC00BAF5A5 /* OthersView.swift */; };
 		5DA5069429F4F55E00A00B99 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5069329F4F55E00A00B99 /* ImagePicker.swift */; };
 		5DA5069629F4F81D00A00B99 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5DA5069529F4F81D00A00B99 /* FirebaseStorage */; };
+		5DB291932A22EFFE004F50FB /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB291922A22EFFE004F50FB /* Reachability */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +75,8 @@
 		5D949CA329ECEF1F00CACEA0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		5D949CA529EF86E400CACEA0 /* YouTubeVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeVideoView.swift; sourceTree = "<group>"; };
 		5DA10F6B2A1858B700F4B368 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		5DA1908B2A2175FA00BAF5A5 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		5DA1908D2A218CBC00BAF5A5 /* OthersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersView.swift; sourceTree = "<group>"; };
 		5DA5069329F4F55E00A00B99 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5DC1BCE429F32B160085324F /* GeekGenius.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeekGenius.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D949C9829ECBFC500CACEA0 /* FirebaseAuth in Frameworks */,
+				5DB291932A22EFFE004F50FB /* Reachability in Frameworks */,
 				5DA5069629F4F81D00A00B99 /* FirebaseStorage in Frameworks */,
 				5D949CAB29EF906800CACEA0 /* FirebaseFirestoreSwift in Frameworks */,
 				5D124F4A2A05FBDD008EDB06 /* BackgroundTasks.framework in Frameworks */,
@@ -128,6 +134,8 @@
 				5D2236522A130DC200FABF14 /* SearchBar.swift */,
 				5DA5069329F4F55E00A00B99 /* ImagePicker.swift */,
 				5D949C9F29ECE13A00CACEA0 /* SettingsView.swift */,
+				5DA1908B2A2175FA00BAF5A5 /* AboutView.swift */,
+				5DA1908D2A218CBC00BAF5A5 /* OthersView.swift */,
 				5DA10F6B2A1858B700F4B368 /* ChangePasswordView.swift */,
 				5D949CA329ECEF1F00CACEA0 /* AppState.swift */,
 				5D949CA129ECE17B00CACEA0 /* MainView.swift */,
@@ -184,6 +192,7 @@
 				5D117EF929F1F92A00812526 /* FirebaseFirestore */,
 				5DA5069529F4F81D00A00B99 /* FirebaseStorage */,
 				5D124F4E2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper */,
+				5DB291922A22EFFE004F50FB /* Reachability */,
 			);
 			productName = GeekGenius;
 			productReference = 5D949C7529ECB52B00CACEA0 /* GeekGenius.app */;
@@ -219,6 +228,7 @@
 			packageReferences = (
 				5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
+				5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 5D949C7629ECB52B00CACEA0 /* Products */;
 			projectDirPath = "";
@@ -258,6 +268,7 @@
 				5D949C7B29ECB52B00CACEA0 /* ContentView.swift in Sources */,
 				5D949C9E29ECE10B00CACEA0 /* ProfileView.swift in Sources */,
 				5D124F592A0716FF008EDB06 /* SubscriptionInfoView.swift in Sources */,
+				5DA1908E2A218CBC00BAF5A5 /* OthersView.swift in Sources */,
 				5D949CA429ECEF1F00CACEA0 /* AppState.swift in Sources */,
 				5D398F0529F344DC0006DE8F /* TestView.swift in Sources */,
 				5D949C9C29ECDA6D00CACEA0 /* RemoteImage.swift in Sources */,
@@ -266,6 +277,7 @@
 				5D124F532A06FA6B008EDB06 /* OverlayView.swift in Sources */,
 				5DA10F6C2A1858B700F4B368 /* ChangePasswordView.swift in Sources */,
 				5D949C9129ECB75000CACEA0 /* LibraryView.swift in Sources */,
+				5DA1908C2A2175FA00BAF5A5 /* AboutView.swift in Sources */,
 				5D949C7929ECB52B00CACEA0 /* GeekGeniusApp.swift in Sources */,
 				5D949C8929ECB5CD00CACEA0 /* VideoPlayerView.swift in Sources */,
 				5D949C9A29ECC0D100CACEA0 /* AppDelegate.swift in Sources */,
@@ -491,6 +503,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -518,6 +538,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		5DB291922A22EFFE004F50FB /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
