@@ -18,7 +18,8 @@ struct LoginView: View {
     @EnvironmentObject var appState: AppState
     @Binding var isSignedIn: Bool
     @State private var currentNonce: String?
-    
+    @State private var showingWhyWeNeedYourInfo = false
+
     var body: some View {
         NavigationView {
             VStack {
@@ -108,10 +109,24 @@ struct LoginView: View {
                     NavigationLink(destination: SignupView()) {
                         Text("Don't have an account? Sign up")
                             .foregroundColor(.blue)
+                        
                     }
+                    
                     Spacer()
                 }
                 .padding(.top)
+                VStack {
+                    Button(action: {
+                        showingWhyWeNeedYourInfo = true
+                    }) {
+                        Text("Why We Need Your Info")
+                    }
+                    .sheet(isPresented: $showingWhyWeNeedYourInfo) {
+                        InfoExplanationView()
+                    }
+                }
+                .padding(.top)
+                
                 
                 Spacer()
             }
@@ -168,6 +183,7 @@ struct Squircle: Shape {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView(isSignedIn: .constant(false))
+            .environmentObject(AppState())
     }
 }
 
@@ -265,7 +281,24 @@ extension String {
     }
 }
 
+struct InfoExplanationView: View {
+    var body: some View {
+        VStack {
+            Text("Why We Need Your Info")
+                .font(.headline)
+                .padding(.bottom)
 
+            Text("""
+                        Our app requires user registration for providing its services. The information you provide is essential for the functionality and the personalized experience we offer in our app. The backend of our app relies on this information to function properly.
+
+                        We assure you that your data is kept secure and is used strictly for the purpose of improving your experience and providing you with personalized content.
+                        """)
+                            .padding()
+
+            Spacer()
+        }
+    }
+}
 
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

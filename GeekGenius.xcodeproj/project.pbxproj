@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D0EFD2A2A2BC9E5001C1618 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5D0EFD292A2BC9E5001C1618 /* SwiftyStoreKit */; };
+		5D0EFD2C2A2BD3AB001C1618 /* UpdatedSubscriptionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0EFD2B2A2BD3AB001C1618 /* UpdatedSubscriptionInfoView.swift */; };
 		5D117EFA29F1F92A00812526 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D117EF929F1F92A00812526 /* FirebaseFirestore */; };
 		5D124F482A05F1B9008EDB06 /* URLImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F472A05F1B8008EDB06 /* URLImageCache.swift */; };
 		5D124F4A2A05FBDD008EDB06 /* BackgroundTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */; };
@@ -46,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D0EFD2B2A2BD3AB001C1618 /* UpdatedSubscriptionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedSubscriptionInfoView.swift; sourceTree = "<group>"; };
 		5D124F472A05F1B8008EDB06 /* URLImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageCache.swift; sourceTree = "<group>"; };
 		5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackgroundTasks.framework; path = System/Library/Frameworks/BackgroundTasks.framework; sourceTree = SDKROOT; };
 		5D124F4B2A0601F4008EDB06 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -87,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D949C9829ECBFC500CACEA0 /* FirebaseAuth in Frameworks */,
+				5D0EFD2A2A2BC9E5001C1618 /* SwiftyStoreKit in Frameworks */,
 				5DB291932A22EFFE004F50FB /* Reachability in Frameworks */,
 				5DA5069629F4F81D00A00B99 /* FirebaseStorage in Frameworks */,
 				5D949CAB29EF906800CACEA0 /* FirebaseFirestoreSwift in Frameworks */,
@@ -142,6 +146,7 @@
 				5D398F0429F344DC0006DE8F /* TestView.swift */,
 				5D949C8C29ECB6EF00CACEA0 /* CategoriesView.swift */,
 				5D949C8E29ECB73300CACEA0 /* HomeView.swift */,
+				5D0EFD2B2A2BD3AB001C1618 /* UpdatedSubscriptionInfoView.swift */,
 				5D124F582A0716FF008EDB06 /* SubscriptionInfoView.swift */,
 				5D949CA529EF86E400CACEA0 /* YouTubeVideoView.swift */,
 				5D124F522A06FA6B008EDB06 /* OverlayView.swift */,
@@ -193,6 +198,7 @@
 				5DA5069529F4F81D00A00B99 /* FirebaseStorage */,
 				5D124F4E2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper */,
 				5DB291922A22EFFE004F50FB /* Reachability */,
+				5D0EFD292A2BC9E5001C1618 /* SwiftyStoreKit */,
 			);
 			productName = GeekGenius;
 			productReference = 5D949C7529ECB52B00CACEA0 /* GeekGenius.app */;
@@ -229,6 +235,7 @@
 				5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 				5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability" */,
+				5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 			);
 			productRefGroup = 5D949C7629ECB52B00CACEA0 /* Products */;
 			projectDirPath = "";
@@ -267,6 +274,7 @@
 				5D2236532A130DC200FABF14 /* SearchBar.swift in Sources */,
 				5D949C7B29ECB52B00CACEA0 /* ContentView.swift in Sources */,
 				5D949C9E29ECE10B00CACEA0 /* ProfileView.swift in Sources */,
+				5D0EFD2C2A2BD3AB001C1618 /* UpdatedSubscriptionInfoView.swift in Sources */,
 				5D124F592A0716FF008EDB06 /* SubscriptionInfoView.swift in Sources */,
 				5DA1908E2A218CBC00BAF5A5 /* OthersView.swift in Sources */,
 				5D949CA429ECEF1F00CACEA0 /* AppState.swift in Sources */,
@@ -493,6 +501,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.16.4;
+			};
+		};
 		5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper.git";
@@ -520,6 +536,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5D0EFD292A2BC9E5001C1618 /* SwiftyStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			productName = SwiftyStoreKit;
+		};
 		5D117EF929F1F92A00812526 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

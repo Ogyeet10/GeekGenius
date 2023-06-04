@@ -27,7 +27,10 @@ struct HomeView: View {
     @State private var isFetching = false
     @State private var allDocumentsLoaded = false
     @State private var videosLoaded = false
-    
+    @State private var isLoggedIn: Bool = true
+    @State private var shouldShowLoginButton: Bool = false
+    @State private var userID: String?
+
     
     var body: some View {
         NavigationStack {
@@ -44,10 +47,8 @@ struct HomeView: View {
                         ForEach(videos.filter { video in
                             searchText.isEmpty || video.title.lowercased().contains(searchText.lowercased())
                         }) { video in
-                            NavigationLink(destination: YouTubeVideoView(videoID: video.videoID)
-                                .overlay(OverlayView())
-                            ) {
-                                VideoRow(video: video)
+                            NavigationLink(destination: isLoggedIn ? YouTubeVideoDetailView(videoID: video.videoID, videoTitle: video.title, videoDescription: video.description, dateAdded: video.dateAdded, userID: (userID)!) : nil) {
+                                VideoRow(isLoggedIn: isLoggedIn, video: video)
                             }
                         }
                         
@@ -125,6 +126,7 @@ struct HomeView: View {
                     if !videosLoaded {
                         await loadVideos()
                         await checkSubscriptionStatus()
+                        userID = Auth.auth().currentUser?.uid
                         videosLoaded = true
                     }
                 }
@@ -158,12 +160,13 @@ struct HomeView: View {
                 guard let title = document.get("title") as? String,
                       let thumbnailUrl = document.get("thumbnailUrl") as? String,
                       let videoID = document.get("videoID") as? String,
+                      let description = document.get("description") as? String, // parsing description
                       let dateAdded = document.get("dateAdded") as? Timestamp else {
                     print("Failed to parse document: \(document.data())")
                     return nil
                 }
                 
-                return Video(title: title, thumbnailUrl: thumbnailUrl, videoID: videoID, dateAdded: dateAdded.dateValue())
+                return Video(title: title, thumbnailUrl: thumbnailUrl, videoID: videoID, dateAdded: dateAdded.dateValue(), description: description) // passing description
             }
             
             videos.append(contentsOf: newVideos)
@@ -245,9 +248,11 @@ struct HomeView: View {
         let thumbnailUrl: String
         let videoID: String
         let dateAdded: Date
+        let description: String // new field
     }
     
     struct VideoRow: View {
+        let isLoggedIn: Bool
         let video: Video
         var formatter: DateFormatter {
             let formatter = DateFormatter()
@@ -270,6 +275,14 @@ struct HomeView: View {
                     Text("Posted on: \(formatter.string(from: video.dateAdded))")
                         .font(.subheadline)
                         .foregroundColor(.gray)
+                    if !isLoggedIn {
+                        Button(action: {
+                            // navigate to login view
+                        }) {
+                            Text("Log in to watch")
+                                .foregroundColor(.blue)
+                        }
+                    }
                 }
             }
         }
