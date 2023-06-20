@@ -8,14 +8,21 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
     @Published var isLoggedIn: Bool
     @Published var currentNonce: String?
     @Published var appleSignInError: Error?
+    @Published var isGuest: Bool  // add this variable
+
 
     override init() {
         isLoggedIn = Auth.auth().currentUser != nil
+        isGuest = false  // initialize it to false
     }
 
     func signIn() {
         isLoggedIn = true
     }
+    
+    func signInAsGuest() {  // add this function
+            isGuest = true
+        }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,

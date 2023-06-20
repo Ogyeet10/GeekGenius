@@ -17,8 +17,10 @@ struct ProfileView: View {
     @State private var displayName = ""
     @State private var aboutMe = ""
     @State private var isLoading = true
-    
+    @State private var user: User? = Auth.auth().currentUser
+
     var body: some View {
+        if let _ = user {
         NavigationView {
             ScrollView {
                 if isLoading {
@@ -89,7 +91,11 @@ struct ProfileView: View {
                 dismissKeyboard()
             }
             .onAppear(perform: fetchProfileData)
+            
         }
+        } else {
+                   NoLoginView()
+               }
     }
     
     func loadImage() {
@@ -219,7 +225,30 @@ struct ProfileView: View {
     }
 
     }
-    
+
+    struct NoLoginView: View {
+        @EnvironmentObject var appState: AppState
+        var body: some View {
+        VStack {
+            Text("Please Sign in to view/create your profile")
+            Button(action: {
+                self.appState.isGuest = false
+            }) {
+                Text("Sign In")
+                    .foregroundColor(.blue)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.blue, lineWidth: 1)
+                    )
+            }
+           
+        }
+        .navigationBarTitle("Profile", displayMode: .inline)
+    }
+}
+
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {

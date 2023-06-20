@@ -51,32 +51,35 @@ struct SettingsView: View {
                                     dismissButton: .default(Text("OK"))
                                 )
                             }
+                        Button("Sign Out") {
+                            signOut()
+                        }
+                        Button("Change Password") {
+                            isChangePasswordViewPresented = true
+                        }
+                        .sheet(isPresented: $isChangePasswordViewPresented) {
+                            ChangePasswordView()
+                        }
+                        Button("Delete Account") {
+                            showDeleteAccountAlert = true
+                        }
+                        .foregroundColor(.red)
+                        .alert(isPresented: $showDeleteAccountAlert) {
+                            Alert(
+                                title: Text("Delete Account"),
+                                message: Text("Are you sure you want to delete your account? This action cannot be undone."),
+                                primaryButton: .destructive(Text("Delete"), action: deleteAccount),
+                                secondaryButton: .cancel()
+                            )
+                        }
                     } else {
-                        Text("Username: N/A")
+                        Text("Not Loged in")
+                            .fontWeight(.bold)
+                        Button("Sign In") {
+                            self.appState.isGuest = false
+                                                }
                     }
 
-                    
-                    Button("Sign Out") {
-                        signOut()
-                    }
-                    Button("Change Password") {
-                        isChangePasswordViewPresented = true
-                    }
-                    .sheet(isPresented: $isChangePasswordViewPresented) {
-                        ChangePasswordView()
-                    }
-                    Button("Delete Account") {
-                        showDeleteAccountAlert = true
-                    }
-                    .foregroundColor(.red)
-                    .alert(isPresented: $showDeleteAccountAlert) {
-                        Alert(
-                            title: Text("Delete Account"),
-                            message: Text("Are you sure you want to delete your account? This action cannot be undone."),
-                            primaryButton: .destructive(Text("Delete"), action: deleteAccount),
-                            secondaryButton: .cancel()
-                        )
-                    }
                 }
                 
                 
@@ -93,12 +96,12 @@ struct SettingsView: View {
                 }
                 
                 // App Preferences Section
-                Section(header: Text("App Preferences")) {
+               /* Section(header: Text("App Preferences")) {
                     // Add app preferences options here
                     Text("Coming soon!")
                         .foregroundColor(Color.purple)
                         
-                }
+                } */
                 
                 // Contact Me Section
                 Section(header: Text("Contact Me")) {

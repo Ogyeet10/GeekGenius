@@ -20,8 +20,9 @@ struct GeekGeniusApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            OnboardingView()
                 .environmentObject(appState)
+                .environmentObject(LaunchStateManager())
                 
         }
     }

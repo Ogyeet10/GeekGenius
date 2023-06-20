@@ -17,6 +17,7 @@
 		5D124F532A06FA6B008EDB06 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F522A06FA6B008EDB06 /* OverlayView.swift */; };
 		5D124F592A0716FF008EDB06 /* SubscriptionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D124F582A0716FF008EDB06 /* SubscriptionInfoView.swift */; };
 		5D2236532A130DC200FABF14 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2236522A130DC200FABF14 /* SearchBar.swift */; };
+		5D35CF802A315676005C6923 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D35CF7F2A315676005C6923 /* OnboardingView.swift */; };
 		5D398F0529F344DC0006DE8F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D398F0429F344DC0006DE8F /* TestView.swift */; };
 		5D949C7929ECB52B00CACEA0 /* GeekGeniusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949C7829ECB52B00CACEA0 /* GeekGeniusApp.swift */; };
 		5D949C7B29ECB52B00CACEA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949C7A29ECB52B00CACEA0 /* ContentView.swift */; };
@@ -45,6 +46,12 @@
 		5DA5069429F4F55E00A00B99 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5069329F4F55E00A00B99 /* ImagePicker.swift */; };
 		5DA5069629F4F81D00A00B99 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5DA5069529F4F81D00A00B99 /* FirebaseStorage */; };
 		5DB291932A22EFFE004F50FB /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB291922A22EFFE004F50FB /* Reachability */; };
+		5DEEAC8E2A2D56DC00047639 /* Mac_GeniusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEEAC8D2A2D56DC00047639 /* Mac_GeniusApp.swift */; };
+		5DEEAC902A2D56DC00047639 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEEAC8F2A2D56DC00047639 /* ContentView.swift */; };
+		5DEEAC922A2D56E600047639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEEAC912A2D56E600047639 /* Assets.xcassets */; };
+		5DEEAC952A2D56E600047639 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEEAC942A2D56E600047639 /* Preview Assets.xcassets */; };
+		5DEEAC972A2D56E600047639 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEEAC962A2D56E600047639 /* Persistence.swift */; };
+		5DEEAC9A2A2D56E600047639 /* Mac_Genius.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5DEEAC982A2D56E600047639 /* Mac_Genius.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +63,7 @@
 		5D124F582A0716FF008EDB06 /* SubscriptionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionInfoView.swift; sourceTree = "<group>"; };
 		5D1F9DE729F457A100571BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5D2236522A130DC200FABF14 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		5D35CF7F2A315676005C6923 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		5D398F0429F344DC0006DE8F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		5D949C7529ECB52B00CACEA0 /* GeekGenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeekGenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D949C7829ECB52B00CACEA0 /* GeekGeniusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeekGeniusApp.swift; sourceTree = "<group>"; };
@@ -82,6 +90,14 @@
 		5DA1908D2A218CBC00BAF5A5 /* OthersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersView.swift; sourceTree = "<group>"; };
 		5DA5069329F4F55E00A00B99 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5DC1BCE429F32B160085324F /* GeekGenius.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeekGenius.entitlements; sourceTree = "<group>"; };
+		5DEEAC8B2A2D56DC00047639 /* Mac Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mac Genius.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DEEAC8D2A2D56DC00047639 /* Mac_GeniusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_GeniusApp.swift; sourceTree = "<group>"; };
+		5DEEAC8F2A2D56DC00047639 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5DEEAC912A2D56E600047639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5DEEAC942A2D56E600047639 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5DEEAC962A2D56E600047639 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		5DEEAC992A2D56E600047639 /* Mac_Genius.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mac_Genius.xcdatamodel; sourceTree = "<group>"; };
+		5DEEAC9B2A2D56E600047639 /* Mac_Genius.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mac_Genius.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +116,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5DEEAC882A2D56DC00047639 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -107,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				5D949C7729ECB52B00CACEA0 /* GeekGenius */,
+				5DEEAC8C2A2D56DC00047639 /* Mac Genius */,
 				5D949C7629ECB52B00CACEA0 /* Products */,
 				5D949CA729EF906800CACEA0 /* Frameworks */,
 			);
@@ -116,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				5D949C7529ECB52B00CACEA0 /* GeekGenius.app */,
+				5DEEAC8B2A2D56DC00047639 /* Mac Genius.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +177,7 @@
 				5D124F522A06FA6B008EDB06 /* OverlayView.swift */,
 				5D949C9B29ECDA6D00CACEA0 /* RemoteImage.swift */,
 				5D949C9029ECB75000CACEA0 /* LibraryView.swift */,
+				5D35CF7F2A315676005C6923 /* OnboardingView.swift */,
 				5D949C7C29ECB53200CACEA0 /* Assets.xcassets */,
 				5D949C9429ECBE9700CACEA0 /* GoogleService-Info.plist */,
 				5D949C7E29ECB53200CACEA0 /* Preview Content */,
@@ -173,6 +199,28 @@
 				5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5DEEAC8C2A2D56DC00047639 /* Mac Genius */ = {
+			isa = PBXGroup;
+			children = (
+				5DEEAC8D2A2D56DC00047639 /* Mac_GeniusApp.swift */,
+				5DEEAC8F2A2D56DC00047639 /* ContentView.swift */,
+				5DEEAC912A2D56E600047639 /* Assets.xcassets */,
+				5DEEAC962A2D56E600047639 /* Persistence.swift */,
+				5DEEAC9B2A2D56E600047639 /* Mac_Genius.entitlements */,
+				5DEEAC982A2D56E600047639 /* Mac_Genius.xcdatamodeld */,
+				5DEEAC932A2D56E600047639 /* Preview Content */,
+			);
+			path = "Mac Genius";
+			sourceTree = "<group>";
+		};
+		5DEEAC932A2D56E600047639 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5DEEAC942A2D56E600047639 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +252,23 @@
 			productReference = 5D949C7529ECB52B00CACEA0 /* GeekGenius.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5DEEAC8A2A2D56DC00047639 /* Mac Genius */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DEEAC9E2A2D56E600047639 /* Build configuration list for PBXNativeTarget "Mac Genius" */;
+			buildPhases = (
+				5DEEAC872A2D56DC00047639 /* Sources */,
+				5DEEAC882A2D56DC00047639 /* Frameworks */,
+				5DEEAC892A2D56DC00047639 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mac Genius";
+			productName = "Mac Genius";
+			productReference = 5DEEAC8B2A2D56DC00047639 /* Mac Genius.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,6 +283,9 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					5D949C7429ECB52B00CACEA0 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					5DEEAC8A2A2D56DC00047639 = {
 						CreatedOnToolsVersion = 14.3;
 					};
 				};
@@ -242,6 +310,7 @@
 			projectRoot = "";
 			targets = (
 				5D949C7429ECB52B00CACEA0 /* GeekGenius */,
+				5DEEAC8A2A2D56DC00047639 /* Mac Genius */,
 			);
 		};
 /* End PBXProject section */
@@ -254,6 +323,15 @@
 				5D949C8029ECB53200CACEA0 /* Preview Assets.xcassets in Resources */,
 				5D949C7D29ECB53200CACEA0 /* Assets.xcassets in Resources */,
 				5D949C9529ECBE9800CACEA0 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DEEAC892A2D56DC00047639 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DEEAC952A2D56E600047639 /* Preview Assets.xcassets in Resources */,
+				5DEEAC922A2D56E600047639 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +355,7 @@
 				5D0EFD2C2A2BD3AB001C1618 /* UpdatedSubscriptionInfoView.swift in Sources */,
 				5D124F592A0716FF008EDB06 /* SubscriptionInfoView.swift in Sources */,
 				5DA1908E2A218CBC00BAF5A5 /* OthersView.swift in Sources */,
+				5D35CF802A315676005C6923 /* OnboardingView.swift in Sources */,
 				5D949CA429ECEF1F00CACEA0 /* AppState.swift in Sources */,
 				5D398F0529F344DC0006DE8F /* TestView.swift in Sources */,
 				5D949C9C29ECDA6D00CACEA0 /* RemoteImage.swift in Sources */,
@@ -291,6 +370,17 @@
 				5D949C9A29ECC0D100CACEA0 /* AppDelegate.swift in Sources */,
 				5D949C8B29ECB67500CACEA0 /* AccountView.swift in Sources */,
 				5D949CA029ECE13A00CACEA0 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DEEAC872A2D56DC00047639 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DEEAC972A2D56E600047639 /* Persistence.swift in Sources */,
+				5DEEAC902A2D56DC00047639 /* ContentView.swift in Sources */,
+				5DEEAC9A2A2D56E600047639 /* Mac_Genius.xcdatamodeld in Sources */,
+				5DEEAC8E2A2D56DC00047639 /* Mac_GeniusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +437,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -401,7 +491,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -424,6 +514,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GeekGenius/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -457,6 +548,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GeekGenius/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -477,6 +569,64 @@
 			};
 			name = Release;
 		};
+		5DEEAC9C2A2D56E600047639 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Mac Genius/Mac_Genius.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Mac Genius/Preview Content\"";
+				DEVELOPMENT_TEAM = KWPLDAY8SD;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oggroup.Mac-Genius";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5DEEAC9D2A2D56E600047639 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Mac Genius/Mac_Genius.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Mac Genius/Preview Content\"";
+				DEVELOPMENT_TEAM = KWPLDAY8SD;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oggroup.Mac-Genius";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -494,6 +644,15 @@
 			buildConfigurations = (
 				5D949C8429ECB53200CACEA0 /* Debug */,
 				5D949C8529ECB53200CACEA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DEEAC9E2A2D56E600047639 /* Build configuration list for PBXNativeTarget "Mac Genius" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DEEAC9C2A2D56E600047639 /* Debug */,
+				5DEEAC9D2A2D56E600047639 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -572,6 +731,19 @@
 			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		5DEEAC982A2D56E600047639 /* Mac_Genius.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5DEEAC992A2D56E600047639 /* Mac_Genius.xcdatamodel */,
+			);
+			currentVersion = 5DEEAC992A2D56E600047639 /* Mac_Genius.xcdatamodel */;
+			path = Mac_Genius.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5D949C6D29ECB52B00CACEA0 /* Project object */;
 }

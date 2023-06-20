@@ -14,7 +14,7 @@ struct MainView: View {
     
     var body: some View {
         Group {
-            if appState.isLoggedIn {
+            if appState.isGuest || appState.isLoggedIn {
                 TabView(selection: $selectedTab) {
                     HomeView()
                         .tabItem {

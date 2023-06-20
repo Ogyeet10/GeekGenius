@@ -19,6 +19,7 @@ struct LoginView: View {
     @Binding var isSignedIn: Bool
     @State private var currentNonce: String?
     @State private var showingWhyWeNeedYourInfo = false
+    @State private var isLoading = false
 
     var body: some View {
         NavigationView {
@@ -66,14 +67,17 @@ struct LoginView: View {
                     }
                     
                     Button(action: {
+                        isLoading = true
+                        
                         if let error = validateInput(email: email, password: password) {
                             errorMessage = error
+                            isLoading = false
                         } else {
                             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                                isLoading = false
                                 if let error = error {
                                     print("Error signing in: \(error.localizedDescription)")
                                     self.errorMessage = "Error signing in: \(error.localizedDescription)"
-                                    
                                 } else {
                                     print("Sign in successful")
                                     isSignedIn = true // Update the binding
@@ -81,26 +85,56 @@ struct LoginView: View {
                             }
                         }
                     }) {
-                        Text("Login")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
+                        HStack {
+                            if isLoading {
+                                ProgressView()  // show loading indicator if it's loading
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            } else {
+                                Image(systemName: "person.fill")
+                                    .font(.title)
+                                    .foregroundStyle(.white)
+                                    .imageScale(.small)
+                                Text("Login")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
                     }
                     .padding(.top)
+                    .disabled(isLoading)
                     if let errorMessage = errorMessage {
-                                    Text(errorMessage)
-                                        .foregroundColor(.red)
-                                        .padding(.bottom, 10)
-                                }
-                                
-                                if let appleSignInError = appState.appleSignInError {
-                                    Text("Error signing in with Apple: \(appleSignInError.localizedDescription)")
-                                        .foregroundColor(.red)
-                                        .padding(.bottom, 10)
-                                }
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                            .padding(.bottom, 10)
+                    }
+                    
+                    if let appleSignInError = appState.appleSignInError {
+                        Text("Error signing in with Apple: \(appleSignInError.localizedDescription)")
+                            .foregroundColor(.red)
+                            .padding(.bottom, 10)
+                    }
+                    Button(action: {
+                        appState.signInAsGuest()
+                    }) {
+                        HStack {
+                            Image(systemName: "person.slash.fill")
+                                .font(.title)
+                                .foregroundColor(.white)
+                                .imageScale(.small)
+                            Text("Continue as Guest")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.green)  // Change the color to distinguish from the login button
+                        .cornerRadius(10)
+                    }
+                    .padding(.top)
                 }
                 .padding()
                 
@@ -115,7 +149,7 @@ struct LoginView: View {
                     Spacer()
                 }
                 .padding(.top)
-                VStack {
+                /*VStack {
                     Button(action: {
                         showingWhyWeNeedYourInfo = true
                     }) {
@@ -125,7 +159,7 @@ struct LoginView: View {
                         InfoExplanationView()
                     }
                 }
-                .padding(.top)
+                .padding(.top)*/
                 
                 
                 Spacer()

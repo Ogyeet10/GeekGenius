@@ -15,7 +15,7 @@ import Network
 
 struct HomeView: View {
     @State private var videos: [Video] = []
-    @State private var hasActiveSubscription: Bool = false
+    // @State private var hasActiveSubscription: Bool = false
     @State private var showingSubscriptionInfo = false
     @State private var searchText = ""
     @State private var isSubscriptionInfoViewPresented = false
@@ -40,14 +40,15 @@ struct HomeView: View {
                     LoadingView() // You'll need to create this
                 } else if reachability.reachability.connection == .unavailable {
                     NoWifiView()
-                } else if hasActiveSubscription {
+                // } else if hasActiveSubscription {
+                } else {
                     // User has an active subscription and internet connection
                     SearchBar(text: $searchText)
                     List {
                         ForEach(videos.filter { video in
                             searchText.isEmpty || video.title.lowercased().contains(searchText.lowercased())
                         }) { video in
-                            NavigationLink(destination: isLoggedIn ? YouTubeVideoDetailView(videoID: video.videoID, videoTitle: video.title, videoDescription: video.description, dateAdded: video.dateAdded, userID: (userID)!) : nil) {
+                            NavigationLink(destination: isLoggedIn ? YouTubeVideoDetailView(videoID: video.videoID, videoTitle: video.title, videoDescription: video.description, dateAdded: video.dateAdded, userID: userID ?? "Hehe") : nil) {
                                 VideoRow(isLoggedIn: isLoggedIn, video: video)
                             }
                         }
@@ -67,33 +68,33 @@ struct HomeView: View {
                     
                     .refreshable {
                         await loadVideos(reset: true)
-                        await checkSubscriptionStatus()
+                        // await checkSubscriptionStatus()
                     }
                     .navigationTitle("Tech Videos")
-                } else {
+                // } else {
                     // User doesn't have an active subscription but has internet connection
-                    VStack {
-                        Image(systemName: "dollarsign.circle")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.red)
+                    // VStack {
+                    //     Image(systemName: "dollarsign.circle")
+                    //         .resizable()
+                    //         .frame(width: 50, height: 50)
+                    //         .foregroundColor(.red)
                         
                         
-                        Text("You need an active subscription to access the content.")
-                            .font(.headline)
+                    //     Text("You need an active subscription to access the content.")
+                    //         .font(.headline)
                         
                         
-                        Button(action: {
-                            isSubscriptionInfoViewPresented = true
-                        }) {
-                            Text("Get a Subscription")
-                                .font(.headline)
-                                .foregroundColor(.blue)
-                        }
-                        .navigationDestination(isPresented: $isSubscriptionInfoViewPresented, destination: {
-                            SubscriptionInfoView()
-                        })
-                    }
+                    //     Button(action: {
+                    //         isSubscriptionInfoViewPresented = true
+                    //     }) {
+                    //         Text("Get a Subscription")
+                    //             .font(.headline)
+                    //             .foregroundColor(.blue)
+                    //     }
+                    //     .navigationDestination(isPresented: $isSubscriptionInfoViewPresented, destination: {
+                    //         SubscriptionInfoView()
+                    //     })
+                    // }
                 }
             }
             .environmentObject(reachability)
@@ -113,7 +114,7 @@ struct HomeView: View {
                     Button(action: {
                         Task {
                             await loadVideos(reset: true)
-                            await checkSubscriptionStatus()
+                            // await checkSubscriptionStatus()
                         }
                     }) {
                         Image(systemName: "arrow.clockwise")
@@ -125,7 +126,7 @@ struct HomeView: View {
                 Task {
                     if !videosLoaded {
                         await loadVideos()
-                        await checkSubscriptionStatus()
+                        // await checkSubscriptionStatus()
                         userID = Auth.auth().currentUser?.uid
                         videosLoaded = true
                     }
@@ -177,37 +178,35 @@ struct HomeView: View {
         } catch let error {
             print("Error getting videos: \(error.localizedDescription)")
         }
+        isLoading = false // Added
     }
-    
-    
-    
     
     func sortButtons() -> [ActionSheet.Button] {
-        var buttons: [ActionSheet.Button] = []
-        let options = ["dateAdded", "title"]
-        for option in options {
-            buttons.append(.default(Text(displayName(for: option))) {
-                sortOption = option
-                sortVideos()
-            })
+            var buttons: [ActionSheet.Button] = []
+            let options = ["dateAdded", "title"]
+            for option in options {
+                buttons.append(.default(Text(displayName(for: option))) {
+                    sortOption = option
+                    sortVideos()
+                })
+            }
+            buttons.append(.cancel())
+            return buttons
         }
-        buttons.append(.cancel())
-        return buttons
-    }
-    
     
     func displayName(for option: String) -> String {
-        switch option {
-        case "dateAdded":
-            return "Date Added" + (sortOption == "dateAdded" ? " ✔︎" : "")
-        case "title":
-            return "Title" + (sortOption == "title" ? " ✔︎" : "")
-        default:
-            return "Unknown option"
+            switch option {
+            case "dateAdded":
+                return "Date Added" + (sortOption == "dateAdded" ? " ✔︎" : "")
+            case "title":
+                return "Title" + (sortOption == "title" ? " ✔︎" : "")
+            default:
+                return "Unknown option"
+            }
         }
-    }
     
-    
+    // Commented checkSubscriptionStatus
+    /*
     @MainActor
     func checkSubscriptionStatus() async {
         guard let user = Auth.auth().currentUser, let userEmail = user.email else { return }
@@ -230,6 +229,7 @@ struct HomeView: View {
         }
         isLoading = false // Added
     }
+    */
     
     func sortVideos() {
         switch sortOption {

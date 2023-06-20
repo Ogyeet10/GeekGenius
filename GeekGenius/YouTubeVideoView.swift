@@ -16,8 +16,9 @@ struct YouTubeVideoDetailView: View {
     let dateAdded: Date   // Add this line
     @ObservedObject var likesViewModel: LikesViewModel
     let userID: String?  // assuming you have access to userID
-
+    @EnvironmentObject var appState: AppState
     @State private var videoIsLoading: Bool = true  // Add this line
+    @State private var showingLoginAlert: Bool = false
     
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -51,10 +52,30 @@ struct YouTubeVideoDetailView: View {
                         .fontWeight(.bold)
                         .padding(.top, 10)
                     Button(action: {
-                        likesViewModel.handleLikeButtonPress(userID: userID!, videoID: videoID)
+                        if self.appState.isGuest {
+                            self.showingLoginAlert = true
+                        } else {
+                            likesViewModel.handleLikeButtonPress(userID: userID!, videoID: videoID)
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+
+                        }
                     }) {
                         Image(systemName: likesViewModel.hasLiked ? "hand.thumbsup.fill" : "hand.thumbsup")
                     }
+                    .alert(isPresented: $showingLoginAlert) {
+                        Alert(
+                            title: Text("You need to log in to like a video."),
+                            message: Text("Would you like to log in now?"),
+                            primaryButton: .default(Text("Log In"), action: {
+                                // Perform login actions here
+                                self.appState.isGuest = false
+                                self.showingLoginAlert = false
+                                
+                            }),
+                            secondaryButton: .cancel(Text("Not Now"))
+                        )
+                    }
+
                     Text("\(likesViewModel.likesCount) likes")
                     Text(dateFormatter.string(from: dateAdded))  // Add this line
                         .font(.subheadline)
