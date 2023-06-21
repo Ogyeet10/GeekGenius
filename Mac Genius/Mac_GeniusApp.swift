@@ -2,19 +2,25 @@
 //  Mac_GeniusApp.swift
 //  Mac Genius
 //
-//  Created by Aidan Leuenberger on 6/4/23.
+//  Created by Aidan Leuenberger on 6/20/23.
 //
 
 import SwiftUI
+import Firebase
+
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        FirebaseApp.configure()
+    }
+}
 
 @main
 struct Mac_GeniusApp: App {
-    let persistenceController = PersistenceController.shared
-
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
