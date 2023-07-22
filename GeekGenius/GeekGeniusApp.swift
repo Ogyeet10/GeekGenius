@@ -15,6 +15,8 @@ struct GeekGeniusApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var appState = AppState()
     @StateObject private var userSettings = UserSettings() // Add this line
+    @StateObject private var tipsStore = TipsStore()
+
 
     init() {
         FirebaseApp.configure()
@@ -27,7 +29,7 @@ struct GeekGeniusApp: App {
             OnboardingView()
                 .environmentObject(appState)
                 .environmentObject(LaunchStateManager())
-                
+                .environmentObject(tipsStore)
         }
     }
 }

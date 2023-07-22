@@ -20,5 +20,445 @@
             landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "443C9B35-76A7-495B-BB95-6F78C011ADDA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "cardVw"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "443C9B35-76A7-495B-BB95-6F78C011ADDA - 389a7b0c179fde7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.foregroundStyle&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: SwiftUI.ShapeStyle, &#x3c4;_1_1: SwiftUI.ShapeStyle&gt;(&#x3c4;_1_0, &#x3c4;_1_1) -&gt; some&gt;&gt;.0&gt;)&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.multilineTextAlignment(SwiftUI.TextAlignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.ForEach&lt;Swift.Array&lt;StoreKit.Product&gt;, Swift.String, &lt;&lt;opaque return type of GeekGenius.SettingsView.configureProductVw(StoreKit.Product) -&gt; some&gt;&gt;.0&gt;)&gt; in GeekGenius.SettingsView.cardVw.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "285"
+                  endingLineNumber = "285"
+                  offsetFromSymbolStart = "2452">
+               </Location>
+               <Location
+                  uuid = "443C9B35-76A7-495B-BB95-6F78C011ADDA - 6a26eab358c5c47d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (StoreKit.Product) -&gt; &lt;&lt;opaque return type of GeekGenius.SettingsView.configureProductVw(StoreKit.Product) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.foregroundStyle&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: SwiftUI.ShapeStyle, &#x3c4;_1_1: SwiftUI.ShapeStyle&gt;(&#x3c4;_1_0, &#x3c4;_1_1) -&gt; some&gt;&gt;.0&gt;)&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.multilineTextAlignment(SwiftUI.TextAlignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.ForEach&lt;Swift.Array&lt;StoreKit.Product&gt;, Swift.String, &lt;&lt;opaque return type of GeekGenius.SettingsView.configureProductVw(StoreKit.Product) -&gt; some&gt;&gt;.0&gt;)&gt; in GeekGenius.SettingsView.cardVw.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "286"
+                  endingLineNumber = "286"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "443C9B35-76A7-495B-BB95-6F78C011ADDA - 389a7b0c179fdc0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.foregroundStyle&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: SwiftUI.ShapeStyle, &#x3c4;_1_1: SwiftUI.ShapeStyle&gt;(&#x3c4;_1_0, &#x3c4;_1_1) -&gt; some&gt;&gt;.0&gt;)&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.multilineTextAlignment(SwiftUI.TextAlignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.ForEach&lt;Swift.Array&lt;StoreKit.Product&gt;, Swift.String, &lt;&lt;opaque return type of GeekGenius.SettingsView.configureProductVw(StoreKit.Product) -&gt; some&gt;&gt;.0&gt;)&gt; in GeekGenius.SettingsView.cardVw.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "284"
+                  endingLineNumber = "284"
+                  offsetFromSymbolStart = "2452">
+               </Location>
+               <Location
+                  uuid = "443C9B35-76A7-495B-BB95-6F78C011ADDA - 6a26eab358c5c41c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (StoreKit.Product) -&gt; &lt;&lt;opaque return type of GeekGenius.SettingsView.configureProductVw(StoreKit.Product) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.foregroundStyle&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: SwiftUI.ShapeStyle, &#x3c4;_1_1: SwiftUI.ShapeStyle&gt;(&#x3c4;_1_0, &#x3c4;_1_1) -&gt; some&gt;&gt;.0&gt;)&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.multilineTextAlignment(SwiftUI.TextAlignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.ForEach&lt;Swift.Array&lt;StoreKit.Product&gt;, Swift.String, &lt;&lt;opaque return type of GeekGenius.SettingsView.configureProductVw(StoreKit.Product) -&gt; some&gt;&gt;.0&gt;)&gt; in GeekGenius.SettingsView.cardVw.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "285"
+                  endingLineNumber = "285"
+                  offsetFromSymbolStart = "148">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8CDE1F1A-C775-4D7E-9128-6B92879E912B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "cardVw"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A3201A2-835C-4C10-81D9-8CE764057676"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
+            landmarkName = "cardVw"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC78590C-39B4-484A-8D3C-2110409B8556"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "cardVw"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C992C11F-B1EB-48A0-B333-2AEBE4C068F6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "cardVw"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F11A303E-E672-4114-AACF-B2F30A9AB38A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "cardVw"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "355D5BA8-AFFD-4F92-B98C-3323E82394AB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/MainView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "355D5BA8-AFFD-4F92-B98C-3323E82394AB - 11c6c0097d7e2a29"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  uuid = "355D5BA8-AFFD-4F92-B98C-3323E82394AB - 11c6c0097d7e2a29"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "428">
+               </Location>
+               <Location
+                  uuid = "355D5BA8-AFFD-4F92-B98C-3323E82394AB - 11c6c0097d7e2a29"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "496">
+               </Location>
+               <Location
+                  uuid = "355D5BA8-AFFD-4F92-B98C-3323E82394AB - 11c6c0097d7e2dca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "552">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F12BD45-AD3A-4128-81DB-762382CF9194"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/MainView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "4F12BD45-AD3A-4128-81DB-762382CF9194 - 11c6c0097d7e2a08"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "392">
+               </Location>
+               <Location
+                  uuid = "4F12BD45-AD3A-4128-81DB-762382CF9194 - 11c6c0097d7e2a08"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "452">
+               </Location>
+               <Location
+                  uuid = "4F12BD45-AD3A-4128-81DB-762382CF9194 - 11c6c0097d7e2a29"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "504">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2316FDE9-3137-4278-A5CA-6782B7181940"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/MainView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "2316FDE9-3137-4278-A5CA-6782B7181940 - 50ed7b037bc60b51"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "2316FDE9-3137-4278-A5CA-6782B7181940 - 11c6c0097d7e2d46"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "1060">
+               </Location>
+               <Location
+                  uuid = "2316FDE9-3137-4278-A5CA-6782B7181940 - 50ed7b037bc60b70"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "2316FDE9-3137-4278-A5CA-6782B7181940 - 11c6c0097d7e2d67"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "1264">
+               </Location>
+               <Location
+                  uuid = "2316FDE9-3137-4278-A5CA-6782B7181940 - 50ed7b037bc60b17"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in GeekGenius.MainView.SettingsViewWrapper.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "116">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C8EF1230-DACA-4B6E-9A9A-76B99D9DEABE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "C8EF1230-DACA-4B6E-9A9A-76B99D9DEABE - c836781cba84a6d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.SettingsView.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "568">
+               </Location>
+               <Location
+                  uuid = "C8EF1230-DACA-4B6E-9A9A-76B99D9DEABE - c49cee631c215624"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.EmptyView in GeekGenius.SettingsView.body.getter : some"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Desktop/GeekGenius/GeekGenius/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

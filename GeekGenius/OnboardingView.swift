@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OnboardingView: View {
     @EnvironmentObject var launchStateManager: LaunchStateManager
+    @StateObject private var tipsStore = TipsStore()
+
 
     var body: some View {
         if launchStateManager.isFirstLaunch {
@@ -54,6 +56,7 @@ struct OnboardingView: View {
             }
         } else {
             MainView()
+                .environmentObject(tipsStore)
         }
     }
 }

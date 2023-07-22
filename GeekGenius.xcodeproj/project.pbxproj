@@ -27,6 +27,12 @@
 		5D4FC23C2A42A07D00807F7F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D4FC23B2A42A07D00807F7F /* FirebaseFirestore */; };
 		5D56B7892A4BEA8000637765 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D56B7882A4BEA8000637765 /* GoogleService-Info.plist */; };
 		5D56B78B2A4BEEAD00637765 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 5D56B78A2A4BEEAD00637765 /* FirebaseMessaging */; };
+		5D56FE022A6B5C8B00F36CBD /* OneSignal in Frameworks */ = {isa = PBXBuildFile; productRef = 2A64E7BA4B8CF633EA4B5521 /* OneSignal */; };
+		5D56FE042A6B731800F36CBD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D56FE032A6B731800F36CBD /* StoreKit.framework */; };
+		5D56FE062A6B741D00F36CBD /* MyTipJarStoreKitConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5D56FE052A6B741D00F36CBD /* MyTipJarStoreKitConfig.storekit */; };
+		5D56FE082A6B769A00F36CBD /* TipJar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D56FE072A6B769A00F36CBD /* TipJar.swift */; };
+		5D56FE0A2A6B827500F36CBD /* MvProductsids.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D56FE092A6B827500F36CBD /* MvProductsids.swift */; };
+		5D56FE0C2A6B835800F36CBD /* TipStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D56FE0B2A6B835800F36CBD /* TipStore.swift */; };
 		5D949C7929ECB52B00CACEA0 /* GeekGeniusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949C7829ECB52B00CACEA0 /* GeekGeniusApp.swift */; };
 		5D949C7B29ECB52B00CACEA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949C7A29ECB52B00CACEA0 /* ContentView.swift */; };
 		5D949C7D29ECB53200CACEA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D949C7C29ECB53200CACEA0 /* Assets.xcassets */; };
@@ -104,6 +110,11 @@
 		5D4FC2352A429FC100807F7F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5D4FC2372A429FC100807F7F /* Mac_Genius.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mac_Genius.entitlements; sourceTree = "<group>"; };
 		5D56B7882A4BEA8000637765 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "GeekGenius/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		5D56FE032A6B731800F36CBD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5D56FE052A6B741D00F36CBD /* MyTipJarStoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = MyTipJarStoreKitConfig.storekit; path = GeekGenius/MyTipJarStoreKitConfig.storekit; sourceTree = "<group>"; };
+		5D56FE072A6B769A00F36CBD /* TipJar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJar.swift; sourceTree = "<group>"; };
+		5D56FE092A6B827500F36CBD /* MvProductsids.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MvProductsids.swift; sourceTree = "<group>"; };
+		5D56FE0B2A6B835800F36CBD /* TipStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipStore.swift; sourceTree = "<group>"; };
 		5D949C7529ECB52B00CACEA0 /* GeekGenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeekGenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D949C7829ECB52B00CACEA0 /* GeekGeniusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeekGeniusApp.swift; sourceTree = "<group>"; };
 		5D949C7A29ECB52B00CACEA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,6 +159,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D56FE022A6B5C8B00F36CBD /* OneSignal in Frameworks */,
+				5D56FE042A6B731800F36CBD /* StoreKit.framework in Frameworks */,
 				5DDDDE1A2A611C0200C766A3 /* FirebaseAnalyticsSwift in Frameworks */,
 				5D56B78B2A4BEEAD00637765 /* FirebaseMessaging in Frameworks */,
 				5D949C9829ECBFC500CACEA0 /* FirebaseAuth in Frameworks */,
@@ -198,6 +211,7 @@
 		5D949C6C29ECB52B00CACEA0 = {
 			isa = PBXGroup;
 			children = (
+				5D56FE052A6B741D00F36CBD /* MyTipJarStoreKitConfig.storekit */,
 				5D949C7729ECB52B00CACEA0 /* GeekGenius */,
 				5D4FC22D2A429FC000807F7F /* Mac Genius */,
 				5D949C7629ECB52B00CACEA0 /* Products */,
@@ -219,6 +233,8 @@
 		5D949C7729ECB52B00CACEA0 /* GeekGenius */ = {
 			isa = PBXGroup;
 			children = (
+				5D56FE092A6B827500F36CBD /* MvProductsids.swift */,
+				5D56FE0B2A6B835800F36CBD /* TipStore.swift */,
 				5D1F9DE729F457A100571BC5 /* Info.plist */,
 				5DC1BCE429F32B160085324F /* GeekGenius.entitlements */,
 				5D949C7829ECB52B00CACEA0 /* GeekGeniusApp.swift */,
@@ -249,6 +265,7 @@
 				5D949C9B29ECDA6D00CACEA0 /* RemoteImage.swift */,
 				5D949C9029ECB75000CACEA0 /* LibraryView.swift */,
 				5D35CF7F2A315676005C6923 /* OnboardingView.swift */,
+				5D56FE072A6B769A00F36CBD /* TipJar.swift */,
 				5D949C7C29ECB53200CACEA0 /* Assets.xcassets */,
 				5D949C9429ECBE9700CACEA0 /* GoogleService-Info.plist */,
 				5D949C7E29ECB53200CACEA0 /* Preview Content */,
@@ -267,6 +284,7 @@
 		5D949CA729EF906800CACEA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D56FE032A6B731800F36CBD /* StoreKit.framework */,
 				5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */,
 				737EE0ECBE76A7F362A43080 /* iOS */,
 			);
@@ -396,11 +414,11 @@
 			mainGroup = 5D949C6C29ECB52B00CACEA0;
 			packageReferences = (
 				5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper.git" */,
-				5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability.swift" */,
-				5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit.git" */,
+				5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
+				5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability" */,
+				5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				5D9901D02A6B31BD00999ECB /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				CAB5229FC65005D199393B86 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework.git" */,
+				CAB5229FC65005D199393B86 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */,
 			);
 			productRefGroup = 5D949C7629ECB52B00CACEA0 /* Products */;
 			projectDirPath = "";
@@ -429,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D949C8029ECB53200CACEA0 /* Preview Assets.xcassets in Resources */,
+				5D56FE062A6B741D00F36CBD /* MyTipJarStoreKitConfig.storekit in Resources */,
 				5D949C7D29ECB53200CACEA0 /* Assets.xcassets in Resources */,
 				5D949C9529ECBE9800CACEA0 /* GoogleService-Info.plist in Resources */,
 			);
@@ -465,10 +484,12 @@
 				5D949C8729ECB59B00CACEA0 /* LoginView.swift in Sources */,
 				5D949C8F29ECB73300CACEA0 /* HomeView.swift in Sources */,
 				5D2236532A130DC200FABF14 /* SearchBar.swift in Sources */,
+				5D56FE082A6B769A00F36CBD /* TipJar.swift in Sources */,
 				5D949C7B29ECB52B00CACEA0 /* ContentView.swift in Sources */,
 				5D949C9E29ECE10B00CACEA0 /* ProfileView.swift in Sources */,
 				5D0EFD2C2A2BD3AB001C1618 /* UpdatedSubscriptionInfoView.swift in Sources */,
 				5D124F592A0716FF008EDB06 /* SubscriptionInfoView.swift in Sources */,
+				5D56FE0A2A6B827500F36CBD /* MvProductsids.swift in Sources */,
 				5DA1908E2A218CBC00BAF5A5 /* OthersView.swift in Sources */,
 				5D35CF802A315676005C6923 /* OnboardingView.swift in Sources */,
 				5D949CA429ECEF1F00CACEA0 /* AppState.swift in Sources */,
@@ -482,6 +503,7 @@
 				5DA1908C2A2175FA00BAF5A5 /* AboutView.swift in Sources */,
 				5D949C7929ECB52B00CACEA0 /* GeekGeniusApp.swift in Sources */,
 				5D949C8929ECB5CD00CACEA0 /* VideoPlayerView.swift in Sources */,
+				5D56FE0C2A6B835800F36CBD /* TipStore.swift in Sources */,
 				5D949C9A29ECC0D100CACEA0 /* AppDelegate.swift in Sources */,
 				5D949C8B29ECB67500CACEA0 /* AccountView.swift in Sources */,
 				5D949CA029ECE13A00CACEA0 /* SettingsView.swift in Sources */,
@@ -848,7 +870,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit.git" */ = {
+		5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
 			requirement = {
@@ -856,7 +878,7 @@
 				minimumVersion = 0.16.4;
 			};
 		};
-		5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper.git" */ = {
+		5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper.git";
 			requirement = {
@@ -880,7 +902,7 @@
 				minimumVersion = 6.5.12;
 			};
 		};
-		5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+		5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -888,7 +910,7 @@
 				minimumVersion = 5.1.0;
 			};
 		};
-		CAB5229FC65005D199393B86 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework.git" */ = {
+		CAB5229FC65005D199393B86 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OneSignal/OneSignal-XCFramework.git";
 			requirement = {
@@ -905,7 +927,7 @@
 		};
 		5D0EFD292A2BC9E5001C1618 /* SwiftyStoreKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit.git" */;
+			package = 5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
 		};
 		5D117EF929F1F92A00812526 /* FirebaseFirestore */ = {
@@ -915,7 +937,7 @@
 		};
 		5D124F4E2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper.git" */;
+			package = 5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
 			productName = YouTubeiOSPlayerHelper;
 		};
 		5D4FC23B2A42A07D00807F7F /* FirebaseFirestore */ = {
@@ -950,7 +972,7 @@
 		};
 		5DB291922A22EFFE004F50FB /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			package = 5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
 		};
 		5DDDDE152A611C0200C766A3 /* FirebaseAnalytics */ = {
