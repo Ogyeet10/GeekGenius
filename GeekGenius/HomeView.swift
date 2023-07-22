@@ -11,7 +11,7 @@ import FirebaseAuth
 import Reachability
 import Combine
 import Network
-
+import FirebaseAnalytics
 
 struct HomeView: View {
     @State private var videos: [Video] = []
@@ -312,6 +312,7 @@ struct LoadingView: View {
     var body: some View {
         VStack {
             ProgressView() // Or your custom loading UI
+                .padding([.bottom], 0.5)
             Text("Loading...")
         }
     }

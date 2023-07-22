@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Firebase
+import IQKeyboardManagerSwift
+import OneSignal
 
 @main
 struct GeekGeniusApp: App {
@@ -16,6 +18,8 @@ struct GeekGeniusApp: App {
 
     init() {
         FirebaseApp.configure()
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.keyboardDistanceFromTextField = 25 // Set your desired distance
     }
 
     var body: some Scene {

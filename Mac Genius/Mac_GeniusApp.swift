@@ -8,16 +8,12 @@
 import SwiftUI
 import Firebase
 
-class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        FirebaseApp.configure()
-    }
-}
 
 @main
 struct Mac_GeniusApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+        init() {
+               FirebaseApp.configure()
+           }
     var body: some Scene {
         WindowGroup {
             ContentView()

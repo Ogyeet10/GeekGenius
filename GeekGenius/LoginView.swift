@@ -106,11 +106,6 @@ struct LoginView: View {
                     }
                     .padding(.top)
                     .disabled(isLoading)
-                    if let errorMessage = errorMessage {
-                        Text(errorMessage)
-                            .foregroundColor(.red)
-                            .padding(.bottom, 10)
-                    }
                     
                     if let appleSignInError = appState.appleSignInError {
                         Text("Error signing in with Apple: \(appleSignInError.localizedDescription)")

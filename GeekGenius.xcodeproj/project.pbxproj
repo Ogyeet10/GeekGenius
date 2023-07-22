@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00518B6330B5B3451D62832A /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8A355B73482DC90D8C876227 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5D0EFD2A2A2BC9E5001C1618 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5D0EFD292A2BC9E5001C1618 /* SwiftyStoreKit */; };
 		5D0EFD2C2A2BD3AB001C1618 /* UpdatedSubscriptionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0EFD2B2A2BD3AB001C1618 /* UpdatedSubscriptionInfoView.swift */; };
 		5D117EFA29F1F92A00812526 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D117EF929F1F92A00812526 /* FirebaseFirestore */; };
@@ -24,6 +25,8 @@
 		5D4FC2332A429FC100807F7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4FC2322A429FC100807F7F /* Assets.xcassets */; };
 		5D4FC2362A429FC100807F7F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4FC2352A429FC100807F7F /* Preview Assets.xcassets */; };
 		5D4FC23C2A42A07D00807F7F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D4FC23B2A42A07D00807F7F /* FirebaseFirestore */; };
+		5D56B7892A4BEA8000637765 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D56B7882A4BEA8000637765 /* GoogleService-Info.plist */; };
+		5D56B78B2A4BEEAD00637765 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 5D56B78A2A4BEEAD00637765 /* FirebaseMessaging */; };
 		5D949C7929ECB52B00CACEA0 /* GeekGeniusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949C7829ECB52B00CACEA0 /* GeekGeniusApp.swift */; };
 		5D949C7B29ECB52B00CACEA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949C7A29ECB52B00CACEA0 /* ContentView.swift */; };
 		5D949C7D29ECB53200CACEA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D949C7C29ECB53200CACEA0 /* Assets.xcassets */; };
@@ -45,15 +48,45 @@
 		5D949CA429ECEF1F00CACEA0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949CA329ECEF1F00CACEA0 /* AppState.swift */; };
 		5D949CA629EF86E500CACEA0 /* YouTubeVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D949CA529EF86E400CACEA0 /* YouTubeVideoView.swift */; };
 		5D949CAB29EF906800CACEA0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D949CAA29EF906800CACEA0 /* FirebaseFirestoreSwift */; };
+		5D9901D22A6B31BD00999ECB /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D9901D12A6B31BD00999ECB /* IQKeyboardManagerSwift */; };
 		5DA10F6C2A1858B700F4B368 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA10F6B2A1858B700F4B368 /* ChangePasswordView.swift */; };
 		5DA1908C2A2175FA00BAF5A5 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1908B2A2175FA00BAF5A5 /* AboutView.swift */; };
 		5DA1908E2A218CBC00BAF5A5 /* OthersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1908D2A218CBC00BAF5A5 /* OthersView.swift */; };
 		5DA5069429F4F55E00A00B99 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5069329F4F55E00A00B99 /* ImagePicker.swift */; };
 		5DA5069629F4F81D00A00B99 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5DA5069529F4F81D00A00B99 /* FirebaseStorage */; };
 		5DB291932A22EFFE004F50FB /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB291922A22EFFE004F50FB /* Reachability */; };
+		5DDDDE162A611C0200C766A3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5DDDDE152A611C0200C766A3 /* FirebaseAnalytics */; };
+		5DDDDE1A2A611C0200C766A3 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5DDDDE192A611C0200C766A3 /* FirebaseAnalyticsSwift */; };
+		65EA6A2A60ED395B6351F6B5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4311B79F9E9A1D905661A3CE /* NotificationService.swift */; };
+		9879D9F6324CF34A4905A461 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F856CEF8D84C86843A97DAF6 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		08B0EA7AFEDE9F4BCC957940 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D949C6D29ECB52B00CACEA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0F62CD462EB213196312C14;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		76D2F6B95483C817314CD21C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				00518B6330B5B3451D62832A /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4311B79F9E9A1D905661A3CE /* NotificationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationService.swift; path = OneSignalNotificationServiceExtension/NotificationService.swift; sourceTree = "<group>"; };
 		5D0EFD2B2A2BD3AB001C1618 /* UpdatedSubscriptionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedSubscriptionInfoView.swift; sourceTree = "<group>"; };
 		5D124F472A05F1B8008EDB06 /* URLImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageCache.swift; sourceTree = "<group>"; };
 		5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackgroundTasks.framework; path = System/Library/Frameworks/BackgroundTasks.framework; sourceTree = SDKROOT; };
@@ -70,6 +103,7 @@
 		5D4FC2322A429FC100807F7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D4FC2352A429FC100807F7F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5D4FC2372A429FC100807F7F /* Mac_Genius.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mac_Genius.entitlements; sourceTree = "<group>"; };
+		5D56B7882A4BEA8000637765 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "GeekGenius/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5D949C7529ECB52B00CACEA0 /* GeekGenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeekGenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D949C7829ECB52B00CACEA0 /* GeekGeniusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeekGeniusApp.swift; sourceTree = "<group>"; };
 		5D949C7A29ECB52B00CACEA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +129,10 @@
 		5DA1908D2A218CBC00BAF5A5 /* OthersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersView.swift; sourceTree = "<group>"; };
 		5DA5069329F4F55E00A00B99 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5DC1BCE429F32B160085324F /* GeekGenius.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeekGenius.entitlements; sourceTree = "<group>"; };
+		8A355B73482DC90D8C876227 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB99BF7D97ADB6F921D6BDDB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = OneSignalNotificationServiceExtension/Info.plist; sourceTree = "<group>"; };
+		F564EBAAC0B88F392E73F722 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; name = OneSignalNotificationServiceExtension.entitlements; path = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		F856CEF8D84C86843A97DAF6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,14 +148,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DDDDE1A2A611C0200C766A3 /* FirebaseAnalyticsSwift in Frameworks */,
+				5D56B78B2A4BEEAD00637765 /* FirebaseMessaging in Frameworks */,
 				5D949C9829ECBFC500CACEA0 /* FirebaseAuth in Frameworks */,
 				5D0EFD2A2A2BC9E5001C1618 /* SwiftyStoreKit in Frameworks */,
 				5DB291932A22EFFE004F50FB /* Reachability in Frameworks */,
+				5D9901D22A6B31BD00999ECB /* IQKeyboardManagerSwift in Frameworks */,
 				5DA5069629F4F81D00A00B99 /* FirebaseStorage in Frameworks */,
 				5D949CAB29EF906800CACEA0 /* FirebaseFirestoreSwift in Frameworks */,
 				5D124F4A2A05FBDD008EDB06 /* BackgroundTasks.framework in Frameworks */,
 				5D117EFA29F1F92A00812526 /* FirebaseFirestore in Frameworks */,
+				5DDDDE162A611C0200C766A3 /* FirebaseAnalytics in Frameworks */,
 				5D124F4F2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8ECD9B21104BE4E4834D656 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9879D9F6324CF34A4905A461 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +181,7 @@
 				5D4FC2302A429FC000807F7F /* ContentView.swift */,
 				5D4FC2322A429FC100807F7F /* Assets.xcassets */,
 				5D4FC2372A429FC100807F7F /* Mac_Genius.entitlements */,
+				5D56B7882A4BEA8000637765 /* GoogleService-Info.plist */,
 				5D4FC2342A429FC100807F7F /* Preview Content */,
 			);
 			path = "Mac Genius";
@@ -151,6 +202,7 @@
 				5D4FC22D2A429FC000807F7F /* Mac Genius */,
 				5D949C7629ECB52B00CACEA0 /* Products */,
 				5D949CA729EF906800CACEA0 /* Frameworks */,
+				7C340C074668FB872D0E5C7B /* OneSignalNotificationServiceExtension */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,6 +211,7 @@
 			children = (
 				5D949C7529ECB52B00CACEA0 /* GeekGenius.app */,
 				5D4FC22C2A429FC000807F7F /* Mac Genius.app */,
+				8A355B73482DC90D8C876227 /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,8 +268,27 @@
 			isa = PBXGroup;
 			children = (
 				5D124F492A05FBDB008EDB06 /* BackgroundTasks.framework */,
+				737EE0ECBE76A7F362A43080 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		737EE0ECBE76A7F362A43080 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F856CEF8D84C86843A97DAF6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7C340C074668FB872D0E5C7B /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				4311B79F9E9A1D905661A3CE /* NotificationService.swift */,
+				CB99BF7D97ADB6F921D6BDDB /* Info.plist */,
+				F564EBAAC0B88F392E73F722 /* OneSignalNotificationServiceExtension.entitlements */,
+			);
+			name = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,10 +321,12 @@
 				5D949C7129ECB52B00CACEA0 /* Sources */,
 				5D949C7229ECB52B00CACEA0 /* Frameworks */,
 				5D949C7329ECB52B00CACEA0 /* Resources */,
+				76D2F6B95483C817314CD21C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				43BDC5E01A8D0D122BB99F00 /* PBXTargetDependency */,
 			);
 			name = GeekGenius;
 			packageProductDependencies = (
@@ -263,10 +337,32 @@
 				5D124F4E2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper */,
 				5DB291922A22EFFE004F50FB /* Reachability */,
 				5D0EFD292A2BC9E5001C1618 /* SwiftyStoreKit */,
+				5D56B78A2A4BEEAD00637765 /* FirebaseMessaging */,
+				5DDDDE152A611C0200C766A3 /* FirebaseAnalytics */,
+				5DDDDE192A611C0200C766A3 /* FirebaseAnalyticsSwift */,
+				5D9901D12A6B31BD00999ECB /* IQKeyboardManagerSwift */,
+				2A64E7BA4B8CF633EA4B5521 /* OneSignal */,
 			);
 			productName = GeekGenius;
 			productReference = 5D949C7529ECB52B00CACEA0 /* GeekGenius.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A0F62CD462EB213196312C14 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBDC6709708B47A558B6A605 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				7EE6D51E72B4EDB06A5E0DA8 /* Sources */,
+				A8ECD9B21104BE4E4834D656 /* Frameworks */,
+				FA5BFDAE100936B1883947A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = 8A355B73482DC90D8C876227 /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -300,9 +396,11 @@
 			mainGroup = 5D949C6C29ECB52B00CACEA0;
 			packageReferences = (
 				5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
-				5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability" */,
-				5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+				5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper.git" */,
+				5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit.git" */,
+				5D9901D02A6B31BD00999ECB /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				CAB5229FC65005D199393B86 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework.git" */,
 			);
 			productRefGroup = 5D949C7629ECB52B00CACEA0 /* Products */;
 			projectDirPath = "";
@@ -310,6 +408,7 @@
 			targets = (
 				5D949C7429ECB52B00CACEA0 /* GeekGenius */,
 				5D4FC22B2A429FC000807F7F /* Mac Genius */,
+				A0F62CD462EB213196312C14 /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -321,6 +420,7 @@
 			files = (
 				5D4FC2362A429FC100807F7F /* Preview Assets.xcassets in Resources */,
 				5D4FC2332A429FC100807F7F /* Assets.xcassets in Resources */,
+				5D56B7892A4BEA8000637765 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +431,13 @@
 				5D949C8029ECB53200CACEA0 /* Preview Assets.xcassets in Resources */,
 				5D949C7D29ECB53200CACEA0 /* Assets.xcassets in Resources */,
 				5D949C9529ECBE9800CACEA0 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA5BFDAE100936B1883947A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,9 +488,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EE6D51E72B4EDB06A5E0DA8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65EA6A2A60ED395B6351F6B5 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		43BDC5E01A8D0D122BB99F00 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OneSignalNotificationServiceExtension;
+			target = A0F62CD462EB213196312C14 /* OneSignalNotificationServiceExtension */;
+			targetProxy = 08B0EA7AFEDE9F4BCC957940 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		3607366FF09C130935B7FB65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				DEVELOPMENT_TEAM = KWPLDAY8SD;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oggroup.GeekGenius.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = OneSignalNotificationServiceExtension;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
 		5D4FC2392A429FC100807F7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -592,7 +737,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.oggroup.GeekGenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -627,7 +772,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.oggroup.GeekGenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -636,6 +781,28 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		94113CC29CCCB5763D2715DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				DEVELOPMENT_TEAM = KWPLDAY8SD;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oggroup.GeekGenius.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = OneSignalNotificationServiceExtension;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -669,10 +836,19 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		EBDC6709708B47A558B6A605 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94113CC29CCCB5763D2715DB /* Release */,
+				3607366FF09C130935B7FB65 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
+		5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
 			requirement = {
@@ -680,7 +856,7 @@
 				minimumVersion = 0.16.4;
 			};
 		};
-		5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
+		5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper.git";
 			requirement = {
@@ -696,7 +872,15 @@
 				minimumVersion = 10.0.0;
 			};
 		};
-		5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability" */ = {
+		5D9901D02A6B31BD00999ECB /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.12;
+			};
+		};
+		5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -704,12 +888,24 @@
 				minimumVersion = 5.1.0;
 			};
 		};
+		CAB5229FC65005D199393B86 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework.git" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OneSignal/OneSignal-XCFramework.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.4.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2A64E7BA4B8CF633EA4B5521 /* OneSignal */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OneSignal;
+		};
 		5D0EFD292A2BC9E5001C1618 /* SwiftyStoreKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			package = 5D0EFD282A2BC9E4001C1618 /* XCRemoteSwiftPackageReference "SwiftyStoreKit.git" */;
 			productName = SwiftyStoreKit;
 		};
 		5D117EF929F1F92A00812526 /* FirebaseFirestore */ = {
@@ -719,13 +915,18 @@
 		};
 		5D124F4E2A06F5AA008EDB06 /* YouTubeiOSPlayerHelper */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			package = 5D124F4D2A06F5AA008EDB06 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper.git" */;
 			productName = YouTubeiOSPlayerHelper;
 		};
 		5D4FC23B2A42A07D00807F7F /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		5D56B78A2A4BEEAD00637765 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		5D949C9729ECBFC500CACEA0 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -737,6 +938,11 @@
 			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
+		5D9901D12A6B31BD00999ECB /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D9901D02A6B31BD00999ECB /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		5DA5069529F4F81D00A00B99 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -744,8 +950,18 @@
 		};
 		5DB291922A22EFFE004F50FB /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability" */;
+			package = 5DB291912A22EFFD004F50FB /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
+		};
+		5DDDDE152A611C0200C766A3 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		5DDDDE192A611C0200C766A3 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D949C9629ECBFC500CACEA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

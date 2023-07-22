@@ -29,10 +29,39 @@ struct OnboardingView: View {
                 }
                 .padding(.top, 50)
             }
+        } else if launchStateManager.showWhatsNew {
+            VStack {
+                WhatsNewScreenView(
+                    title: "What's New in GeekGenius v1.1",
+                    items: [
+                        WhatsNewItem(icon: "captions.bubble", title: "Comments", description: "Comment on videos to interact with me and other creators."),
+                        WhatsNewItem(icon: "info.circle", title: "Updated About info", description: "Updated info on about screen to reflect the current state of the app."),
+                        WhatsNewItem(icon: "app.badge", title: "Push Notifications", description: "Now with improved push notifications you can get updated the second new content is out."),
+                        WhatsNewItem(icon: "bandage", title: "Bug fixes", description: "Various bug fixes and performance improvements.")
+                    ]
+                )
+                Button(action: {
+                    launchStateManager.showWhatsNew = false
+                }) {
+                    Text("Continue")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                .padding(.top, 50)
+            }
         } else {
             MainView()
         }
     }
+}
+
+struct WhatsNewItem {
+    let icon: String
+    let title: String
+    let description: String
 }
 
 
@@ -69,19 +98,105 @@ class LaunchStateManager: ObservableObject {
         }
     }
     
+    @Published var showWhatsNew: Bool {
+        didSet {
+            UserDefaults.standard.set(showWhatsNew, forKey: "showWhatsNew")
+        }
+    }
+
     init() {
         self.isFirstLaunch = UserDefaults.standard.object(forKey: "isFirstLaunch") as? Bool ?? true
+        self.showWhatsNew = false // Initialize with a dummy value
+        self.showWhatsNew = checkForAppUpdate() // Compute the correct value
+    }
+    
+    init(isFirstLaunch: Bool, showWhatsNew: Bool) {
+        self.isFirstLaunch = isFirstLaunch
+        self.showWhatsNew = showWhatsNew
+    }
+
+    func checkForAppUpdate() -> Bool {
+        // Get current app version
+        let currentAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+
+        // Get previous version (if any)
+        let previousAppVersion = UserDefaults.standard.string(forKey: "appVersion")
+
+        // Save current version to user defaults
+        UserDefaults.standard.set(currentAppVersion, forKey: "appVersion")
+
+        // Return whether the app has been updated
+        return currentAppVersion != previousAppVersion
     }
 }
+
+struct WhatsNewScreenView: View {
+    var title: String
+    var items: [WhatsNewItem]
+
+    var body: some View {
+        VStack() {
+            Image("Logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+                .clipShape(Squircle(cornerRadius: 24)) // Adjust this value to match your preference
+                .padding(.bottom)
+            Text(title)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            ScrollView {
+                ForEach(items, id: \.title) { item in
+                    HStack() {
+                        Image(systemName: item.icon)
+                            .resizable()
+                            .foregroundColor(.accentColor)
+                            .scaledToFit()
+                            .frame(width: 30, height: 30)
+                            .padding(.horizontal)
+                        
+
+                        VStack(alignment: .leading) {
+                            Text(item.title)
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                            Text(item.description)
+                                .font(.subheadline)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading) // This line has been added
+                    }
+                    .padding(.vertical)
+                    
+                }
+            }
+        }
+        .padding()
+    }
+}
+
 
 
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
-            .previewDevice("iPhone 14 Pro Max")
-            .environmentObject(AppState())
-            .environmentObject(LaunchStateManager())
-        
+        Group {
+            OnboardingView()
+                .previewDevice("iPhone 14 Pro Max")
+                .environmentObject(AppState())
+                .environmentObject(LaunchStateManager(isFirstLaunch: true, showWhatsNew: false)) // Show onboarding screen
+                .previewDisplayName("Welcome View")
+            OnboardingView()
+                .previewDevice("iPhone 14 Pro Max")
+                .environmentObject(AppState())
+                .environmentObject(LaunchStateManager(isFirstLaunch: false, showWhatsNew: true)) // Show what's new screen
+                .previewDisplayName("Whats New View")
+            OnboardingView()
+                .previewDevice("iPhone 14 Pro Max")
+                .environmentObject(AppState())
+                .environmentObject(LaunchStateManager(isFirstLaunch: false, showWhatsNew: false)) // Show main view
+            
+                .previewDisplayName("Log On view")   
+        }
     }
 }
+

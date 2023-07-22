@@ -11,24 +11,35 @@ import BackgroundTasks
 import FirebaseFirestore
 import UserNotifications
 import SwiftUI
+import FirebaseMessaging
+import OneSignal
 
 let userSettings = UserSettings()
-
-
+let gcmMessageIDKey = "gcm.message_id" // Define gcmMessageIDKey here
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Do not configure Firebase here, as it's already configured in GeekGeniusApp
-        registerBackgroundTasks()
-        let center = UNUserNotificationCenter.current()
+            registerBackgroundTasks()
+            Messaging.messaging().delegate = self
+
+            let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
                 if let error = error {
                     print("Error requesting notification authorization: \(error.localizedDescription)")
                 }
             }
-        scheduleAppRefresh()
-        return true
+        OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
+        
+        OneSignal.initWithLaunchOptions(launchOptions)
+        OneSignal.setAppId("39260954-ba17-4a8d-9ec4-9e781b96d232")
+        
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notification: \(accepted)")
+        })
+            application.registerForRemoteNotifications()
+            scheduleAppRefresh()
+            return true
         }
     
     func registerBackgroundTasks() {
@@ -84,6 +95,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any]) async
+      -> UIBackgroundFetchResult {
+      // If you are receiving a notification message while your app is in the background,
+      // this callback will not be fired till the user taps on the notification launching the application.
+      // TODO: Handle data of notification
+
+      // With swizzling disabled you must let Messaging know about the message, for Analytics
+      // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+      // Print message ID.
+      if let messageID = userInfo[gcmMessageIDKey] {
+        print("Message ID: \(messageID)")
+      }
+
+      // Print full message.
+      print(userInfo)
+
+          print("hehe")
+
+          
+      return UIBackgroundFetchResult.newData
+    }
+
+    func application(_ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+      Messaging.messaging().apnsToken = deviceToken;
+    }
+     
+    
+    
     func fetchNewVideos(completion: @escaping (Bool) -> Void) {
         let db = Firestore.firestore()
         
@@ -149,3 +191,44 @@ func rescheduleAppRefresh() {
     }
 }
 
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(String(describing: fcmToken))")
+    }
+}
+
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+  // Receive displayed notifications for iOS 10 devices.
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              willPresent notification: UNNotification) async
+    -> UNNotificationPresentationOptions {
+    let userInfo = notification.request.content.userInfo
+
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+    // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+    // ...
+
+    // Print full message.
+    print(userInfo)
+        print("hehe")
+
+    // Change this to your preferred presentation option
+    return [[.alert, .sound]]
+  }
+
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              didReceive response: UNNotificationResponse) async {
+    let userInfo = response.notification.request.content.userInfo
+
+    // ...
+
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+     Messaging.messaging().appDidReceiveMessage(userInfo)
+
+    // Print full message.
+    print(userInfo)
+      print("hehe")
+  }
+}
