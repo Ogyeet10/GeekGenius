@@ -11,6 +11,7 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
     @Published var isGuest: Bool  // add this variable
     @Published var showTips: Bool = false
     @Published var showThanks: Bool = false
+    
 
     override init() {
         isLoggedIn = Auth.auth().currentUser != nil

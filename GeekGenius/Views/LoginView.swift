@@ -37,11 +37,11 @@ struct LoginView: View {
                         .bold()
                 }
                 .padding(.bottom, 50)
-                //AppleSignInButton(currentNonce: $currentNonce)
-                  //  .frame(width: 280, height: 60)
-                    //.onTapGesture {
-                      //  self.startSignInWithAppleFlow()
-                    //}
+                /*AppleSignInButton(currentNonce: $currentNonce)
+                    .frame(width: 280, height: 60)
+                    .onTapGesture {
+                    self.startSignInWithAppleFlow()
+                    }*/
                 VStack(alignment: .leading) {
                     Text("Email")
                         .font(.headline)
@@ -112,24 +112,7 @@ struct LoginView: View {
                             .foregroundColor(.red)
                             .padding(.bottom, 10)
                     }
-                    Button(action: {
-                        appState.signInAsGuest()
-                    }) {
-                        HStack {
-                            Image(systemName: "person.slash.fill")
-                                .font(.title)
-                                .foregroundColor(.white)
-                                .imageScale(.small)
-                            Text("Continue as Guest")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.green)  // Change the color to distinguish from the login button
-                        .cornerRadius(10)
-                    }
-                    .padding(.top)
+                    
                 }
                 .padding()
                 
@@ -138,6 +121,8 @@ struct LoginView: View {
                     NavigationLink(destination: SignupView()) {
                         Text("Don't have an account? Sign up")
                             .foregroundColor(.blue)
+                        
+                        
                         
                     }
                     
@@ -156,6 +141,23 @@ struct LoginView: View {
                 }
                 .padding(.top)*/
                 
+                Button(action: {
+                    appState.signInAsGuest()
+                }) {
+                    ZStack(alignment: .center) {
+                        HStack {
+                            Image(systemName: "person.slash.fill")
+                                .font(.system(size: 14))
+
+                            Text("Continue as Guest")
+                                .font(.footnote)
+                                .fontWeight(.light)
+                            }
+                        }
+                    .frame(maxWidth: .infinity)
+                    
+                }
+                .padding(.top)
                 
                 Spacer()
             }
@@ -225,15 +227,19 @@ private func randomNonceString(length: Int = 32) -> String {
             "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
         )
     }
+    
     let charset: [Character] =
     Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
     
     let nonce = randomBytes.map { byte in
+        // Pick a random character from the set, wrapping around if needed.
         charset[Int(byte) % charset.count]
     }
     
     return String(nonce)
 }
+
+    
 
 private func sha256(_ input: String) -> String {
     let inputData = Data(input.utf8)
@@ -262,6 +268,7 @@ struct AppleSignInButton: UIViewRepresentable {
         }
 
         func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+            print("Attempting Authorization")
             if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
                 guard let nonce = currentNonce else {
                     fatalError("Invalid state: A login callback was received, but no login request was sent.")
@@ -275,9 +282,9 @@ struct AppleSignInButton: UIViewRepresentable {
                     return
                 }
                 // Initialize a Firebase credential.
-                let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                                  idToken: idTokenString,
-                                                  rawNonce: nonce)
+                let credential = OAuthProvider.appleCredential(withIDToken: idTokenString,
+                                                               rawNonce: nonce,
+                                                               fullName: appleIDCredential.fullName)
                 // Sign in with Firebase.
                 Auth.auth().signIn(with: credential) { (authResult, error) in
                     if let error = error {
@@ -286,6 +293,7 @@ struct AppleSignInButton: UIViewRepresentable {
                     }
                     // User is signed in to Firebase with Apple.
                     // ...
+                    print("Singed on")
                 }
             }
         }
