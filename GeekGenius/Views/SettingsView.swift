@@ -27,12 +27,6 @@ struct SettingsView: View {
     let frequencyOptions = ["Daily", "Weekly", "Monthly"]
     
     var body: some View {
-        VStack {
-            EmptyView()
-        }
-        .onAppear {
-            print("SettingsView tipsStore: \(tipsStore)")
-        }
         NavigationView {
             Form {
                 // Account Settings Section
@@ -163,7 +157,6 @@ struct SettingsView: View {
                 }
             }
             .onAppear {
-                        print("SettingsView tipsStore: \(tipsStore)")
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                    let rootViewController = windowScene.windows.first?.rootViewController {
                     print(rootViewController.printHierarchy())
@@ -253,95 +246,13 @@ struct SettingsView: View {
     }
 }
 
-extension SettingsView {
-    var cardVw: some View {
-                
-        VStack(spacing: 8) {
-            
-            HStack {
-                Spacer()
-                Button {
-                    appState.showTips.toggle()
-                } label: {
-                    
-                    Image(systemName: "xmark")
-                        .symbolVariant(.circle.fill)
-                        .font(.system(.largeTitle, design: .rounded).bold())
-                        .symbolRenderingMode(.palette)
-                        .foregroundStyle(.gray, .gray.opacity(0.2))
-                }
-            }
-            
-            Text("Love the app?")
-                .font(.system(.title2, design: .rounded).bold())
-                .multilineTextAlignment(.center)
-            
-            Text("Wether you love a new feature, or just appreciate what Im doing this tip will be greatly appreciated as I'm the only one working on this app. Thanks for sopporting the future of GeekGenius.")
-                .font(.system(.body, design: .rounded))
-                .multilineTextAlignment(.center)
-                .padding(.bottom, 16)
-            
-            ForEach(tipsStore.items ?? []) { item in
-                configureProductVw(item)
-            }
-            
-        }
-        .padding(16)
-        .background(Color("card-background"), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-        .padding(8)
-        .overlay(alignment: .top) {
-            Image("Logo")
-                .resizable()
-                .frame(width: 60, height: 60)
-                .clipShape(Squircle(cornerRadius: 12)) // Adjust this value to match your preference
-                .padding(6)
-                .offset(y: -25)
-                
-        }
-    }
-    
-    func configureProductVw(_ item: Product) -> some View {
-        
-        
-        HStack {
-            
-            VStack(alignment: .leading,
-                   spacing: 3) {
-                Text(item.displayName)
-                    .font(.system(.title3, design: .rounded).bold())
-                Text(item.description)
-                    .font(.system(.callout, design: .rounded).weight(.regular))
-            }
-            
-            Spacer()
-            
-            Button(item.displayPrice) {
-                Task {
-                    await tipsStore.purchase(item)
-                }
-            }
-            .tint(.blue)
-            .buttonStyle(.bordered)
-            .font(.callout.bold())
-        }
-        .padding(16)
-        .background(Color("cell-background"),
-                    in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-        
-    }
-}
+
 
 struct ProductsListView: View {
     
     @EnvironmentObject private var store: TipsStore
 
     var body: some View {
-        VStack {
-            EmptyView()
-        }
-        .onAppear {
-                    print("ProductsListView tipsStore: \\(tipsStore)")
-                }
         
         ForEach(store.items ?? []) { item in
             ProductView(item: item)
@@ -355,12 +266,6 @@ struct ProductView: View {
     
     let item: Product
     var body: some View {
-        VStack {
-            EmptyView()
-        }
-        .onAppear {
-            print("SettingsView tipsStore: \(store)")
-        }
         HStack {
             
             VStack(alignment: .leading,
@@ -382,6 +287,8 @@ struct ProductView: View {
         }
     }
 }
+
+
 
 extension UIViewController {
     func printHierarchy() {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import OneSignal
 
 struct SignupView: View {
     @State private var name = ""
@@ -146,6 +147,20 @@ struct SignupView: View {
                                 }
                                 generator.notificationOccurred(.error)
                             } else {
+                                // Adding a step here to update the user's profile with 'name'
+                                if let changeRequest = authResult?.user.createProfileChangeRequest() {
+                                    changeRequest.displayName = name
+                                    changeRequest.commitChanges { (error) in
+                                        if let error = error {
+                                            // Handle error
+                                            print("Error: \(error)")
+                                        } else {
+                                            print("Name successfully set in user's profile")
+                                            OneSignal.setExternalUserId(name)
+                                        }
+                                    }
+                                }
+                                
                                 print("Sign up successful")
                                 isSignedIn = true
                                 presentationMode.wrappedValue.dismiss()
@@ -153,7 +168,8 @@ struct SignupView: View {
                             }
                         }
                     }
-                }) {
+                })
+                {
                     HStack {
                         if isLoading {
                             ProgressView()

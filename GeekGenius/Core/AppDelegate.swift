@@ -13,6 +13,7 @@ import UserNotifications
 import SwiftUI
 import FirebaseMessaging
 import OneSignal
+import FirebaseAnalytics
 
 let userSettings = UserSettings()
 let gcmMessageIDKey = "gcm.message_id" // Define gcmMessageIDKey here
@@ -29,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print("Error requesting notification authorization: \(error.localizedDescription)")
                 }
             }
-        OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
         
         OneSignal.initWithLaunchOptions(launchOptions)
         OneSignal.setAppId("39260954-ba17-4a8d-9ec4-9e781b96d232")
@@ -39,6 +39,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
             application.registerForRemoteNotifications()
             scheduleAppRefresh()
+        if let user = Auth.auth().currentUser {
+            Analytics.setUserID(user.displayName)  // using displayName as an example, but remember the privacy implications
+        }
+        if let user = Auth.auth().currentUser {
+            if let email = user.email {
+                print("Setting email in onesignal")
+                OneSignal.setEmail(email)
+            } else {
+                print("User is not loged on")
+            }
+            if let username = user.displayName {
+                    OneSignal.setExternalUserId(username)
+                }
+        }
             return true
         }
     

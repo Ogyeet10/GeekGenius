@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct MainView: View {
     @State private var selectedTab = 0
@@ -14,34 +15,11 @@ struct MainView: View {
     @EnvironmentObject private var tipsStore: TipsStore
     // Create a @StateObject for the TipsStore
 
-    struct SettingsViewWrapper: View {
-        @EnvironmentObject private var tipsStore: TipsStore
-        @EnvironmentObject var appState: AppState
-
-        var body: some View {
-            SettingsView().cardVw
-                .environmentObject(tipsStore)
-                .environmentObject(appState)
-                .onAppear {
-                    print("MainView SettingsViewWrapper SettingsView tipsStore: \(tipsStore)")
-                }
-                .onAppear {
-                    print("SettingsViewWrapper tipsStore: \(tipsStore)")
-                }
-        }
-    }
-
 
     var body: some View {
         Group {
             if appState.isGuest || appState.isLoggedIn {
                 TabView(selection: $selectedTab) {
-            VStack {
-                EmptyView()
-            }
-            .onAppear {
-                print("MainView TabView tipsStore: \(tipsStore)")
-            }
                     HomeView()
                         .tabItem {
                             Image(systemName: "house")
@@ -84,20 +62,20 @@ struct MainView: View {
         }
         .overlay(alignment: .bottom) {
             
-            if SettingsView().showThanks {
+            if appState.showThanks {
                 VStack(spacing: 8) {
                     
-                    Text("Thank You 💕")
+                    Text("Wow.")
                         .font(.system(.title2, design: .rounded).bold())
                         .multilineTextAlignment(.center)
                     
-                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    Text("I did not expect you to do that. In a future update you will get a symbol by your name in comments based on your contribution. Thanks for supporting future GeekGenius development.")
                         .font(.system(.body, design: .rounded))
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 16)
                     
                     Button {
-                        SettingsView().showThanks.toggle()
+                        appState.showThanks.toggle()
                     } label: {
                         Text("Close")
                             .font(.system(.title3, design: .rounded).bold())
@@ -132,20 +110,19 @@ struct MainView: View {
                                 appState.showTips.toggle()
                             }
                     
-                        SettingsViewWrapper()
-                            .environmentObject(tipsStore)
-                            .environmentObject(appState)
-                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                        
                             
                     }
                 )
+                cardVw()
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
             } else {
                 AnyView(EmptyView())
             }
         }
         .animation(.spring(), value: appState.showTips)
 
-        .animation(.spring(), value: SettingsView().showThanks)
+        .animation(.spring(), value: appState.showThanks)
         .onChange(of: tipsStore.action) { action in
             
             if action == .successful {
@@ -164,6 +141,95 @@ struct MainView: View {
         }
         .alert(isPresented: $tipsStore.hasError, error: tipsStore.error) { }
     }
+}
+
+struct cardVw: View {
+    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var tipsStore: TipsStore
+    var body: some View {
+        VStack(spacing: 8) {
+            HStack {
+                Spacer()
+                Button {
+                    
+                   appState.showTips.toggle()
+                } label: {
+                    Image(systemName: "xmark")
+                        .symbolVariant(.circle.fill)
+                        .font(.system(.largeTitle, design: .rounded).bold())
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(.gray, .gray.opacity(0.2))
+                }
+            }
+            
+            Text("Love the app?")
+                .font(.system(.title2, design: .rounded).bold())
+                .multilineTextAlignment(.center)
+            
+            Text("Wether you love a new feature, or just appreciate what Im doing this tip will be greatly appreciated as I'm the only one working on this app. Thanks for supporting the future of GeekGenius.")
+                .font(.system(.body, design: .rounded))
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 16)
+            
+            ForEach(tipsStore.items ?? [Product]()) { item in
+                HStack {
+                    Text(item.displayName)
+                        .font(.system(.title3, design: .rounded).bold())
+                    
+                    Spacer()
+                    Button(item.displayPrice) {
+                        Task {
+                            await tipsStore.purchase(item)
+                        }
+                    }
+                    .tint(.blue)
+                    .buttonStyle(.bordered)
+                    .font(.callout.bold())
+                }
+                .padding(16)
+                .background(Color("cell-background"),
+                            in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+            }
+        }
+        .padding(16)
+        .background(Color("card-background"), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .padding(8)
+        .overlay(alignment: .top) {
+            Image("Logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 60, height: 60)
+                .clipShape(Squircle(cornerRadius: 15)) // Adjust this value to match your preference
+                .offset(y: -25)
+                }
+    }
+    func configureProductVw(_ item: Product) -> some View {
+            
+            HStack {
+                VStack(alignment: .leading,
+                       spacing: 3) {
+                    Text(item.displayName)
+                        .font(.system(.title3, design: .rounded).bold())
+                    Text(item.description)
+                        .font(.system(.callout, design: .rounded).weight(.regular))
+                }
+                
+                Spacer()
+                
+                Button(item.displayPrice) {
+                    Task {
+                        await tipsStore.purchase(item)
+                    }
+                }
+                .tint(.blue)
+                .buttonStyle(.bordered)
+                .font(.callout.bold())
+            }
+            .padding(16)
+            .background(Color("cell-background"),
+                        in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+            
+        }
 }
 
 struct MainView_Previews: PreviewProvider {

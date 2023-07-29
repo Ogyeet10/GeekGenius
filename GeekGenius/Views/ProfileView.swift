@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 import Firebase
 import FirebaseStorage
+import OneSignal
 
 struct ProfileView: View {
     @State private var profileImage: UIImage? = nil
@@ -110,37 +111,53 @@ struct ProfileView: View {
             return
         }
         
-        let db = Firestore.firestore()
-        let profileRef = db.collection("users").document(user.uid)
-        
-        if let image = profileImage {
-            uploadImage(image) { imageURL in
-                profileRef.setData([
-                    "displayName": self.displayName,
-                    "aboutMe": self.aboutMe,
-                    "profileImageURL": imageURL
-                ]) { error in
-                    if let error = error {
-                        print("Error saving profile data: \(error.localizedDescription)")
-                    } else {
-                        print("Profile data saved successfully")
+        // Update Firebase Authentication profile
+        let changeRequest = user.createProfileChangeRequest()
+        changeRequest.displayName = displayName
+        changeRequest.commitChanges { (error) in
+            if let error = error {
+                print("Error updating profile: \(error.localizedDescription)")
+            } else {
+                print("Profile updated successfully")
+                
+                // Set external user ID in OneSignal
+                OneSignal.setExternalUserId(self.displayName)
+                
+                // Now update Firestore
+                let db = Firestore.firestore()
+                let profileRef = db.collection("users").document(user.uid)
+                
+                if let image = profileImage {
+                    uploadImage(image) { imageURL in
+                        profileRef.setData([
+                            "displayName": self.displayName,
+                            "aboutMe": self.aboutMe,
+                            "profileImageURL": imageURL
+                        ]) { error in
+                            if let error = error {
+                                print("Error saving profile data: \(error.localizedDescription)")
+                            } else {
+                                print("Profile data saved successfully")
+                            }
+                        }
                     }
-                }
-            }
-        } else {
-            profileRef.setData([
-                "displayName": displayName,
-                "aboutMe": aboutMe,
-                // Add any additional fields here
-            ]) { error in
-                if let error = error {
-                    print("Error saving profile data: \(error.localizedDescription)")
                 } else {
-                    print("Profile data saved successfully")
+                    profileRef.setData([
+                        "displayName": displayName,
+                        "aboutMe": aboutMe,
+                        // Add any additional fields here
+                    ]) { error in
+                        if let error = error {
+                            print("Error saving profile data: \(error.localizedDescription)")
+                        } else {
+                            print("Profile data saved successfully")
+                        }
+                    }
                 }
             }
         }
     }
+
     
     func uploadImage(_ image: UIImage, completion: @escaping (String) -> Void) {
         guard let user = Auth.auth().currentUser, let imageData = image.jpegData(compressionQuality: 0.75) else { return }
