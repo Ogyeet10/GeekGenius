@@ -53,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     OneSignal.setExternalUserId(username)
                 }
         }
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
             return true
         }
     

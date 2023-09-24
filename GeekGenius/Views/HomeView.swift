@@ -14,6 +14,7 @@ import Network
 import FirebaseAnalytics
 
 struct HomeView: View {
+    @EnvironmentObject var appState: AppState
     @State private var videos: [Video] = []
     // @State private var hasActiveSubscription: Bool = false
     @State private var showingSubscriptionInfo = false
@@ -142,7 +143,7 @@ struct HomeView: View {
         isFetching = true
         let db = Firestore.firestore()
         let videosRef = db.collection("videos")
-        var query: Query = videosRef.order(by: "dateAdded", descending: true).limit(to: 2) // Change the limit to suit your needs
+        var query: Query = videosRef.order(by: "dateAdded", descending: true).limit(to: appState.videoLimit) // Change the limit to suit your needs
         
         if reset {
             lastDocument = nil
@@ -161,13 +162,14 @@ struct HomeView: View {
                 guard let title = document.get("title") as? String,
                       let thumbnailUrl = document.get("thumbnailUrl") as? String,
                       let videoID = document.get("videoID") as? String,
-                      let description = document.get("description") as? String, // parsing description
-                      let dateAdded = document.get("dateAdded") as? Timestamp else {
+                      let description = document.get("description") as? String,
+                      let dateAdded = document.get("dateAdded") as? Timestamp,
+                      let duration = document.get("duration") as? String else { // new line
                     print("Failed to parse document: \(document.data())")
                     return nil
                 }
                 
-                return Video(title: title, thumbnailUrl: thumbnailUrl, videoID: videoID, dateAdded: dateAdded.dateValue(), description: description) // passing description
+                return Video(title: title, thumbnailUrl: thumbnailUrl, videoID: videoID, dateAdded: dateAdded.dateValue(), description: description, duration: duration) // new line
             }
             
             videos.append(contentsOf: newVideos)
@@ -248,7 +250,9 @@ struct HomeView: View {
         let thumbnailUrl: String
         let videoID: String
         let dateAdded: Date
-        let description: String // new field
+        let description: String
+        let duration: String // new field
+
     }
     
     struct VideoRow: View {
@@ -272,6 +276,17 @@ struct HomeView: View {
                     Text(video.title)
                         .font(.headline)
                     
+
+                    HStack {
+                        Image(systemName: "hourglass") // Hourglass symbol
+                            .foregroundColor(.blue)
+                        
+                        Text(video.duration) // Duration next to the title
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .padding(.leading, -5) // Adjust this value to bring the time closer to the hourglass
+                    }
+                
                     Text("Posted on: \(formatter.string(from: video.dateAdded))")
                         .font(.subheadline)
                         .foregroundColor(.gray)

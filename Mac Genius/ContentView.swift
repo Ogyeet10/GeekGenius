@@ -31,7 +31,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            HStack {
+            HStack(spacing: 1.0) {
                 AsyncImage(url: URL(string: thumbnailURL)) { phase in
                     switch phase {
                     case .success(let image):
@@ -68,7 +68,7 @@ struct ContentView: View {
                         .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                     
                     Button(action: {
-                        // Handle the button tap
+                        postVideo()
                     }) {
                         Text("Post")
                             .frame(minWidth: 0, maxWidth: .infinity)

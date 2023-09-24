@@ -166,7 +166,7 @@ struct cardVw: View {
                 .font(.system(.title2, design: .rounded).bold())
                 .multilineTextAlignment(.center)
             
-            Text("Wether you love a new feature, or just appreciate what Im doing this tip will be greatly appreciated as I'm the only one working on this app. Thanks for supporting the future of GeekGenius.")
+            Text("Whether you love a new feature or simply appreciate what I'm doing, your tip will be greatly appreciated. I'm the only one working on this app, so thank you for supporting the future of GeekGenius.")
                 .font(.system(.body, design: .rounded))
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 16)

@@ -23,7 +23,9 @@ struct SettingsView: View {
     @EnvironmentObject var tipsStore: TipsStore
     @State var showTips = false
     @State var showThanks = false
-    
+    @State private var showVideoLimitInfo = false // State to control the info alert
+    @StateObject var settingsViewVM = SettingsViewViewModel()
+
     let frequencyOptions = ["Daily", "Weekly", "Monthly"]
     
     var body: some View {
@@ -87,24 +89,26 @@ struct SettingsView: View {
                 
                 
                 
-                // Notification Settings Section
-                Section(header: Text("Notification Settings")) {
-                    Toggle("Enable Notifications", isOn: $userSettings.notificationsEnabled)
-                    
-                    Picker("Notification Frequency", selection: $userSettings.selectedFrequency) {
-                        ForEach(NotificationFrequency.allCases, id: \.self) { frequency in
-                            Text(frequency.description)
-                        }
-                    }
-                }
+                
                 
                 // App Preferences Section
-               /* Section(header: Text("App Preferences")) {
-                    // Add app preferences options here
-                    Text("Coming soon!")
-                        .foregroundColor(Color.purple)
+                Section(header: Text("App Preferences")) {
+                    HStack {
+                        Button(action: {
+                            showVideoLimitInfo = true
+                        }) {
+                            Image(systemName: "info.circle")
+                        }
+                        Stepper("Video Limit: \(appState.videoLimit)", value: $appState.videoLimit, in: 1...100)
                         
-                } */
+                        
+                            .alert(isPresented: $showVideoLimitInfo) {
+                                Alert(title: Text("Video Limit Info"),
+                                      message: Text("The Video Limit controls the number of videos fetched from the server at once. Increasing this limit may affect the Home screen's loading speed."),
+                                      dismissButton: .default(Text("Got it!")))
+                            }
+                    }
+                }
                 
                 // Contact Me Section
                 Section(header: Text("Contact Me")) {
@@ -132,11 +136,19 @@ struct SettingsView: View {
                     }
                 }
                 
-                Section(header: Text("Tip Jar")) {
-                    Button("Tip Jar") {
-                        appState.showTips.toggle()
+                // Conditionally render the Tip Jar section
+                if !settingsViewVM.disableTipJar {
+                    Section(header: Text("Tip Jar")) {
+                        Button(action: {
+                            appState.showTips.toggle()
+                        }) {
+                            HStack {
+                                Image(systemName: "dollarsign.circle.fill")
+                                Text("Tip Jar")
+                            }
+                        }
+                        .foregroundColor(.green)
                     }
-                    
                 }
                 
                 Section(header: Text("About This App")) {
@@ -296,6 +308,32 @@ extension UIViewController {
         while let parent = next {
             print(parent)
             next = parent.parent
+        }
+    }
+}
+
+class SettingsViewViewModel: ObservableObject {
+    var db = Firestore.firestore()
+    @Published var disableTipJar: Bool = false
+    private var listener: ListenerRegistration?
+    
+    init() {
+        self.fetchTipJarState()
+    }
+    
+    deinit {
+        listener?.remove()
+    }
+    
+    private func fetchTipJarState() {
+        let docRef = db.collection("variables").document("disableTipJar")
+        
+        listener = docRef.addSnapshotListener { (document, error) in
+            if let document = document, let data = document.data() {
+                DispatchQueue.main.async {
+                    self.disableTipJar = data["disabled"] as? Bool ?? false
+                }
+            }
         }
     }
 }

@@ -19,6 +19,9 @@ struct ProfileView: View {
     @State private var aboutMe = ""
     @State private var isLoading = true
     @State private var user: User? = Auth.auth().currentUser
+    @State private var isSaving = false
+    @State private var showAlert = false
+    @State private var alertMessage = ""
 
     var body: some View {
         if let _ = user {
@@ -54,35 +57,55 @@ struct ProfileView: View {
                             Text("Display Name")
                                 .font(.headline)
                             
-                            TextField("Display Name", text: $displayName)
-                                .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(10)
+                            HStack {
+                                Image(systemName: "person.fill")
+                                    .foregroundColor(.gray)
+                                
+                                TextField("Display Name", text: $displayName)
+                                    .padding()
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(10)
+                            }
                             
-//                           // Text("About Me")
-//                                .font(.headline)
-//                            
-//                            //TextEditor(text: $aboutMe)
-//                                .frame(height: 100)
-//                                .padding()
-//                                .background(Color(.systemGray6)) // Change this line
-//                                .cornerRadius(10)
-
+                            
+                            Text("About Me")
+                                .font(.headline)
+                            
+                            PlaceholderTextEditor(placeholder: "Tell us something about yourself...", text: $aboutMe)
+                                .frame(height: 100)
+                                .padding(5) // Padding inside TextEditor
+                                .background(Color.clear) // Clear background
+                                .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.blue, lineWidth: 1) // Your custom border
+                                )
                         }
                         .padding(.horizontal)
                         
                         Button(action: {
                             saveProfileData()
                         }) {
-                            Text("Save Changes")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.blue)
-                                .cornerRadius(10)
+                            ZStack {
+                                Color.blue
+                                    .frame(maxWidth: .infinity)
+                                    .cornerRadius(10)
+                                
+                                if isSaving {
+                                    ProgressView()
+                                        .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+                                        .scaleEffect(1.5, anchor: .center)
+                                } else {
+                                    Text("Save Changes")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                }
+                            }
                         }
-                        .padding(.horizontal)
+                        .frame(height: 50)
+                        .padding()
+                        .cornerRadius(10)
+                        .disabled(isSaving)
                     }
                     .padding(.top)
                 }
@@ -92,7 +115,9 @@ struct ProfileView: View {
                 dismissKeyboard()
             }
             .onAppear(perform: fetchProfileData)
-            
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Profile Update"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            }
         }
         } else {
                    NoLoginView()
@@ -110,7 +135,7 @@ struct ProfileView: View {
             print("No user found")
             return
         }
-        
+        isSaving = true  // Start saving
         // Update Firebase Authentication profile
         let changeRequest = user.createProfileChangeRequest()
         changeRequest.displayName = displayName
@@ -134,11 +159,14 @@ struct ProfileView: View {
                             "aboutMe": self.aboutMe,
                             "profileImageURL": imageURL
                         ]) { error in
+                            isSaving = false  // Stop saving
                             if let error = error {
                                 print("Error saving profile data: \(error.localizedDescription)")
                             } else {
+                                alertMessage = "Profile data saved successfully"
                                 print("Profile data saved successfully")
                             }
+                            showAlert = true
                         }
                     }
                 } else {
@@ -147,6 +175,7 @@ struct ProfileView: View {
                         "aboutMe": aboutMe,
                         // Add any additional fields here
                     ]) { error in
+                        isSaving = false  // Stop saving
                         if let error = error {
                             print("Error saving profile data: \(error.localizedDescription)")
                         } else {
@@ -240,8 +269,7 @@ struct ProfileView: View {
             }
         }
     }
-
-    }
+}
 
     struct NoLoginView: View {
         @EnvironmentObject var appState: AppState
@@ -265,6 +293,27 @@ struct ProfileView: View {
         .navigationBarTitle("Profile", displayMode: .inline)
     }
 }
+
+struct PlaceholderTextEditor: View {
+    var placeholder: String
+    @Binding var text: String
+    
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            TextEditor(text: $text)
+                .opacity(text.isEmpty ? 1.0 : 1.0) // Hide if empty
+            
+            if text.isEmpty {
+                Text(placeholder)
+                    .foregroundColor(Color(UIColor.placeholderText))
+                    .padding(.top, 8)
+                    .padding(.leading, 5)
+                    .allowsHitTesting(false)  // Allow touches to pass through
+            }
+        }
+    }
+}
+
 
 
 struct ProfileView_Previews: PreviewProvider {

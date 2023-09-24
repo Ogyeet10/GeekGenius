@@ -6,18 +6,34 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct OnboardingView: View {
     @EnvironmentObject var launchStateManager: LaunchStateManager
     @StateObject private var tipsStore = TipsStore()
+    @StateObject var onboardingVM = OnboardingViewModel()  // Add this line
 
 
+    var whatsNewItems: [WhatsNewItem] {
+            var items: [WhatsNewItem] = [
+                WhatsNewItem(icon: "clock", title: "Video duration on Home Screen", description: "Now you can see the duration of each video right on the home screen."),
+                WhatsNewItem(icon: "film", title: "Adjust Video Limit", description: "You now have the option to adjust the previously hardcoded video limit."),
+                WhatsNewItem(icon: "ant", title: "Bug fixes", description: "Various bug fixes and performance improvements.")
+            ]
+            
+            if !onboardingVM.disableTipJar {
+                items.insert(WhatsNewItem(icon: "dollarsign.circle", title: "Tip Jar", description: "Love the app? You can now show your support by leaving a tip."), at: 1)
+            }
+            
+            return items
+        }
+    
     var body: some View {
         if launchStateManager.isFirstLaunch {
             VStack {
                 OnboardingScreenView(
                     title: "Welcome to GeekGenius",
-                    detail: "This app contains tech videos for all of my classmates(or other users) updated weekly along with other features including video release notifications a comprehensive settings menu and a profile feature. Also for those who don't know GeekGenius is free until Sep 10th."
+                    detail: "This app contains tech videos updated semi-weekly along with other features including video release notifications a comprehensive settings menu and customizable profiles with Profile photos."
                 )
                 Button(action: {
                     launchStateManager.isFirstLaunch = false
@@ -34,14 +50,9 @@ struct OnboardingView: View {
         } else if launchStateManager.showWhatsNew {
             VStack {
                 WhatsNewScreenView(
-                    title: "What's New in GeekGenius v1.1",
-                    items: [
-                        WhatsNewItem(icon: "captions.bubble", title: "Comments", description: "Comment on videos to interact with me and other creators."),
-                        WhatsNewItem(icon: "info.circle", title: "Updated About info", description: "Updated info on about screen to reflect the current state of the app."),
-                        WhatsNewItem(icon: "app.badge", title: "Push Notifications", description: "Now with improved push notifications you can get updated the second new content is out."),
-                        WhatsNewItem(icon: "bandage", title: "Bug fixes", description: "Various bug fixes and performance improvements.")
-                    ]
-                )
+                    title: "What's New in GeekGenius v1.2",
+                    items: whatsNewItems  // Use the computed property here
+                )                
                 Button(action: {
                     launchStateManager.showWhatsNew = false
                 }) {
@@ -177,7 +188,31 @@ struct WhatsNewScreenView: View {
     }
 }
 
-
+class OnboardingViewModel: ObservableObject {
+    var db = Firestore.firestore()
+    @Published var disableTipJar: Bool = false
+    private var listener: ListenerRegistration?
+    
+    init() {
+        self.fetchTipJarState()
+    }
+    
+    deinit {
+        listener?.remove()
+    }
+    
+    private func fetchTipJarState() {
+        let docRef = db.collection("variables").document("disableTipJar")
+        
+        listener = docRef.addSnapshotListener { (document, error) in
+            if let document = document, let data = document.data() {
+                DispatchQueue.main.async {
+                    self.disableTipJar = data["disabled"] as? Bool ?? false
+                }
+            }
+        }
+    }
+}
 
 
 struct OnboardingView_Previews: PreviewProvider {

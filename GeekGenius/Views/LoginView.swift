@@ -20,6 +20,7 @@ struct LoginView: View {
     @State private var currentNonce: String?
     @State private var showingWhyWeNeedYourInfo = false
     @State private var isLoading = false
+    @State private var showingGuestSignInAlert = false
 
     var body: some View {
         NavigationView {
@@ -59,7 +60,13 @@ struct LoginView: View {
                         .padding()
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)
-                    
+                    Button(action: {
+                        sendPasswordResetEmail()
+                    }) {
+                        Text("Forgot Password?")
+                            .font(.footnote)
+                            .foregroundColor(.blue)
+                    }
                     if let errorMessage = errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
@@ -104,7 +111,6 @@ struct LoginView: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                     }
-                    .padding(.top)
                     .disabled(isLoading)
                     
                     if let appleSignInError = appState.appleSignInError {
@@ -121,11 +127,7 @@ struct LoginView: View {
                     NavigationLink(destination: SignupView()) {
                         Text("Don't have an account? Sign up")
                             .foregroundColor(.blue)
-                        
-                        
-                        
                     }
-                    
                     Spacer()
                 }
                 .padding(.top)
@@ -141,8 +143,9 @@ struct LoginView: View {
                 }
                 .padding(.top)*/
                 
+                
                 Button(action: {
-                    appState.signInAsGuest()
+                    showingGuestSignInAlert = true // Trigger the alert
                 }) {
                     ZStack(alignment: .center) {
                         HStack {
@@ -156,6 +159,16 @@ struct LoginView: View {
                         }
                     .frame(maxWidth: .infinity)
                     
+                }
+                .alert(isPresented: $showingGuestSignInAlert) {
+                    Alert(
+                        title: Text("Sign in as Guest"),
+                        message: Text("If you continue as a guest, you won't be able to comment or like. Are you sure you want to proceed?"),
+                        primaryButton: .default(Text("Continue as Guest")) {
+                            appState.signInAsGuest()
+                        },
+                        secondaryButton: .cancel(Text("Cancel"))
+                    )
                 }
                 .padding(.top)
                 
@@ -199,6 +212,21 @@ struct LoginView: View {
         }
         
         return nil
+    }
+    
+    func sendPasswordResetEmail() {
+            if email.isEmpty {
+                errorMessage = "Please enter your email"
+                return
+            }
+
+            Auth.auth().sendPasswordReset(withEmail: email) { error in
+                if let error = error {
+                    errorMessage = "Error sending reset email: \(error.localizedDescription)"
+                } else {
+                    errorMessage = "You should receive an email shorty to reset your password."
+            }
+        }
     }
 }
 

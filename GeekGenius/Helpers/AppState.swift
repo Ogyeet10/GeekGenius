@@ -11,12 +11,27 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
     @Published var isGuest: Bool  // add this variable
     @Published var showTips: Bool = false
     @Published var showThanks: Bool = false
-    
+    @Published var videoLimit: Int {
+        didSet {
+            // Save to UserDefaults whenever videoLimit changes
+            UserDefaults.standard.set(videoLimit, forKey: "videoLimit")
+        }
+    }
 
     override init() {
         isLoggedIn = Auth.auth().currentUser != nil
         isGuest = false  // initialize it to false
+
+        // Add this line to retrieve videoLimit from UserDefaults
+        if let savedVideoLimit = UserDefaults.standard.value(forKey: "videoLimit") as? Int {
+            videoLimit = savedVideoLimit
+        } else {
+            videoLimit = 5  // Default value
+        }
+
+        super.init()
     }
+
 
     func signIn() {
         isLoggedIn = true

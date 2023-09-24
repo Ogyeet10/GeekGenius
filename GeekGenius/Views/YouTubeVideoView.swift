@@ -7,16 +7,15 @@
 
 import SwiftUI
 import WebKit
-import FirebaseFirestore
 import Combine
 import Firebase
+import FirebaseStorage
 
 struct YouTubeVideoDetailView: View {
     let videoID: String
     let videoTitle: String
     let videoDescription: String
     let dateAdded: Date   // Add this line
-    private let commentTextFieldId = "commentTextFieldId"
     @ObservedObject var likesViewModel: LikesViewModel
     let userID: String?  // assuming you have access to userID
     @EnvironmentObject var appState: AppState
@@ -26,8 +25,8 @@ struct YouTubeVideoDetailView: View {
     @State private var newComment: String = ""
     @State private var showingLoginAlertForComment: Bool = false
     @State private var sortOrder: SortOrder = .oldestFirst
-    @State private var isTextFieldInFocus: Bool = false
-    
+    @State private var hasFetchedComments = false
+
     
     
     
@@ -66,168 +65,176 @@ struct YouTubeVideoDetailView: View {
     
     var body: some View {
         ScrollView {
-            ScrollViewReader { scrollProxy in
-                
-                VStack {
-                    YouTubeVideoView(videoIsLoading: $videoIsLoading, videoID: videoID)  // Add the videoIsLoading binding here
-                        .frame(height: UIScreen.main.bounds.width * 9 / 16)
-                        .overlay(
-                            ProgressView() // This will display a loading spinner
-                                .scaleEffect(2)
-                                .opacity(videoIsLoading ? 1 : 0)
-                        )
-                        .overlay(    // Add this overlay to prevent interaction with the three dots
-                            GeometryReader { geometry in
-                                ZStack {
-                                    Color.clear
-                                    VStack {
-                                        HStack {
-                                            Spacer()
-                                            Rectangle()
-                                                .fill(Color.white.opacity(0.0001)) // change to near transparent
-                                                .frame(width: 80, height: 80)
-                                        }
+            VStack {
+                YouTubeVideoView(videoIsLoading: $videoIsLoading, videoID: videoID)  // Add the videoIsLoading binding here
+                    .frame(height: UIScreen.main.bounds.width * 9 / 16)
+                    .overlay(
+                        ProgressView() // This will display a loading spinner
+                            .scaleEffect(2)
+                            .opacity(videoIsLoading ? 1 : 0)
+                    )
+                    .overlay(    // Add this overlay to prevent interaction with the three dots
+                        GeometryReader { geometry in
+                            ZStack {
+                                Color.clear
+                                VStack {
+                                    HStack {
                                         Spacer()
+                                        Rectangle()
+                                            .fill(Color.white.opacity(0.0001)) // change to near transparent
+                                            .frame(width: 80, height: 80)
                                     }
+                                    Spacer()
                                 }
                             }
-                        )
-                    VStack(alignment: .leading) {
-                        Text(videoTitle)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding(.top, 10)
-                        Button(action: {
-                            if self.appState.isGuest {
-                                self.showingLoginAlert = true
-                            } else {
-                                likesViewModel.handleLikeButtonPress(userID: userID!, videoID: videoID)
-                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                
-                            }
-                        }) {
-                            Image(systemName: likesViewModel.hasLiked ? "hand.thumbsup.fill" : "hand.thumbsup")
                         }
-                        .alert(isPresented: $showingLoginAlert) {
+                    )
+                VStack(alignment: .leading) {
+                    Text(videoTitle)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.top, 10)
+                    Button(action: {
+                        if self.appState.isGuest {
+                            self.showingLoginAlert = true
+                        } else {
+                            likesViewModel.handleLikeButtonPress(userID: userID!, videoID: videoID)
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            
+                        }
+                    }) {
+                        Image(systemName: likesViewModel.hasLiked ? "hand.thumbsup.fill" : "hand.thumbsup")
+                    }
+                    .alert(isPresented: $showingLoginAlert) {
+                        Alert(
+                            title: Text("You need to log in to like a video."),
+                            message: Text("Would you like to log in now?"),
+                            primaryButton: .default(Text("Log In"), action: {
+                                // Perform login actions here
+                                self.appState.isGuest = false
+                                self.showingLoginAlert = false
+                                
+                            }),
+                            secondaryButton: .cancel(Text("Not Now"))
+                        )
+                    }
+                    
+                    Text("\(likesViewModel.likesCount) likes")
+                    Text(dateFormatter.string(from: dateAdded))  // Add this line
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                    Text(videoDescription)
+                        .font(.body)
+                        .padding(.top, 2)
+                        .padding(.trailing)
+                    
+                    ZStack {
+                        TextField("Add a comment...", text: $newComment, axis: .vertical)
+                        .padding(10) // Reduce the padding value
+                        .lineLimit(5)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(20)
+                        .padding(.horizontal)
+                        .overlay(
+                            Button(action: postComment) {
+                                Image(systemName: "paperplane.fill")
+                                    .foregroundColor(newComment.isEmpty ? Color.gray : Color.blue) // Change color based on whether newComment is empty
+                                    .padding()
+                                    .animation(.easeInOut, value: newComment) // Animate changes to newComment
+                            }
+                            .padding(.trailing), // Adds padding to the trailing side of the button
+                            alignment: .trailing // Aligns the button to the trailing side of the text field
+                        )
+                    }
+
+
+
+                        .alert(isPresented: $showingLoginAlertForComment) {
                             Alert(
-                                title: Text("You need to log in to like a video."),
+                                title: Text("You need to log in to comment."),
                                 message: Text("Would you like to log in now?"),
                                 primaryButton: .default(Text("Log In"), action: {
                                     // Perform login actions here
                                     self.appState.isGuest = false
-                                    self.showingLoginAlert = false
-                                    
+                                    self.showingLoginAlertForComment = false
                                 }),
                                 secondaryButton: .cancel(Text("Not Now"))
+                                
                             )
                         }
-                        
-                        Text("\(likesViewModel.likesCount) likes")
-                        Text(dateFormatter.string(from: dateAdded))  // Add this line
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        Text(videoDescription)
-                            .font(.body)
-                            .padding(.top, 2)
+                    
+                    
+                    Divider()
+                    
+                    // Display comments
+                    @State var userDetails: [String: UserDetails] = [:] // This should be populated with data
+                    VStack(alignment: .leading) {
                         HStack {
-                            TextField("Add a comment...", text: $newComment, onEditingChanged: { isEditing in
-                                self.isTextFieldInFocus = isEditing
-                            })
-                            .id(commentTextFieldId)
-                            .padding(10)  // Reduce the padding value
-                            .frame(height: 40)  // Set a fixed height
-                            .background(Color(.systemGray6))
-                            .cornerRadius(20)
-                            .padding(.horizontal)
-                            .overlay(
-                                HStack {
-                                    Spacer()
-                                    Button(action: postComment) {
-                                        Image(systemName: "paperplane.fill")
-                                            .foregroundColor(newComment.isEmpty ? .gray : .blue)  // Change color based on whether newComment is empty
-                                            .padding()
-                                            .padding()
-                                    }
-                                }
-                            )
-                            .alert(isPresented: $showingLoginAlertForComment) {
-                                Alert(
-                                    title: Text("You need to log in to comment."),
-                                    message: Text("Would you like to log in now?"),
-                                    primaryButton: .default(Text("Log In"), action: {
-                                        // Perform login actions here
-                                        self.appState.isGuest = false
-                                        self.showingLoginAlertForComment = false
-                                    }),
-                                    secondaryButton: .cancel(Text("Not Now"))
-                                    
-                                )
-                            }
-                        }
-                        
-                        Divider()
-                        
-                        // Display comments
-                        @State var userDetails: [String: UserDetails] = [:] // This should be populated with data
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text("Comments")
-                                    .font(.title)
-                                    .fontWeight(.bold)
-                                
-                                
-                                Spacer()  // It pushes the following views to the right
-                                
-                                Menu {
-                                    Button(action: {
-                                        sortOrder = .oldestFirst
-                                        commentsViewModel.fetchComments(videoID: videoID, sortDescending: false)
-                                    }) {
-                                        HStack {
-                                            Text("Oldest First")
-                                            if sortOrder == .oldestFirst {
-                                                Image(systemName: "checkmark")
-                                            }
-                                        }
-                                    }
-                                    
-                                    Button(action: {
-                                        sortOrder = .newestFirst
-                                        commentsViewModel.fetchComments(videoID: videoID, sortDescending: true)
-                                    }) {
-                                        HStack {
-                                            Text("Newest First")
-                                            if sortOrder == .newestFirst {
-                                                Image(systemName: "checkmark")
-                                            }
-                                        }
-                                    }
-                                } label: {
+                            Text("Comments")
+                                .font(.title)
+                                .fontWeight(.bold)
+                            
+                            
+                            Spacer()  // It pushes the following views to the right
+                            
+                            Menu {
+                                Button(action: {
+                                    sortOrder = .oldestFirst
+                                    commentsViewModel.fetchComments(videoID: videoID, sortDescending: false)
+                                }) {
                                     HStack {
-                                        Text("Sort By")
-                                        Image(systemName: "arrow.up.arrow.down")
+                                        Text("Oldest First")
+                                        if sortOrder == .oldestFirst {
+                                            Image(systemName: "checkmark")
+                                        }
                                     }
-                                    .padding(.trailing)
                                 }
+                                
+                                Button(action: {
+                                    sortOrder = .newestFirst
+                                    commentsViewModel.fetchComments(videoID: videoID, sortDescending: true)
+                                }) {
+                                    HStack {
+                                        Text("Newest First")
+                                        if sortOrder == .newestFirst {
+                                            Image(systemName: "checkmark")
+                                        }
+                                    }
+                                }
+                            } label: {
+                                HStack {
+                                    Text("Sort By")
+                                    Image(systemName: "arrow.up.arrow.down")
+                                }
+                                .padding(.trailing)
                             }
-                            
-                            
-                            
-                            ForEach(commentsViewModel.comments.indices, id: \.self) { index in
-                                let comment = commentsViewModel.comments[index]
-                                CommentRowView(comment: comment, commentsViewModel: commentsViewModel)
-                            }
-                            .id(commentsViewModel.comments.count)  // Add this line
                         }
-                        .onAppear {
-                            commentsViewModel.fetchComments(videoID: videoID)
+                        .navigationBarTitleDisplayMode(.inline)
+
+                        
+                        
+                        CommentSectionView(commentsViewModel: commentsViewModel)
+
+                        .onReceive(commentsViewModel.$comments) { newComments in
+                            print("Comments updated: \(newComments)")
                         }
                     }
-                    .padding(.leading)
+                    .onAppear {
+                        if !hasFetchedComments {
+                            commentsViewModel.fetchComments(videoID: videoID)
+                            print("Fetched Comments")
+                            hasFetchedComments = true
+                        }
+                    }
                 }
+                .padding(.leading)
             }
+       Spacer()
+            
         }
+        
     }
+    
         private func postComment() {
             guard let userID = userID, !newComment.isEmpty else { return }
             commentsViewModel.addComment(userID: userID, videoID: videoID, content: newComment)
@@ -311,6 +318,7 @@ struct Comment: Identifiable, Hashable {
     let videoID: String
     let content: String
     let dateAdded: Date
+    let isEdited: Bool
 }
 
 
@@ -456,12 +464,13 @@ class CommentsViewModel: ObservableObject {
                         let videoID = data["videoID"] as? String ?? ""
                         let content = data["content"] as? String ?? ""
                         let timestamp = data["dateAdded"] as? Timestamp
+                        let isEdited = data["isEdited"] as? Bool ?? false
                         let dateAdded = timestamp?.dateValue() ?? Date()
                         
                         let userViewModel = UserViewModel(userID: userID)
                         self.users.append(userViewModel)
                         
-                        return Comment(id: id, userID: userID, videoID: videoID, content: content, dateAdded: dateAdded)
+                        return Comment(id: id, userID: userID, videoID: videoID, content: content, dateAdded: dateAdded, isEdited: isEdited)
                         
                     } ?? []
                     print("Updated comments: \(comments)")
@@ -484,12 +493,11 @@ class CommentsViewModel: ObservableObject {
     
     func updateComment(videoID: String, commentID: String, content: String) {
         let db = Firestore.firestore()
-        db.collection("videos").document(videoID).collection("comments").document(commentID).updateData(["content": content]) { err in
+        db.collection("videos").document(videoID).collection("comments").document(commentID).updateData(["content": content, "isEdited": true]) { err in
             if let err = err {
                 print("Error updating comment: \(err)")
             } else {
                 print("Comment successfully updated!")
-                self.fetchComments(videoID: videoID)
             }
         }
     }
@@ -499,7 +507,9 @@ class CommentsViewModel: ObservableObject {
             "userID": userID,
             "videoID": videoID,
             "content": content,
-            "dateAdded": Date()
+            "dateAdded": Date(),
+            "isEdited": false
+
         ]
         db.collection("videos").document(videoID).collection("comments").addDocument(data: data) { error in
             if let error = error {
@@ -515,7 +525,7 @@ struct UserDetails: Identifiable {
     let id: String
     let displayName: String
     let profileImageURL: String
-    
+    var profileImage: UIImage? // Add this line
 }
 
 struct CommentRowView: View {
@@ -524,6 +534,7 @@ struct CommentRowView: View {
     let comment: Comment
     @State private var isEditing: Bool = false
     @State private var editedContent: String
+    @State private var isEdited: Bool = false
 
     init(comment: Comment, commentsViewModel: CommentsViewModel) {
         self.comment = comment
@@ -534,10 +545,57 @@ struct CommentRowView: View {
     
     var body: some View {
         HStack {
+            // Updated AsyncImage code
+            if let user = userViewModel.user, let imageURL = URL(string: user.profileImageURL) {
+                AsyncImage(url: imageURL) { phase in
+                    switch phase {
+                    case .empty:
+                        // Display a loading spinner while the image is loading
+                        ProgressView()
+                            .frame(width: 40, height: 40)
+                    case .success(let image):
+                        // Display the loaded image
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                    case .failure:
+                        // Display a default image if loading fails or if the user doesn't have a profile picture
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                    @unknown default:
+                        // Fallback to a default image
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                    }
+                }
+                        } else {
+                            // Display a default image if the user doesn't have a profile picture
+                            Image(systemName: "person.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                        }
             VStack(alignment: .leading) {
                 if let user = userViewModel.user {
-                    Text(user.displayName)
-                        .font(.headline)
+                    HStack {
+                        Text(user.displayName)
+                            .font(.headline)
+                        Text("\(comment.dateAdded, formatter: dateFormatter)")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        if comment.isEdited {
+                                Text("(Edited)")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                                    .italic()
+                            }
+                    }
                 }
                 
                 if isEditing {
@@ -548,6 +606,8 @@ struct CommentRowView: View {
                     Text(comment.content)
                         .font(.subheadline)
                 }
+                
+                                
             }
             
             Spacer() // Push the Menu to the right
@@ -592,6 +652,7 @@ struct CommentRowView: View {
                 .transition(.move(edge: .trailing))
             }
         }
+        .id(commentsViewModel.comments.hashValue)
         Divider() // This adds a line between each comment
     }
 
@@ -606,7 +667,6 @@ struct CommentRowView: View {
                 print("Comment successfully deleted!")
             }
         }
-        commentsViewModel.fetchComments(videoID: videoID)
     }
     
     func updateComment(videoID: String, commentID: String, content: String) {
@@ -618,7 +678,6 @@ struct CommentRowView: View {
                 print("Comment successfully updated!")
             }
         }
-        commentsViewModel.fetchComments(videoID: videoID)
     }
 }
 
@@ -627,7 +686,8 @@ struct CommentRowView: View {
 class UserViewModel: ObservableObject {
     var db = Firestore.firestore()
     @Published var user: UserDetails?
-    
+    @Published var profileImage: UIImage?
+
     init(userID: String) {
         fetchUser(userID: userID)
     }
@@ -647,13 +707,43 @@ class UserViewModel: ObservableObject {
             }
         }
     }
+    private func downloadProfileImage(url: String, completion: @escaping (UIImage?) -> Void) {
+            let storageRef = Storage.storage().reference(forURL: url)
+            
+            storageRef.getData(maxSize: Int64(5 * 1024 * 1024)) { data, error in
+                if let error = error {
+                    print("Error downloading profile image: \(error.localizedDescription)")
+                    completion(nil)
+                } else if let data = data {
+                    let image = UIImage(data: data)
+                    completion(image)
+                } else {
+                    completion(nil)
+                }
+            }
+        }
 }
 
+var dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .short
+    formatter.timeStyle = .short
+    return formatter
+}()
 
+struct CommentSectionView: View {
+    @ObservedObject var commentsViewModel: CommentsViewModel
+    var body: some View {
+        ForEach(commentsViewModel.comments.indices, id: \.self) { index in
+            let comment = commentsViewModel.comments[index]
+            CommentRowView(comment: comment, commentsViewModel: commentsViewModel)
+        }
+    }
+}
 
 struct YouTubeVideoDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        YouTubeVideoDetailView(videoID: "IXIHEwRy4qk", videoTitle: "Test", videoDescription: "In this video we test out the capabilatys of wsl and ", dateAdded: Date(), userID: "XWW9jDPMhOU6traf5uURHoMlpDl2") // Replace with a valid YouTube video ID
+        YouTubeVideoDetailView(videoID: "IXIHEwRy4qk", videoTitle: "Test", videoDescription: "In this video we test out the capabilatys of wsl and ", dateAdded: Date(), userID: "WRQDKUUd7fPcA1Ex5uCpymuQ8Xr1") // Replace with a valid YouTube video ID
     }
 }
 

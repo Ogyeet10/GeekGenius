@@ -7,6 +7,8 @@
 
 import Foundation
 import StoreKit
+import Firebase
+
 
 typealias PurchaseResult = Product.PurchaseResult
 typealias TransactionLister = Task<Void, Error>
@@ -58,7 +60,7 @@ enum TipsAction: Equatable {
 
 @MainActor
 class TipsStore: ObservableObject {
-    
+    let db = Firestore.firestore()
     @Published private(set) var items: [Product]?
     @Published private(set) var action: TipsAction? {
         didSet {
@@ -97,18 +99,14 @@ class TipsStore: ObservableObject {
     }
 
     func purchase(_ item: Product) async {
-        
-        do {
-            
-            let result = try await item.purchase()
-            
-            try await handlePurchase(from: result)
-            
-        } catch {
-            action = .failed(.system(error))
-            print(error)
+            do {
+                let result = try await item.purchase()
+                try await handlePurchase(from: result, for: item)
+            } catch {
+                action = .failed(.system(error))
+                print(error)
+            }
         }
-    }
     
     /// Call to reset the action state within the store
     func reset() {
@@ -124,7 +122,7 @@ private extension TipsStore {
         Task { [weak self] in
             
             do {
-               
+                
                 for await result in Transaction.updates {
                     
                     let transaction = try self?.checkVerified(result)
@@ -152,16 +150,13 @@ private extension TipsStore {
     }
     
     /// Handle the result when purchasing a product
-    func handlePurchase(from result: PurchaseResult) async throws {
-        
+    func handlePurchase(from result: PurchaseResult, for item: Product) async throws {
         switch result {
-            
         case .success(let verification):
-            print("Purchase was a success, now it's time to verify their purchase")
             let transaction = try checkVerified(verification)
-          
+            // Log the purchase to Firestore
+            await logPurchaseToFirestore(for: item)
             action = .successful
-            
             await transaction.finish()
             
         case .pending:
@@ -184,6 +179,27 @@ private extension TipsStore {
             throw TipsError.failedVerification
         case .verified(let safe):
             return safe
+        }
+    }
+    
+    // New function to log the purchase to Firestore using async/await
+    func logPurchaseToFirestore(for item: Product) async {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let userRef = db.collection("users").document(userID)
+        var tierPrice = item.displayPrice  // Assuming displayPrice is a String representing the price
+        
+        // Replace the period with an underscore
+        tierPrice = tierPrice.replacingOccurrences(of: ".", with: "_")
+        
+        do {
+            // Atomically increment the tier count for the user
+            try await userRef.updateData([
+                "tiers.\(tierPrice)": FieldValue.increment(Int64(1))
+            ])
+            print("Document successfully updated")
+        } catch let err {
+            print("Error updating document: \(err)")
         }
     }
 }
