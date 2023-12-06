@@ -215,7 +215,9 @@ struct SettingsView: View {
                 }
             }
             .onAppear {
+#if DEBUG
                 loadSelectedUserType()
+#endif
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                    let rootViewController = windowScene.windows.first?.rootViewController {
                     print(rootViewController.printHierarchy())
