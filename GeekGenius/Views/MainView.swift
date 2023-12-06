@@ -7,58 +7,91 @@
 
 import SwiftUI
 import StoreKit
+import UIKit
 
 struct MainView: View {
     @State private var selectedTab = 0
     @EnvironmentObject var appState: AppState
     @ObservedObject var userSettings = UserSettings()
-    @EnvironmentObject private var tipsStore: TipsStore
     // Create a @StateObject for the TipsStore
-
+    @EnvironmentObject private var tipsStore: TipsStore
+    // Computed property to check if MainChatView should be shown
+    private var shouldShowMainChatView: Bool {
+        appState.isDelisha || appState.isAidan
+    }
 
     var body: some View {
         Group {
-            if appState.isGuest || appState.isLoggedIn {
-                TabView(selection: $selectedTab) {
-                    HomeView()
-                        .tabItem {
-                            Image(systemName: "house")
-                            Text("Home")
-                        }
-                        .tag(0)
-                    
-                    ProfileView()
-                        .tabItem {
-                            Image(systemName: "person")
-                            Text("Profile")
-                        }
-                        .tag(1)
-                    
-                    SettingsView()
-                        .environmentObject(userSettings)
-                        .environmentObject(tipsStore)
-                        .tabItem {
-                            Image(systemName: "gear")
-                            Text("Settings")
-                        }
-                        .tag(2)
-                }
+            if appState.needsIntroduction {
+                ChatIntroductionView()
+                    .transition(.asymmetric(insertion: .scale, removal: .opacity)) // Example of an animation
             } else {
-                NavigationView {
-                    VStack {
-                        LoginView(isSignedIn: $appState.isLoggedIn) // Updated
-                            .environmentObject(appState)
+                if appState.isGuest || appState.isLoggedIn {
+                    TabView(selection: $selectedTab) {
+                        HomeView()
+                            .tabItem {
+                                Image(systemName: "house")
+                                Text("Home")
+                            }
+                            .tag(0)
                         
+                        // Conditionally display MainChatView
+                        if shouldShowMainChatView {
+                            MainChatView()
+                                .tabItem {
+                                    Image(systemName: "message")
+                                    Text("Chat")
+                                }
+                                .tag(1)
+                        }
+                        
+                        ProfileView()
+                            .tabItem {
+                                Image(systemName: "person")
+                                Text("Profile")
+                            }
+                            .tag(shouldShowMainChatView ? 2 : 1)
+                        
+                        SettingsView()
+                            .environmentObject(userSettings)
+                            .environmentObject(tipsStore)
+                            .tabItem {
+                                Image(systemName: "gear")
+                                Text("Settings")
+                            }
+                            .tag(shouldShowMainChatView ? 3 : 2)
+                    }
+                } else {
+                    NavigationView {
+                        VStack {
+                            LoginView(isSignedIn: $appState.isLoggedIn) // Updated
+                                .environmentObject(appState)
+                        }
                     }
                 }
             }
         }
+        
         .onChange(of: appState.isLoggedIn) { isLoggedIn in
             if isLoggedIn {
                 print("Logged in, showing TabView")
             } else {
                 print("Not logged in, showing LoginView")
             }
+        }
+        .onChange(of: appState.isDelisha) { _ in
+            if shouldShowMainChatView {
+                selectedTab = 1
+            }
+        }
+        .onChange(of: appState.isAidan) { _ in
+            if shouldShowMainChatView {
+                selectedTab = 1
+            }
+        }
+        .sheet(isPresented: $appState.navigateToFutureChatView) {
+            FutureChatView()
+                .interactiveDismissDisabled(appState.isAidan ? false : true)
         }
         .overlay(alignment: .bottom) {
             
@@ -140,8 +173,39 @@ struct MainView: View {
             
         }
         .alert(isPresented: $tipsStore.hasError, error: tipsStore.error) { }
+        
+    }
+    
+}
+
+
+
+extension UIDevice {
+    var modelName: String {
+        #if targetEnvironment(simulator)
+            if let simulatorName = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] {
+                if simulatorName == "Del" {
+                    return "iPhone XR"
+                }
+            }
+        #endif
+        
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.compactMap { $0.value as? Int8 }.map { String(Character(UnicodeScalar(UInt8($0)))) }.joined()
+
+        switch identifier {
+            case "iPhone11,8": return "iPhone XR"
+            // MARK: - REMOVE LATER
+            case "iPhone12,1": return "iPhone XR"
+            // ... other cases for other models
+            default: return identifier
+        }
     }
 }
+
+
 
 struct cardVw: View {
     @EnvironmentObject var appState: AppState

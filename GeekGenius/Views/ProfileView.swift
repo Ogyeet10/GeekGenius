@@ -18,7 +18,7 @@ struct ProfileView: View {
     @State private var displayName = ""
     @State private var aboutMe = ""
     @State private var isLoading = true
-    @State private var user: User? = Auth.auth().currentUser
+    @State private var user: FirebaseAuth.User? = Auth.auth().currentUser
     @State private var isSaving = false
     @State private var showAlert = false
     @State private var alertMessage = ""

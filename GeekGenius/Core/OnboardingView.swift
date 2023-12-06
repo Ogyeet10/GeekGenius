@@ -10,23 +10,25 @@ import Firebase
 
 struct OnboardingView: View {
     @EnvironmentObject var launchStateManager: LaunchStateManager
+    @EnvironmentObject var appState: AppState
     @StateObject private var tipsStore = TipsStore()
     @StateObject var onboardingVM = OnboardingViewModel()  // Add this line
 
 
     var whatsNewItems: [WhatsNewItem] {
-            var items: [WhatsNewItem] = [
-                WhatsNewItem(icon: "clock", title: "Video duration on Home Screen", description: "Now you can see the duration of each video right on the home screen."),
-                WhatsNewItem(icon: "film", title: "Adjust Video Limit", description: "You now have the option to adjust the previously hardcoded video limit."),
-                WhatsNewItem(icon: "ant", title: "Bug fixes", description: "Various bug fixes and performance improvements.")
-            ]
-            
-            if !onboardingVM.disableTipJar {
-                items.insert(WhatsNewItem(icon: "dollarsign.circle", title: "Tip Jar", description: "Love the app? You can now show your support by leaving a tip."), at: 1)
-            }
-            
-            return items
+        var items: [WhatsNewItem] = [
+            WhatsNewItem(icon: "server.rack", title: "Major Backend Overhaul", description: "GeekGenius 1.3 has undergone significant work on its backend, enhancing stability and performance."),
+            WhatsNewItem(icon: "app.badge", title: "Notification Enhancements", description: "We've made major enhancements to notifications in this update, moving some functionalities to our self-hosted server for increased security."),
+            WhatsNewItem(icon: "app.dashed", title: "Widgets", description: "This update includes a preliminary implementation of widgets. Enjoy.")
+        ]
+        
+        if appState.isChatEnabled {
+            items.insert(WhatsNewItem(icon: "text.bubble", title: "GeekGenius Survey", description: "With GeekGenius 1.3, we've introduced a new feature that will be available to a select user before launch, after they submit the survey."), at: 0)
         }
+        
+        return items
+    }
+
     
     var body: some View {
         if launchStateManager.isFirstLaunch {
@@ -50,7 +52,7 @@ struct OnboardingView: View {
         } else if launchStateManager.showWhatsNew {
             VStack {
                 WhatsNewScreenView(
-                    title: "What's New in GeekGenius v1.2",
+                    title: "What's New in GeekGenius v1.3",
                     items: whatsNewItems  // Use the computed property here
                 )                
                 Button(action: {

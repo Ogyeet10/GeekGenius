@@ -19,14 +19,21 @@ struct GeekGeniusApp: App {
 
     init() {
         FirebaseApp.configure() //Configure Firebase
+        // Set the AppDelegate's AppState
+        appDelegate.appState = appState
+        
     }
 
     var body: some Scene {
         WindowGroup {
             OnboardingView()
-                .environmentObject(appState)
+                .environmentObject(appDelegate.appState)
                 .environmentObject(LaunchStateManager())
                 .environmentObject(tipsStore)
+                .onAppear {
+                    // Assigning the AppState instance to the SessionManager
+                    SessionManager.shared.appState = appState
+                }
         }
     }
 }

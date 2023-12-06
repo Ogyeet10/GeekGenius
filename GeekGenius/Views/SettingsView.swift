@@ -25,8 +25,19 @@ struct SettingsView: View {
     @State var showThanks = false
     @State private var showVideoLimitInfo = false // State to control the info alert
     @StateObject var settingsViewVM = SettingsViewViewModel()
-
+    @State private var selectedUserType: UserType = .none
+    @State private var isInitialLoad = true
+    @State private var showConfirmationAlert = false
+    
     let frequencyOptions = ["Daily", "Weekly", "Monthly"]
+    
+    enum UserType: String, CaseIterable, Identifiable {
+        case none = "None"
+        case delisha = "Delisha"
+        case aidan = "Aidan"
+        
+        var id: String { self.rawValue }
+    }
     
     var body: some View {
         NavigationView {
@@ -82,9 +93,9 @@ struct SettingsView: View {
                             .fontWeight(.bold)
                         Button("Sign In") {
                             self.appState.isGuest = false
-                                                }
+                        }
                     }
-
+                    
                 }
                 
                 
@@ -109,6 +120,41 @@ struct SettingsView: View {
                             }
                     }
                 }
+                
+                // Inside the Form in SettingsView
+                Section(header: Text("Dev settings")) {
+                    HStack {
+                        Picker("User Type", selection: $selectedUserType) {
+                            ForEach(UserType.allCases) { userType in
+                                Text(userType.rawValue).tag(userType)
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                    }
+                    NavigationLink(destination: ChatIntroductionView()) {
+                        Text("Chat introduction view")
+                    }
+                    HStack {
+                        Toggle(isOn: $appState.navigateToFutureChatView) {
+                            Text("Open Survey")
+                        }
+                    }
+                    
+                }
+#if DEBUG
+                .alert(isPresented: $showConfirmationAlert) {
+                    Alert(
+                        title: Text("Confirm Change"),
+                        message: Text("Are you sure you want to change the user type?"),
+                        primaryButton: .destructive(Text("Confirm")) {
+                            // Execute the switch-case logic here after confirmation
+                            executeUserTypeChange(selectedUserType)
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
+#endif
+
                 
                 // Contact Me Section
                 Section(header: Text("Contact Me")) {
@@ -169,12 +215,32 @@ struct SettingsView: View {
                 }
             }
             .onAppear {
+                loadSelectedUserType()
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                    let rootViewController = windowScene.windows.first?.rootViewController {
                     print(rootViewController.printHierarchy())
                 }
-
+            }
+#if DEBUG
+            .onReceive(appState.$isDelisha) { isDelisha in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    if isDelisha {
+                        selectedUserType = .delisha
                     }
+                }
+            }
+            .onReceive(appState.$isAidan) { isAidan in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    if isAidan {
+                        selectedUserType = .aidan
+                    }
+                }
+            }
+            .onChange(of: selectedUserType) { newUserType in
+                // Trigger the confirmation alert
+                showConfirmationAlert = true
+            }
+#endif
             .alert(isPresented: $showErrorAlert) {
                 Alert(
                     title: Text("Error"),
@@ -197,6 +263,38 @@ struct SettingsView: View {
             showErrorAlert = true
         }
     }
+#if DEBUG
+    private func executeUserTypeChange(_ newUserType: UserType) {
+        switch newUserType {
+        case .delisha:
+            appState.isDelisha = true
+            appState.isAidan = false
+            SessionManager().logout()
+        case .aidan:
+            appState.isDelisha = false
+            appState.isAidan = true
+            SessionManager().logout()
+        case .none:
+            appState.isDelisha = false
+            appState.isAidan = false
+            SessionManager().logout()
+        }
+        saveSelectedUserType(selectedUserType)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            exit(0)
+        }
+    }
+    
+    private func loadSelectedUserType() {
+            if let savedUserType = UserDefaults.standard.string(forKey: "selectedUserType") {
+                selectedUserType = UserType(rawValue: savedUserType) ?? .none
+            }
+        }
+
+        private func saveSelectedUserType(_ userType: UserType) {
+            UserDefaults.standard.set(userType.rawValue, forKey: "selectedUserType")
+        }
+#endif
     private func deleteAccount() {
         guard let user = Auth.auth().currentUser else { return }
         
@@ -263,7 +361,7 @@ struct SettingsView: View {
 struct ProductsListView: View {
     
     @EnvironmentObject private var store: TipsStore
-
+    
     var body: some View {
         
         ForEach(store.items ?? []) { item in

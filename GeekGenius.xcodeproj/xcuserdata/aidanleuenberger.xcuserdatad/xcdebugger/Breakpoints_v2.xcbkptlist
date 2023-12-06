@@ -3,4 +3,403 @@
    uuid = "E8E505A8-BC9D-4386-84AC-634A617B221E"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "507C3B58-99AC-43F8-BD34-710A2F6789B0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/Future Chat Backend/Conversations/ConversationsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "79EFC50C-F32A-4D56-9AE1-8CE980A58F79"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/Future Chat Backend/Conversation/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "userIsTyping(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "79EFC50C-F32A-4D56-9AE1-8CE980A58F79 - 7194c1460ee0eb31"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ConversationViewModel.userIsTyping(Swift.String) -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/Future%20Chat%20Backend/Conversation/ConversationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  uuid = "79EFC50C-F32A-4D56-9AE1-8CE980A58F79 - 7194c1460ee0eb31"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ConversationViewModel.userIsTyping(Swift.String) -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/Future%20Chat%20Backend/Conversation/ConversationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "79EFC50C-F32A-4D56-9AE1-8CE980A58F79 - 7194c1460ee0ea94"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ConversationViewModel.userIsTyping(Swift.String) -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/Future%20Chat%20Backend/Conversation/ConversationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "180">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5CE25DD-C794-4CAC-B9B3-304BBBF438A9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/Future Chat Backend/Conversation/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "appDidBecomeActive()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A5CE25DD-C794-4CAC-B9B3-304BBBF438A9 - 93fb57b505ab4d5a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ConversationViewModel.appDidBecomeActive() -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/Future%20Chat%20Backend/Conversation/ConversationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "A5CE25DD-C794-4CAC-B9B3-304BBBF438A9 - 93fb57b505ab4cbb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ConversationViewModel.appDidBecomeActive() -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/Future%20Chat%20Backend/Conversation/ConversationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "A5CE25DD-C794-4CAC-B9B3-304BBBF438A9 - 93fb57b505ab4cbb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ConversationViewModel.appDidBecomeActive() -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/Future%20Chat%20Backend/Conversation/ConversationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A2787811-2980-433A-963C-8C201A58EAA4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/Future Chat Backend/Conversation/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "appDidEnterBackground()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A2787811-2980-433A-963C-8C201A58EAA4 - 51fee2f8e4e7d730"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ConversationViewModel.appDidEnterBackground() -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/Future%20Chat%20Backend/Conversation/ConversationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "A2787811-2980-433A-963C-8C201A58EAA4 - 51fee2f8e4e7d7d1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ConversationViewModel.appDidEnterBackground() -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/Future%20Chat%20Backend/Conversation/ConversationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "A2787811-2980-433A-963C-8C201A58EAA4 - 51fee2f8e4e7d7f2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ConversationViewModel.appDidEnterBackground() -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/Future%20Chat%20Backend/Conversation/ConversationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5DD6F1A2-8B40-4B50-B7FB-8A1C6E5D1FFC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/Future Chat Backend/Conversation/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "subscribeToUserStatus()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2CB57FAD-F0E7-47C8-9CFC-73E17123BF65"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/Future Chat Backend/Conversation/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "subscribeToUserStatus()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA3CC5BE-D244-4016-ABD8-213CCD0DDEAD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/Future Chat Backend/Conversation/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "subscribeToUserStatus()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D76BEFAF-2277-4FC8-8936-B717F71A5056"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/Future Chat Backend/Conversation/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "subscribeToUserStatus()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "254691DE-EBDE-4E6B-995E-485DF179269E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/Future Chat Backend/Conversation/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "subscribeToUserStatus()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3654B33-4161-4DAA-9694-EE49BA3B7250"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/Future Chat Backend/Conversation/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "ConversationViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC3F6BD3-B7C8-496F-B60A-FA7652C843E5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/ChatIntroductionViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "handleYesAction()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DC3F6BD3-B7C8-496F-B60A-FA7652C843E5 - 5032eb8e8360c0ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ChatIntroductionViewModel.showAlertSequence() -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/ChatIntroductionViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "DC3F6BD3-B7C8-496F-B60A-FA7652C843E5 - 484f5f1c67ce31f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ChatIntroductionViewModel.handleYesAction() -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/ChatIntroductionViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B55C91C8-2917-45ED-9946-AFF52FD83863"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeekGenius/Views/Future View&apos;s/ChatIntroductionViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "handleNoAction()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B55C91C8-2917-45ED-9946-AFF52FD83863 - 5032eb8e8360c1a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ChatIntroductionViewModel.showAlertSequence() -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/ChatIntroductionViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "260">
+               </Location>
+               <Location
+                  uuid = "B55C91C8-2917-45ED-9946-AFF52FD83863 - 69bb72e0e8a4db06"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeekGenius.ChatIntroductionViewModel.handleNoAction() -&gt; ()"
+                  moduleName = "GeekGenius"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aidanleuenberger/Documents/GeekGenius/GeekGenius/Views/Future%20View&apos;s/ChatIntroductionViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

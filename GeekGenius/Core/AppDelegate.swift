@@ -19,9 +19,32 @@ let userSettings = UserSettings()
 let gcmMessageIDKey = "gcm.message_id" // Define gcmMessageIDKey here
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var appState: AppState!
     
+    static var orientationLock = UIInterfaceOrientationMask.all
+
+        static func lockOrientationToPortrait() {
+            orientationLock = .portrait
+            if #available(iOS 16, *) {
+                if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    scene.requestGeometryUpdate(.iOS(interfaceOrientations: .portrait))
+                }
+                UIViewController.attemptRotationToDeviceOrientation()
+            } else {
+                UIDevice.current.setValue(UIDeviceOrientation.portrait.rawValue, forKey: "orientation")
+            }
+        }
+
+        static func unlockOrientation() {
+            orientationLock = .all
+            UIViewController.attemptRotationToDeviceOrientation()
+        }
+
+        func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+            return AppDelegate.orientationLock
+        }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-            registerBackgroundTasks()
             Messaging.messaging().delegate = self
 
             let center = UNUserNotificationCenter.current()
@@ -38,7 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("User accepted notification: \(accepted)")
         })
             application.registerForRemoteNotifications()
-            scheduleAppRefresh()
         if let user = Auth.auth().currentUser {
             Analytics.setUserID(user.displayName)  // using displayName as an example, but remember the privacy implications
         }
@@ -62,6 +84,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.handleAppRefresh(task: task as! BGAppRefreshTask)
         }
     }
+    
+    // Handle incoming Universal Links
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+              let _ = userActivity.webpageURL else {
+            return
+        }
+        appState.navigateToFutureChatView = true
+        print("Handled by NSUserActivity")
+    }
+    
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let userActivity = connectionOptions.userActivities.first,
+              userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+              let _ = userActivity.webpageURL else {
+            return
+        }
+        appState.navigateToFutureChatView = true
+        print("Handled by UISceneSession")
+    }
+
     
     func scheduleAppRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: "com.oggroup.GeekGenius.fetchNewVideos")
@@ -134,12 +177,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return UIBackgroundFetchResult.newData
     }
 
-    func application(_ application: UIApplication,
-        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-      Messaging.messaging().apnsToken = deviceToken;
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        // Set the APNs token for Firebase Messaging
+        Messaging.messaging().apnsToken = deviceToken
+
+        // Convert the APNs token to a string
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let token = tokenParts.joined()
+        
+        // Print the APNs device token
+        print("APNs Device Token: \(token)")
+        // Upload the token to Firestore
+        uploadDeviceTokenToFirestore(token: token)
     }
-     
     
+    func uploadDeviceTokenToFirestore(token: String) {
+        let db = Firestore.firestore()
+
+        // Determine the user document based on appState
+        let userDocument: String?
+        if appState.isDelisha {
+            userDocument = "Delisha"
+        } else if appState.isAidan {
+            userDocument = "Aidan"
+        } else {
+            userDocument = nil
+            print("No user is currently active, token not uploaded")
+        }
+
+        // Update the appState's apnDeviceToken regardless of userDocument's state
+        appState.apnDeviceToken = token
+        
+        // Only proceed if a user document is set
+        if let userDocument = userDocument {
+            let deviceTokensDocumentRef = db.collection("users").document(userDocument).collection("deviceTokens")
+
+            // Add token to the dictionary
+            deviceTokensDocumentRef.document("apnDeviceToken").setData(["tokens": FieldValue.arrayUnion([token])], merge: true) { error in
+                if let error = error {
+                    print("Error updating token: \(error.localizedDescription)")
+                } else {
+                    print("Token successfully updated for user \(userDocument)")
+                }
+            }
+        }
+    }
+
+     
     
     func fetchNewVideos(completion: @escaping (Bool) -> Void) {
         let db = Firestore.firestore()
