@@ -17,12 +17,14 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
     @Published var isChatEnabled: Bool = false  // Default value
     @Published var isDelisha: Bool {
         didSet {
+            guard !isInitializing else { return }
             // Save to UserDefaults whenever isDelisha changes
             UserDefaults.standard.set(isDelisha, forKey: "isDelisha")
         }
     }
     @Published var isAidan: Bool {
             didSet {
+                guard !isInitializing else { return }
                 // Save to UserDefaults whenever isAidan changes
                 UserDefaults.standard.set(isAidan, forKey: "isAidan")
             }
@@ -35,9 +37,6 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
     }
     @Published var needsIntroduction: Bool {
         didSet {
-            // Save to UserDefaults
-            UserDefaults.standard.set(needsIntroduction, forKey: "needsIntroduction")
-            
             // Update Firestore
             updateFirestoreField(forUser: "Delisha", field: "needsIntroduction", value: needsIntroduction)
         }
@@ -45,9 +44,6 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
     
     @Published var needsSecondaryIntroduction: Bool {
         didSet {
-            // Save to UserDefaults
-            UserDefaults.standard.set(needsSecondaryIntroduction, forKey: "needsSecondaryIntroduction")
-            
             // Update Firestore
             updateFirestoreField(forUser: "Delisha", field: "needsSecondaryIntroduction", value: needsSecondaryIntroduction)
         }
@@ -73,6 +69,8 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
             NSUbiquitousKeyValueStore.default.set(hasChatIntroductionViewOpened, forKey: "hasChatIntroductionViewOpened")
         }
     }
+    
+    private var isInitializing = true
 
 
 
