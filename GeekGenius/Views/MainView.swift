@@ -22,7 +22,7 @@ struct MainView: View {
 
     var body: some View {
         Group {
-            if appState.needsIntroduction {
+            if appState.needsIntroduction && appState.isDelisha {
                 ChatIntroductionView()
                     .transition(.asymmetric(insertion: .scale, removal: .opacity)) // Example of an animation
             } else {

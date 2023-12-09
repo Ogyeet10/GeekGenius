@@ -223,7 +223,7 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
         chatEnabledListener = firestore.collection("variables").document("chat").addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")
-                self.isChatEnabled = true // Set a default or handle the error appropriately
+                self.isChatEnabled = false // Set a default or handle the error appropriately
                 return
             }
             
@@ -257,7 +257,7 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
             print("Determining navigateToFutureChatView status...")
             if hasChatIntroductionViewOpened {
                 navigateToFutureChatView = false
-                print("navigateToFutureChatView is true. Setting navigateToFutureChatView to false.")
+                print("hasChatIntroductionViewOpened is true. Setting navigateToFutureChatView to false.")
             } else {
                 // First, check if the user is either Delisha or Aidan
                 if isDelisha || isAidan {
@@ -278,7 +278,7 @@ class AppState: NSObject, ObservableObject, ASAuthorizationControllerDelegate {
                 completion(isEnabled)
             } else {
                 print("Error fetching document or document does not exist: \(error?.localizedDescription ?? "Unknown error")")
-                completion(true) // Default to true if there's an error or the document does not exist
+                completion(false) // Default to true if there's an error or the document does not exist
             }
         }
     }
