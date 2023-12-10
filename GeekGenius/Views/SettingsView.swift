@@ -120,7 +120,7 @@ struct SettingsView: View {
                             }
                     }
                 }
-                
+#if DEBUG
                 // Inside the Form in SettingsView
                 Section(header: Text("Dev settings")) {
                     HStack {
@@ -141,7 +141,6 @@ struct SettingsView: View {
                     }
                     
                 }
-#if DEBUG
                 .alert(isPresented: $showConfirmationAlert) {
                     Alert(
                         title: Text("Confirm Change"),
